@@ -1,0 +1,17 @@
+{% extends "datasets/base.html" %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+  <div class="text-center">
+    <h1 class="display-4 mb-4">DIFA Scraper Management Utility</h1>
+    {% if user.is_authenticated %}
+      <p class="lead">Logged in as {{ user.username }}</p>
+      <a class="btn btn-info" href="{% url 'datasets:datasets' %}" role="button">View Datasets</a>
+      <a class="btn btn-danger" href="{% url 'datasets:logout' %}" role="button">Logout</a>
+    {% else %}
+      <a class="btn btn-primary mr-2" href="{% url 'datasets:login' %}" role="button">Log In</a>
+      <a class="btn btn-secondary" href="{% url 'datasets:register' %}" role="button">Register</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

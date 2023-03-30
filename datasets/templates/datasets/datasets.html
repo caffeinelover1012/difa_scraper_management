@@ -1,0 +1,27 @@
+{% extends "datasets/base.html" %}
+
+{% block title %}Datasets{% endblock %}
+
+{% block content %}
+  <h2>Datasets</h2>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>About</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dataset in datasets %}
+        <tr>
+          <td>{{ dataset.id }}</td>
+          <td><a href="{% url 'datasets:dataset' dataset_id=dataset.id %}">{{ dataset.dataset_name }}</a></td>
+          <td>{{ dataset.about_info }}</td>
+          <td>{{ dataset.last_updated }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
