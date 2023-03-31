@@ -1,29 +1,59 @@
 {% extends "datasets/base.html" %}
-
+{% load custom_tags %}
 {% block title %}Datasets{% endblock %}
 
 {% block content %}
-  <h2>Datasets</h2>
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>About</th>
-        <th>Last Updated</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for dataset in datasets %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">DIFA Scraper Management Utility</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'datasets' %}">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1X2CEttMDzb8ef_lUpXfXDNd4wMRHBJk3/edit#gid=1527990151">Current Google Sheet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'modification_requests' %}">Modifications Portal</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          Logged in as {{ request.user.username }}
+        </span>
+        <a class="btn btn-outline-danger ms-2" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Datasets</h2>
+    <input class="form-control mb-4" id="searchInput" type="text" placeholder="Search datasets">
+
+    <table class="table table-striped table-bordered">
+      <thead>
         <tr>
-          <td>{{ dataset.id }}</td>
-          <td><a href="{% url 'datasets:dataset' dataset_id=dataset.id %}">{{ dataset.dataset_name }}</a></td>
-          <td>{{ dataset.last_updated }}</td>
-          <td><span class="local-time" data-time="{{ dataset.last_scraped.isoformat() }}"></span></td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Last Scraped</th>
+          <th>Actions</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody id="datasetsTable">
+        {% for dataset in datasets %}
+          <tr>
+            <td>{{ dataset.id }}</td>
+            <td>{{ dataset.dataset_name }}</td>
+            <td><span class="local-time" data-time="{{ dataset.last_scraped }}"></span></td>
+            <td><a href="{% url 'dataset' dataset_id=dataset.id %}" class="btn btn-primary">View</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
 
 {% block scripts %}
@@ -53,6 +83,19 @@
     }
 
     document.addEventListener('DOMContentLoaded', updateLocalTime);
-  </script>
-{% endblock %}
 
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const searchValue = e.target.value.toLowerCase();
+      const tableRows = document.querySelectorAll('#datasetsTable tr');
+
+      for (const row of tableRows) {
+        const datasetName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        if (datasetName.includes(searchValue)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+    }
+  }
+});
+</script>
+{% endblock %}

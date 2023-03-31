@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://dhsprogram.com/"
@@ -27,12 +23,3 @@ def get_data_attributes(url):
     last_updated = {'sas': None, 'stata': None, 'spss': None,'ascii':None}
     res['dataset_file_format'] = list(last_updated.keys())
     return res
-
-# Loop through the organization dictionary and print the data attribute output
-print(ORGANIZATION)
-print('-' * len(ORGANIZATION))
-data_attributes = get_data_attributes(ORG_URL)
-for attribute, value in data_attributes.items():
-    print(f'{attribute}: {value}',end="\n\n")
-print()
-# print(data_attributes)

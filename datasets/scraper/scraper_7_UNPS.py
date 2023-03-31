@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://microdata.worldbank.org/index.php/catalog/3902"
@@ -29,11 +25,11 @@ def get_data_attributes(url):
     res['dataset_status'] = 'Retired' if is_older_than_5yrs(last_updated) else 'Active'
     return res
 
-# Loop through the organization dictionary and print the data attribute output
-print(ORGANIZATION)
-print('-' * len(ORGANIZATION))
-data_attributes = get_data_attributes(ORG_URL)
-for attribute, value in data_attributes.items():
-    print(f'{attribute}: {value}',end="\n\n")
-print()
-# print(data_attributes)
+# # Loop through the organization dictionary and print the data attribute output
+# print(ORGANIZATION)
+# print('-' * len(ORGANIZATION))
+# data_attributes = get_data_attributes(ORG_URL)
+# for attribute, value in data_attributes.items():
+#     print(f'{attribute}: {value}',end="\n\n")
+# print()
+# # print(data_attributes)

@@ -1,7 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/"

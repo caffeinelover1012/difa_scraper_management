@@ -1,7 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.safegraph.com/"
@@ -10,7 +7,6 @@ ORGANIZATION = "SafeGraph"
 # Define a function to get the data attributes for an organization
 
 def get_data_attributes(url):
-
     res = {i: "N/A" for i in ATTRS}
     res['dataset_website_link'] = ORG_URL
     res['access_type'] = 'Paid Access'

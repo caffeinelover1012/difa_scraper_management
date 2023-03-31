@@ -1,12 +1,9 @@
-import requests
-from bs4 import BeautifulSoup
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.ers.usda.gov/data-products/eating-and-health-module-atus/"
 ORGANIZATION = "ATUS"
-SCRAPE_ID = 1
+
 # Define a function to get the data attributes for an organization
 def get_data_attributes(url):
 

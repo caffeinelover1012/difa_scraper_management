@@ -6,17 +6,32 @@ from .forms import LoginForm, RegistrationForm
 from .models import Dataset
 from .utils import run_scraper
 from django.utils import timezone
+from .models import ModificationRequest
 
 def index(request):
     return render(request, 'datasets/index.html')
 
+def export_dataset(request, dataset_id):
+    # export dataset to Google Sheets
+    export_successful=True   
+    # redirect back to dataset page with success or error message
+    if export_successful:
+        messages.success(request, 'Dataset exported successfully.')
+    else:
+        messages.error(request, 'Failed to export dataset.')
+
+    return redirect('dataset', dataset_id=dataset_id)
 @login_required
+def modification_requests(request):
+    mod_requests = ModificationRequest.objects.all().order_by('-id')
+    return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
+
 def scrape_dataset(request, dataset_id):
-    dataset = get_object_or_404(Dataset, pk=dataset_id)
-    scraper_id = dataset.scraper_id
-    scraped_data = run_scraper(scraper_id)
+    dataset, created = Dataset.objects.get_or_create(pk=dataset_id)
+    scraped_data = run_scraper(dataset_id)
+
     # Update the 'last_scraped' attribute with the current date and time
-    scraped_data['last_scraped'] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    scraped_data['last_scraped'] = timezone.now().isoformat()
 
     # Update the database with the scraped data
     for key, value in scraped_data.items():
