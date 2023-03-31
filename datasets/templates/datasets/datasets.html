@@ -18,10 +18,41 @@
         <tr>
           <td>{{ dataset.id }}</td>
           <td><a href="{% url 'datasets:dataset' dataset_id=dataset.id %}">{{ dataset.dataset_name }}</a></td>
-          <td>{{ dataset.about_info }}</td>
           <td>{{ dataset.last_updated }}</td>
+          <td><span class="local-time" data-time="{{ dataset.last_scraped.isoformat() }}"></span></td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 {% endblock %}
+
+{% block scripts %}
+  <script>
+    function convertToLocalTime(utcTimeString) {
+      const date = new Date(utcTimeString);
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short',
+      };
+
+      return date.toLocaleString(undefined, options);
+    }
+
+    function updateLocalTime() {
+      const timeElements = document.querySelectorAll('.local-time');
+
+      for (const el of timeElements) {
+        const utcTimeString = el.getAttribute('data-time');
+        const localTime = convertToLocalTime(utcTimeString);
+        el.textContent = localTime;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateLocalTime);
+  </script>
+{% endblock %}
+
