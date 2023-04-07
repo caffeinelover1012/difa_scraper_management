@@ -1,7 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from time import sleep
 from datetime import date, datetime
 from date_utils import *
@@ -36,14 +35,17 @@ def get_data_attributes():
     res["access_type"] = "Open Access"
 
     #Initialize browser
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+    browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
     browser.get(ORG_URL)
     sleep(3)
     #Accept cookies on the page
     browser.find_element(By.XPATH,'/html/body/div[2]/div[3]/div/div[1]/div/div[2]/div/button[3]').click()
-
     about_info = ""
     #Collect dataset info from main page
     about1 = browser.find_element(By.XPATH,'/html/body/main/div/article/p[1]').text
@@ -79,7 +81,6 @@ def get_data_attributes():
 
     # Find the last updated date of data and compute if the last collected is not more than 5 years of duration.
     last_updated = browser.find_element(By.XPATH,'/html/body/main/div/article/div/article/div/div').text.split('\n')[0]
-    print(last_updated)
     last_updated_date = standardize(DATE_FMT,last_updated)
     res["last_updated"] = last_updated_date
 

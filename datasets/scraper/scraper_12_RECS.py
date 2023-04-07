@@ -1,7 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from time import sleep
 from datetime import date, datetime
 from date_utils import *
@@ -35,7 +34,11 @@ def get_data_attributes():
     res["access_type"] = "Open Access"
 
     #Initialize Browser
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+    browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
     browser.get(ORG_URL)
@@ -55,7 +58,6 @@ def get_data_attributes():
 
     #Find when the dataset was last updated: DATA -> MICRODATA -> Release Date
     last_updated = browser.find_element(By.XPATH,'//*[@id="microdata"]/table/tbody/tr/td[4]').text
-    print(last_updated)
     res["last_updated"]=last_updated
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.

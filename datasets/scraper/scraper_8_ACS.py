@@ -1,7 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from time import sleep
 from datetime import date, datetime
 from date_utils import *
@@ -35,7 +34,11 @@ def get_data_attributes():
     res["access_type"] = "Open Access"
 
     #Initialize Browser
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+    browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
     browser.get(ORG_URL)
@@ -46,7 +49,7 @@ def get_data_attributes():
     
     #Redirect to about the ACS page and gather about info
     browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[1]/a").click()
-    sleep(3)
+    # sleep(3)
     about1 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div/section/div[2]/p[2]').text
     about2 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/div/section/div[2]/p[2]').text
     about_info = about_info + "\n\n" + about1 + "\n\n" + about2
@@ -55,7 +58,7 @@ def get_data_attributes():
 
     #Go back to the main page.
     browser.find_element(By.XPATH,'//*[@id="breadContainer"]/ul/li[3]/a').click()
-    sleep(3)
+    # sleep(3)
 
     #Get the ACS data link from Data -> data.census.gov - https://data.census.gov/
     acs_dataset_link=browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[2]").get_attribute('href')
@@ -64,7 +67,7 @@ def get_data_attributes():
 
     #Click on data release plan to see the latest data
     browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[1]").click()
-    sleep(3)
+    # sleep(3)
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
     latest_year_available = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/ul/li[1]/a').text
@@ -78,7 +81,7 @@ def get_data_attributes():
 
     #Find when the dataset was last updated
     browser.find_element(By.XPATH,'//*[@id="listArticlesContainer_List_296343523"]/div[2]/a[1]').click()
-    sleep(3)
+    # sleep(3)
     last_updated = browser.find_element(By.XPATH,'//*[@id="textcore-3d89543f20"]').text
     last_updated_date = standardize(DATE_FMT,last_updated[8:])
     res["last_updated"] = last_updated_date
@@ -88,5 +91,5 @@ def get_data_attributes():
 
     return res
 
-# result=get_data_attributes()
+# result = get_data_attributes()
 # print(result)

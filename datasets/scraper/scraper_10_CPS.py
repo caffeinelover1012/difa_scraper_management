@@ -1,7 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from time import sleep
 from datetime import date, datetime
 from date_utils import *
@@ -35,7 +34,11 @@ def get_data_attributes():
     res["access_type"] = "Open Access"
 
     #Initialize Browser
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
+    browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
     browser.get(ORG_URL)
@@ -44,7 +47,7 @@ def get_data_attributes():
     about_info = ""
     #Collect dataset info by redirecting to About this Survey page
     browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[1]/a').click()
-    sleep(3)
+    # sleep(3)
     paragraphs = browser.find_elements(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div/section/div/*')
     for para in paragraphs:
         about_info += para.text
@@ -52,7 +55,7 @@ def get_data_attributes():
 
     #Go back to the main page.
     browser.find_element(By.XPATH,'//*[@id="breadContainer"]/ul/li[3]/a').click()
-    sleep(3)
+    # sleep(3)
 
     #Get the CPS datasets
     browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[2]/a').click()
@@ -74,12 +77,11 @@ def get_data_attributes():
     GENERAL_DATASET_SEARCH_TOOL_MDAT = "https://data.census.gov/mdat/#/"
     res["dataset_link"] = GENERAL_DATASET_SEARCH_TOOL_MDAT 
 
-
     res["dataset_file_format"]=["csv","pdf","sas","txt"]
 
     #Click on data release plan to see the latest data
     basic_cps.click()
-    sleep(3)
+    # sleep(3)
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
     latest_year_available=browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div/ul/li[1]/a').text
