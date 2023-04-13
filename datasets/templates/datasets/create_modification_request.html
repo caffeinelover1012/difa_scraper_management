@@ -1,0 +1,63 @@
+{% extends "datasets/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Create Modification Request{% endblock %}
+
+
+{% block content %}
+  <h2 class="text-center">Create Modification Request for {{ dataset.dataset_name }}</h2>
+  <form method="POST" class="mx-auto" id="mod-request-form">
+    {% csrf_token %}
+    <table class="table table-striped table-bordered mx-auto" style="width: 80%;">
+      <tbody>
+        {% for field in form %}
+          <tr>
+            <th>{{ field.label_tag }}</th>
+            <td>
+              <div class="row">
+                <div class="col-12">
+                  {% if field.field.widget.input_type != 'hidden' %}
+                  <textarea rows="{{ field.field.widget.attrs.rows|default:3 }}" class="form-control mod-request-field" name="{{ field.html_name }}" id="{{ field.auto_id }}" data-original-value="{{ field.value|default:'' }}">{{ field.value|default:'' }}</textarea>
+                  {% else %}
+                    {{ field }}
+                  {% endif %}
+                </div>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <input type="hidden" name="changes_json" id="changes-json">
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-primary">Submit Request</button>
+      <a href="{% url 'dataset' dataset_id=dataset.id %}" class="btn btn-secondary" role="button">Back to Dataset</a>
+    </div>
+  </form>
+{% endblock %}
+
+
+{% block scripts %}
+  <script>
+    function getChanges() {
+      let changes = {};
+      let fields = document.getElementsByClassName('mod-request-field');
+      for (let field of fields) {
+        let originalValue = field.getAttribute('data-original-value');
+        let currentValue = field.value;
+        if (originalValue !== currentValue) {
+          changes[field.name] = currentValue;
+        }
+      }
+      return changes;
+    }
+
+    function updateChangesJson() {
+      let changes = getChanges();
+      let changesJson = JSON.stringify(changes);
+      document.getElementById('changes-json').value = changesJson;
+    }
+
+    document.getElementById('mod-request-form').addEventListener('submit', updateChangesJson);
+  </script>
+{% endblock %}

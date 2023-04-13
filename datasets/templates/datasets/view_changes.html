@@ -1,0 +1,62 @@
+{% extends "datasets/base.html" %} {% load custom_tags %} 
+{% block title %}View Changes{% endblock %} 
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <h2 class="text-center">
+        Changes Requested by {{ mod_request.user.username }} for {{ mod_request.dataset.dataset_name }}
+      </h2>
+
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Current Value</th>
+            <th>New Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for field, values in changes.items %}
+          <tr>
+            <td>{{ field }}</td>
+            <td>{{ values.current_value }}</td>
+            <td>{{ values.new_value }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+        <div class="m-2 d-flex flex-column align-items-center">
+          <form method="post" action="{% url 'modify_modification_request' mod_request_id=mod_request.id %}">
+            {% csrf_token %}
+            <label for="status">Modify current status:</label>
+            <select name="status" id="status" class="form-select">
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <button type="submit" class="btn btn-primary m-2">Update Status</button>
+          </form>
+          <hr style="border: 1px; display:block; height: 1px; clear:both; width: 96%; background-color: gray;">
+          <form method="post" action="{% url 'delete_modification_request' mod_request_id=mod_request.id %}" onsubmit="return confirm('Are you sure you want to delete this request?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger mt-1">Delete Request</button>
+          </form>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+
+        </div>
+        <p class="text-center">
+          <strong>Approver/Rejecter:</strong>
+          {% if mod_request.approver %}
+            {{ mod_request.approver.username }}
+          {% else %}
+            N/A
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
