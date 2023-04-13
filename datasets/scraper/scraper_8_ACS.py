@@ -91,5 +91,5 @@ def get_data_attributes():
 
     return res
 
-# result = get_data_attributes()
-# print(result)
+result = get_data_attributes()
+print(result)
