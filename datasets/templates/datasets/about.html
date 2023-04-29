@@ -1,0 +1,48 @@
+{% extends 'datasets/base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<style>
+    .img-fluid {
+      max-height: 100px;
+      max-width: 100%;
+      display: block;
+      align-self: center;
+      justify-content: center;
+    }
+    @media (min-width: 992px) {
+      .img-fluid {
+        max-height: 100%;
+        max-width: 500px;
+      }
+    }
+  </style>
+  <div class="container my-5">
+    <h1 class="mb-4">About</h1>
+    <div class="row">
+        <div class="col-md-6">
+          <h2>Why Data Integration?</h2>
+          <p>Policy-based research in food and agriculture requires a comprehensive analysis, using contextual, econometric, and disciplinary knowledge. Integrating disparate data allows researchers to have more complete information about the markets they study, the potential need for policy, and the intended and unintended impacts of suggested policies. However, the technical and logistical skills needed to build datasets that rely on the use of multiple disparate data sets may be a barrier for many applied economists.</p>
+        </div>
+        <div class="col-md-6">
+          <img src="{% static 'react-vis-force.gif' %}" alt="Data Integration" class="img-fluid">
+        </div>
+      </div>
+
+  
+      <div class="row mt-5">
+        <div class="col-md-6 d-flex justify-content-center">
+          <img src="{% static 'unnamed.webp' %}" alt="Objective" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+          <h2>Our Objective</h2>
+          <p>The Data Integration in Food and Agriculture (DIFA) tool will provide dataset-specific information pertinent to accessing and utilizing the corresponding data and linking it with other relevant datasets. In this tool, we will generate easily consumable information that describes key attributes of data resources, including outcome variables and how they are measured; whether the data are publicly available or require a license, or have versions of public and licensed data; how researchers can access the data; a brief description of sampling methods; the structure of the data; and, opportunities and previous work done to link one data source to others.</p>
+            <h2>Our Approach</h2>
+                <p>To begin building this online tool, we will identify and document available data resources, both public and private, commonly used by agricultural and applied economists. The compilation of data sources will serve as the inputs for the online resource.</p>
+        </div>
+        </div>
+      </div>  
+
+    {% endblock %}

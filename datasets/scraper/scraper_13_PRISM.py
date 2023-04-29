@@ -1,17 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from time import sleep
-from datetime import date, datetime
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%d %B %Y"
 ORG_URL = "https://prism.oregonstate.edu/"
 ORGANIZATION = "PRISM"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes():
+def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
 
@@ -74,6 +68,3 @@ def get_data_attributes():
     browser.quit()
 
     return res
-
-# result=get_data_attributes()
-# print(result)

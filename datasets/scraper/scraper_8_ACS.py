@@ -1,95 +1,66 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from time import sleep
-from datetime import date, datetime
-from date_utils import *
-from statics import *
+from .common_imports import *
 
-DATE_FMT = "%B %d, %Y"
-ORG_URL = "https://www.census.gov/programs-surveys/acs"
-ORGANIZATION = "ACS"
+DATE_FMT = "%d-%m-%Y"
+ORG_URL = "https://www.cso.ie/en/methods/agricultureandfishing/censusofagriculture/"
+ORGANIZATION = "ICA"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes():
+def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
-    res["dataset_name"] = "American Community Survey (ACS)"
+    res["dataset_name"] = "Irish Census of Agriculture (ICA)"
     res["dataset_website_link"] = ORG_URL
+    res["dataset_collection_method"] = "Within the European Union (EU), each of the Member States will be tasked with collecting set data for the farmers and the farms above certain physical thresholds in their country. This will mean collecting data on as many as 10.5 million farms (2016 data) in the EU.\n\nMember States will establish teams of supervisors and enumerators to conduct the Agricultural Census, typically overseen by a combination of civil servants from the Statistical Office and the Ministry of Agriculture. They will use all types of collection methods to complete the Agricultural Census, inter alia farm registers, administrative sources and surveys. For the surveys, enumerators will contact farmers over the internet, by telephone, by letter or through face-to-face questioning. By allowing a more extensive use of administrative sources in 2020, the overall cost of the census will be reduced. At the same time, the burden on farmers will be alleviated, as they will receive questionnaires that are already partially pre-filled.\n\nIn the EU’s Agricultural Census 2020 approximately 300 variables will be collected, covering the following aspects on farming:\n\nGeneral characteristics of the farm and the farmer\nLand\nLivestock\nLabour force\nAnimal housing and manure management\nRural development support measures."
+    res["dataset_citation"] = "To cite the Irish Census of Agriculture dataset in APA format in your research paper, you can use the following citation format:\n\nCentral Statistics Office. (year of release). Census of Agriculture. [dataset]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this:\n\nCentral Statistics Office. (2016). Census of Agriculture 2010: Land Use, Output and Income - Detailed Tables. [dataset]. Retrieved from https://www.census.gov/programs-surveys/cps.html.\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
+    res["sponsor_name"] = "Central Statistics Office"
+    res["access_type"] = OPEN_ACCESS
 
-    #Dataset Collection Method
-    DATASET_COLLECTION_METHOD = "The American Community Survey (ACS) is an ongoing survey conducted by the US Census Bureau. The survey collects data on a range of social, economic, and housing characteristics of the US population on a continuous basis throughout the year. The ACS is conducted using both mail and in-person interviews, and respondents are selected through a random sampling process. The survey is designed to be representative of the entire US population, including people living in households and group quarters (such as college dormitories, correctional facilities, and nursing homes). The data collected through the ACS is used by a wide range of organizations, including government agencies, academic researchers, and non-profit organizations, to better understand the needs of US communities and make informed decisions."
-    res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
-
-    #Citation Method
-    DATASET_CITATION = "To cite the American Community Survey (ACS) dataset in APA format in your research paper, you can use the following citation format:\n\nU.S. Census Bureau [date of access]. American Community Survey. [dataset]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this::\n\nU.S. Census Bureau (2021).  American Community Survey 1-year estimates [dataset]. Retrieved from https://www.census.gov/programs-surveys/acs/data.html.\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
-    #Sponsor Name
-    SPONSOR_NAME = "US Census Bureau"
-    res["sponsor_name"]=SPONSOR_NAME
-
-    #Type of access to the dataset
-    res["access_type"] = "Open Access"
-
-    #Initialize Browser
+    # Initialize Browser
     options = Options()
-    options.add_argument("--headless=new")
+    options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
-    browser.get(ORG_URL)
+    browser.get(url)
     sleep(3)
-    
-    #Collect dataset info from main page
-    about_info = browser.find_element(By.XPATH,'//*[@id="textcore-e064157133"]/p').text
-    
-    #Redirect to about the ACS page and gather about info
-    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[1]/a").click()
-    # sleep(3)
-    about1 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div/section/div[2]/p[2]').text
-    about2 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/div/section/div[2]/p[2]').text
-    about_info = about_info + "\n\n" + about1 + "\n\n" + about2
-    #Store About info to dictionary
+
+
+    about_info = "An Agricultural Census is a statistical operation to compile census data on crops, livestock, farm labour and miscellaneous agricultural items for collecting, processing and disseminating data on all farms and farmers in a country.The Census of Agriculture survey is a statutory survey conducted every 10 years under the provisions of the Statistics (Census of Agriculture) Order, 2020 (S.I. No 281 of 2020). Under Sections 26 and 27 of the 1993 Statistics Act you are obliged by law to complete and return this form. Any person who fails or refuses to provide this information or who knowingly provides false information may be subject to prosecution under Part VI of the Act."
+    #Collect dataset info by redirecting to About this Survey page
     res["about_info"] = about_info
 
-    #Go back to the main page.
-    browser.find_element(By.XPATH,'//*[@id="breadContainer"]/ul/li[3]/a').click()
-    # sleep(3)
-
-    #Get the ACS data link from Data -> data.census.gov - https://data.census.gov/
-    acs_dataset_link=browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[2]").get_attribute('href')
-    res["dataset_link"] =  acs_dataset_link
-    res["dataset_file_format"] = ["csv","excel"]
-
-    #Click on data release plan to see the latest data
-    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[1]").click()
-    # sleep(3)
+    #Find when the dataset was last updated
+    last_updated=browser.find_element(By.XPATH,'//*[@id="dateModified"]/p').text
+    last_updated_date=standardize(DATE_FMT,last_updated[19:])
+    res["last_updated"]=last_updated_date
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
-    latest_year_available = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/ul/li[1]/a').text
-    current_date = date.today()
-    current_year = current_date.year
-    year_difference = int(current_year) - int(latest_year_available)
+    latest_year_available=last_updated_date[-4:]
+    current_date=date.today()
+    current_year=current_date.year
+    year_difference=int(current_year)-int(latest_year_available)
     status="Active"
-    if year_difference >= 5:
+    if year_difference>=5:
         status="Inactive"
-    res["dataset_status"] = status
+    res["dataset_status"]=status
 
-    #Find when the dataset was last updated
-    browser.find_element(By.XPATH,'//*[@id="listArticlesContainer_List_296343523"]/div[2]/a[1]').click()
-    # sleep(3)
-    last_updated = browser.find_element(By.XPATH,'//*[@id="textcore-3d89543f20"]').text
-    last_updated_date = standardize(DATE_FMT,last_updated[8:])
-    res["last_updated"] = last_updated_date
+    browser.find_element(By.XPATH,'//*[@id="110099li_12"]/a').click()
+    sleep(3)
+    dataset_link = browser.find_element(By.XPATH,'/html/body/div[5]/div[2]/div/div/div[2]/div/div[2]/ul/li[1]/a').get_attribute('href')
+    res["dataset_link"] = dataset_link 
 
-    #Close and quit all browser driver instances
-    browser.quit()
+    res["dataset_file_format"]=["pdf"]
 
     return res
 
-result = get_data_attributes()
-print(result)
+# # Loop through the organization dictionary and print the data attribute output
+# print(ORGANIZATION)
+# print('-' * len(ORGANIZATION))
+# data_attributes = get_data_attributes(ORG_URL)
+# for attribute, value in data_attributes.items():
+#     print(f'{attribute}: {value}',end="\n\n")
+# # # print()
+# print(data_attributes)
+# # print(data_attributes)

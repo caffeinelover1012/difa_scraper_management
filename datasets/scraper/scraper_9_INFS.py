@@ -3,16 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from time import sleep
 from datetime import date, datetime
-from date_utils import *
-from statics import *
-
+from .common_imports import *
 DATE_FMT = "%d %B %Y"
 ORG_URL = "https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/"
 ORGANIZATION = "NFS"
+DATASET_NAME = "Irish National Farm Survey (NFS)"
 
-# Define a function to get the data attributes for an organization
-def get_data_attributes():
-
+def get_data_attributes(url):
     res = {i: "N/A" for i in ATTRS}
 
     #Create a dictionary to store dataset info
@@ -33,16 +30,14 @@ def get_data_attributes():
 
     #Type of access to the dataset
     res["access_type"] = "Open Access"
-
-    #Initialize browser
+    
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
     browser.maximize_window()
-    browser.get(ORG_URL)
+    browser.get(url)
     sleep(3)
     #Accept cookies on the page
     browser.find_element(By.XPATH,'/html/body/div[2]/div[3]/div/div[1]/div/div[2]/div/button[3]').click()
@@ -98,5 +93,12 @@ def get_data_attributes():
 
     return res
 
-# result=get_data_attributes()
-# print(result)
+
+
+# # Loop through the organization dictionary and print the data attribute output
+# print(ORGANIZATION)
+# print('-' * len(ORGANIZATION))
+# data_attributes = get_data_attributes(ORG_URL)
+# for attribute, value in data_attributes.items():
+#     print(f'{attribute}: {value}', end="\n\n")
+# print()

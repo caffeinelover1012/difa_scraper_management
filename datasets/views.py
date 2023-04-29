@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.utils import timezone
 from .forms import LoginForm, RegistrationForm, DatasetModificationRequestForm
-from .models import Dataset, ModificationRequest, Collection
+from .models import Dataset, ModificationRequest, Collection, Person
 from .utils import run_scraper
 import json
+from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
-
+from .utils import SCRAPER_MAPPING
+from .forms import CollectionForm 
 
 def index(request):
     return render(request, 'datasets/index.html')
@@ -69,9 +71,16 @@ def dataset(request, dataset_id):
 
 def scrape_dataset(request, dataset_id):
     try:
-        dataset = Dataset.objects.get(pk=dataset_id)
+        try:
+            dataset = Dataset.objects.get(pk=dataset_id)
+        except ObjectDoesNotExist:
+            if SCRAPER_MAPPING.get(dataset_id) is None:
+                    messages.error(request, "Invalid ID or Dataset does not exist!")
+                    return redirect('datasets')
+            dataset = Dataset.objects.create(pk=dataset_id)
         scraped_data = run_scraper(dataset_id)
-
+        # print("here: ", dataset,dataset is None)
+        # print(scraped_data)
         # Update the 'last_scraped' attribute with the current date and time
         scraped_data['last_scraped'] = timezone.now().isoformat()
 
@@ -206,7 +215,6 @@ def delete_modification_request(request, mod_request_id):
     messages.success(request, 'Modification request deleted successfully.')
     return redirect('modification_requests')
 
-from .forms import CollectionForm  # Add this import
 
 @login_required
 def collections(request):
@@ -221,6 +229,8 @@ def create_collection(request):
         form = CollectionForm(request.POST)
         if form.is_valid():
             new_collection = form.save(commit=False)
+            # print('here')
+            # print(new_collection)
             new_collection.user = request.user
             new_collection.save()
             form.save_m2m()  # Save the many-to-many relationship (datasets)
@@ -245,3 +255,45 @@ def collection(request, collection_id):
         'collection': collection,
     }
     return render(request, 'datasets/collection.html', context)
+
+
+def person_detail(request, person_id):
+    person = get_object_or_404(Person, pk=person_id)
+
+    if person.image:
+        person_image_url = person.image.url
+    else:
+        person_image_url = None
+
+    if person.presentation_slides:
+        presentation_slides_url = person.presentation_slides.url
+    else:
+        presentation_slides_url = None
+
+    context = {
+        'person_name': person.name,
+        'person_image': person_image_url,
+        'person_description': person.description,
+        'difa_workshop_presentation': person.difa_workshop_presentation or None,
+        'presentation_slides': presentation_slides_url,
+        'more_information': person.more_information or None,
+    }
+    return render(request, 'datasets/person_template.html', context)
+
+def research_team(request):
+    research_team_members = Person.objects.filter(team='research')
+    context = {
+        'research_team_members': research_team_members,
+    }
+    return render(request, 'datasets/research_team.html', context)
+
+def leadership_team(request):
+    leadership_team_members = Person.objects.filter(team='leadership')
+    context = {
+        'team_members': leadership_team_members,
+    }
+    return render(request, 'datasets/leadership_team.html', context)
+
+
+def about(request):
+    return render(request, 'datasets/about.html')

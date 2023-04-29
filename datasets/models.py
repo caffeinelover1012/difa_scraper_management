@@ -55,3 +55,22 @@ class ModificationRequest(models.Model):
 
     def __str__(self):
         return f'Modification Request {self.id} - {self.dataset.dataset_name} - {self.user.username}'
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='persons/images/')
+    description = models.TextField()
+    difa_workshop_presentation = models.URLField(null=True, blank=True)
+    presentation_slides = models.FileField(upload_to='persons/presentation_slides/',blank=True, null=True)  # Add this line
+    more_information = models.URLField(blank=True)
+    TEAM_CHOICES = [
+        ('leadership', 'Leadership Team'),
+        ('research', 'Research Team'),
+        ('guest', 'Guest'),
+    ]
+    team = models.CharField(max_length=20, choices=TEAM_CHOICES, default='guest')
+    show = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name

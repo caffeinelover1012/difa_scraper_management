@@ -19,6 +19,7 @@ initialize_scraper_mapping()
 
 # utils.py
 def run_scraper(scraper_id):
+    print(SCRAPER_MAPPING)
     if scraper_id not in SCRAPER_MAPPING:
         raise ValueError(f'Scraper with ID {scraper_id} not found.')
     scrape_function, input_param = SCRAPER_MAPPING[scraper_id]
