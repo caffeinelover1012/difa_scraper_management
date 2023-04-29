@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 STD_FMT = "%B %d, %Y"
 
 def is_older_than_5yrs(date_str,date_format=STD_FMT):

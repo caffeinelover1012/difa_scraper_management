@@ -1,7 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/"
@@ -37,7 +34,7 @@ def get_data_attributes(url):
                 row_data = (col.find('a').get_text())
                 if "data files" in row_data:
                     row_idx.append(idx)
-
+    res['dataset_collection_method'] = "USDA-ERS Survey"
     for i in row_idx:
         key = rows[i].find_all('a')[0].get_text().split()[0]
         val = standardize(DATE_FMT, rows[i].find_all(
@@ -47,11 +44,11 @@ def get_data_attributes(url):
     res['dataset_status'] = 'Retired' if is_older_than_5yrs(res['last_updated']) else 'Active'
     return res
 
-# # Loop through the organization dictionary and print the data attribute output
+# Loop through the organization dictionary and print the data attribute output
 # print(ORGANIZATION)
 # print('-' * len(ORGANIZATION))
 # data_attributes = get_data_attributes(ORG_URL)
 # for attribute, value in data_attributes.items():
 #     print(f'{attribute}: {value}',end="\n\n")
 # print()
-# # print(data_attributes)
+# print(data_attributes)

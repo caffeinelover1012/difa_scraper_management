@@ -1,8 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/"
@@ -52,12 +48,12 @@ def get_data_attributes(url):
     return res
 
 
-# x = get_data_attributes(FOOD_APS_URL)
-# print(x)
-# Loop through the organization dictionary and print the data attribute output
-print(ORGANIZATION)
-print('-' * len(ORGANIZATION))
-data_attributes = get_data_attributes(ORG_URL)
-for attribute, value in data_attributes.items():
-    print(f'{attribute}: {value}', end="\n\n")
-print()
+# # x = get_data_attributes(FOOD_APS_URL)
+# # print(x)
+# # Loop through the organization dictionary and print the data attribute output
+# print(ORGANIZATION)
+# print('-' * len(ORGANIZATION))
+# data_attributes = get_data_attributes(ORG_URL)
+# for attribute, value in data_attributes.items():
+#     print(f'{attribute}: {value}', end="\n\n")
+# print()

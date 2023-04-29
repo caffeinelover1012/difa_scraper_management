@@ -1,0 +1,42 @@
+{% extends "datasets/base.html" %}
+
+{% block title %}Modification Requests{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-5">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Dataset</th>
+        <th>Username</th>
+        <th>Status</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for mod_request in mod_requests %}
+        <tr>
+          <td>{{ mod_request.id }}</td>
+          <td><a href="{% url 'dataset' dataset_id=mod_request.dataset.id %}">{{ mod_request.dataset.dataset_name }}</a></td>
+          <td>{{ mod_request.user.username }}</td>
+          <td>
+            <a href="{% url 'view_changes' mod_request_id=mod_request.id %}" class="btn btn-info btn-sm">View Changes</a>
+          </td>
+          <td>
+            {% if mod_request.status == 'pending' %}
+              <span class="badge bg-warning">Pending</span>
+            {% elif mod_request.status == 'approved' %}
+              <span class="badge bg-success">Approved</span>
+            {% else %}
+              <span class="badge bg-danger">Rejected</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,9 +1,4 @@
-import requests
-from bs4 import BeautifulSoup
-import re
-from date_utils import *
-from statics import *
-
+from .common_imports import *
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://agriculture.ec.europa.eu/data-and-analysis/farm-structures-and-economics/fadn_en"
 ORGANIZATION = "FADN"

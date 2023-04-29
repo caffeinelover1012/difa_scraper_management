@@ -1,0 +1,66 @@
+{% load static %}
+
+<style>
+  /* custom.css */
+.nav-custom {
+  font-size: 1.25rem; /* Increase the font size */
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">      <img src="{% static 'difafinal.png' %}" alt="DIFA Scraper Management Utility" height="60" class="d-inline-block align-text-top">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-custom">
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'datasets' %}active{% endif %}" aria-current="page" href="{% url 'datasets' %}">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'collections' %}active{% endif %}" href="{% url 'collections' %}">Collections</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'modification_requests' %}active{% endif %}" href="{% url 'modification_requests' %}">Modifications Portal</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                About
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAbout">
+                <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
+                <li><a class="dropdown-item" href="{% url 'leadership_team' %}">Leadership Team</a></li>
+                <li><a class="dropdown-item" href="{% url 'research_team' %}">Research Team</a></li>
+                <li><a class="dropdown-item" href="partners.html">Partners</a></li>
+            </ul>
+        </li>
+        
+        <!-- Events dropdown -->
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Events
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownEvents">
+                <li><a class="dropdown-item" href="wdescription.html">Workshop Description</a></li>
+                <li><a class="dropdown-item" href="day1.html">Workshop Day 1</a></li>
+                <li><a class="dropdown-item" href="day2.html">Workshop Day 2</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Guest Speakers</h6></li>
+                {% for person in persons %}
+                <li><a class="dropdown-item" href="{% url 'person_detail' person_id=person.id %}">{{ person.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+        </ul>
+
+        <span class="navbar-text">
+          Logged in as {{ request.user.username }}
+        </span>
+        <a class="btn btn-outline-danger ms-2" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </nav>
+  

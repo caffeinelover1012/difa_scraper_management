@@ -1,0 +1,104 @@
+{% extends "datasets/base.html" %}
+{% load custom_tags %}
+
+{% block title %}Collections{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-5">
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h2>Collections</h2>
+      </div>
+      <div class="col-md-4 d-flex justify-content-end align-items-center">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCollectionModal">Create Collection</button>
+      </div>
+    </div>
+  
+  
+    <input class="form-control mb-4" id="searchInput" type="text" placeholder="Search collections">
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="collectionsTable">
+        {% for collection in collections %}
+          <tr>
+            <td>{{ collection.id }}</td>
+            <td>{{ collection.name }}</td>
+            <td>{{ collection.description }}</td>
+            <td><a href="{% url 'collection' collection_id=collection.id %}" class="btn btn-primary">View</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+<!-- Create Collection Modal -->
+<div class="modal fade" id="createCollectionModal" tabindex="-1" aria-labelledby="createCollectionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createCollectionModalLabel">Create Collection</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="{% url 'create_collection' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="{{ form.name.auto_id  }}">Name</label>
+            {{ form.name }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.description.auto_id  }}">Description</label>
+            {{ form.description }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.datasets.auto_id  }}">Datasets</label>
+            {{ form.datasets }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create Collection</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block scripts %}
+<!-- Add Select2 initialization script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Select2 for the datasets field
+    $('#{{ form.datasets.auto_id }}').select2({
+      placeholder: 'Select datasets',
+      allowClear: true,
+      width: '100%',
+      multiple: true,
+    });
+  });
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+      const searchValue = e.target.value.toLowerCase();
+      const tableRows = document.querySelectorAll('#collectionsTable tr');
+
+      for (const row of tableRows) {
+        const collectionName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        if (collectionName.includes(searchValue)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+  });
+</script>
+{% endblock %}

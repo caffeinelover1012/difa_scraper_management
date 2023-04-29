@@ -1,21 +1,15 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from time import sleep
-from datetime import date, datetime
-from date_utils import *
-from statics import *
+from .common_imports import *
 
 DATE_FMT = "%d-%m-%Y"
 ORG_URL = "https://www.cso.ie/en/methods/agricultureandfishing/censusofagriculture/"
 ORGANIZATION = "ICA"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes():
+def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
 
-    res["dataset_name"] = "Irish Census of Agriculture(ICA)"
+    res["dataset_name"] = "Irish Census of Agriculture (ICA)"
     res["dataset_website_link"] = ORG_URL
 
     #Dataset Collection Method
@@ -74,6 +68,3 @@ def get_data_attributes():
     browser.quit()
 
     return res
-
-# result=get_data_attributes()
-# print(result)

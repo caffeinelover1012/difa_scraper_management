@@ -1,0 +1,33 @@
+{% extends "datasets/base.html" %}
+{% load custom_tags %}
+
+{% block title %}Collection{% endblock %}
+
+{% block content %}
+
+  <div class="container mt-5">
+    <h5 class="m2">Collection Name:</h5><h4 class="mb-4">{{ collection.name }}</h2>
+    <h5 class="m2">Description:</h5><p>{{ collection.description }}</p>
+    <h3 class="mb-4">Datasets</h3>
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dataset in collection.datasets.all %}
+          <tr>
+            <td>{{ dataset.id }}</td>
+            <td>{{ dataset.dataset_name }}</td>
+            <td><a href="{% url 'dataset' dataset_id=dataset.id %}" class="btn btn-primary">View Dataset</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
