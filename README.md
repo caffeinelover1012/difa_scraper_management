@@ -35,7 +35,6 @@ source venv/bin/activate # On Windows, use venv\Scripts\activate
 
 ```
 pip install -r requirements.txt
-
 ```
 
 4. Navigate to the directory where manage.py is present.
@@ -44,10 +43,8 @@ Apply migrations to set up the database:
 ```
 python manage.py makemigrations
 python manage.py migrate
-
 ```
 5. Run the server
 ```
 python manage.py runserver
-
 ```
