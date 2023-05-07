@@ -16,12 +16,11 @@
     font-size: 90%;
 }
 .main-content {
-  transition: padding-top 0.3s;
+  padding-top: 30px;
+  /* transition: padding-top 0.3s; */
+  min-height: 100vh; /* Add this line */
 }
 
-.main-content.navbar-fixed {
-  padding-top: 1rem;
-}
     </style>
   </head>
   
@@ -50,29 +49,22 @@ function handleNavbarScroll() {
   const navbar = document.querySelector('.custom-navbar');
   const logoFull = document.querySelector('.logo-full');
   const logoSmall = document.querySelector('.logo-small');
-  const mainContent = document.querySelector('.main-content');
   
-  if (window.scrollY > 10) {
+  if (window.scrollY > 20) {
     navbar.classList.add('scrolled');
-    mainContent.classList.add('navbar-fixed');
     logoFull.classList.add('d-none');
     logoSmall.classList.remove('d-none');
   } else {
     navbar.classList.remove('scrolled');
-    mainContent.classList.remove('navbar-fixed');
     logoFull.classList.remove('d-none');
     logoSmall.classList.add('d-none');
   }
 }
+
 window.addEventListener('scroll', handleNavbarScroll);
-
-
 </script>
 
-</script>
 {% block scripts %}
 {% endblock %}
-
-
   </body>
 </html>

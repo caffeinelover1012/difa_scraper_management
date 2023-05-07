@@ -3,50 +3,71 @@
 
 {% block content %}
 <style>
-.center-screen {
-  display: flex;
-  margin-top: -65px;
-  height: calc(100vh - 65px);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
+  .center-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    margin-top: -30px;
+  }
 
-.search-input {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  background: white;
-  border-radius: 3rem;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  .search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 3rem;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-.search-input input {
-  flex-grow: 1;
-  border: none;
-  outline: none;
-}
+  .search-input input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+  }
 
-.caption {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #4a4a4a;
-}
+  .input-group-text {
+    position: absolute;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: #999;
+  }
 
+  .caption {
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: #4a4a4a;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .caption {
+      font-size: 1rem;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 </style>
 
 <div class="center-screen">
   <img src="{% static 'logo.png' %}" alt="DIFA Scraper Management Utility" height="150">
   <div class="search-input">
     <input type="text" placeholder="Search over 200 datasets">
-    <span class="input-group-text">
+    <button class="input-group-text">
       <i class="fas fa-search"></i>
-    </span>
+    </button>
   </div>
-  <div class="caption"></div>
+  <!-- <div class="caption">Search over 200 datasets</div> -->
 </div>
 
 {% endblock %}
