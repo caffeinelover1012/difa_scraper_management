@@ -289,6 +289,16 @@ def research_team(request):
 
 def leadership_team(request):
     leadership_team_members = Person.objects.filter(team='leadership')
+    first_people_ids = [12,19]
+     # Query the people with the specified IDs and order them according to the list.
+    first_people = [Person.objects.get(pk=person_id) for person_id in first_people_ids]
+
+    # Query the remaining people and order them by name (or any other field you prefer).
+    remaining_people = Person.objects.filter(team='leadership').exclude(id__in=first_people_ids).order_by('name')
+
+    # Combine the two querysets.
+    leadership_team_members = list(first_people) + list(remaining_people)
+
     context = {
         'team_members': leadership_team_members,
     }
@@ -297,3 +307,7 @@ def leadership_team(request):
 
 def about(request):
     return render(request, 'datasets/about.html')
+
+
+def searchpage(request):
+    return render(request, 'datasets/searchpage.html')

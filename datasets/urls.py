@@ -23,5 +23,6 @@ urlpatterns = [
     path('person/<int:person_id>/', views.person_detail, name='person_detail'),
     path('research_team/', views.research_team, name='research_team'),
     path('leadership_team/', views.leadership_team, name='leadership_team'),
+    path('search/', views.searchpage, name='search'),
     path('logout/', views.user_logout, name='logout'),
 ]

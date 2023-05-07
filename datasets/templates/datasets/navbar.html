@@ -3,15 +3,44 @@
 <style>
   /* custom.css */
 .nav-custom {
-  font-size: 1.25rem; /* Increase the font size */
+  font-size: 1.15rem; /* Increase the font size */
+}
+
+/* Add styles for the custom navbar */
+.custom-navbar {
+  transition: all 0.3s;
+  z-index: 9999;
+}
+
+.custom-navbar.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-full,
+.logo-small {
+  transition: opacity 0.3s;
+}
+
+.logo-small.d-none {
+  display: none;
+  opacity: 0;
 }
 
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar" style="padding:3px">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">      <img src="{% static 'difafinal.png' %}" alt="DIFA Scraper Management Utility" height="60" class="d-inline-block align-text-top">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'finallogo.png' %}" alt="DIFA Scraper Management Utility" height="45" class="d-inline-block align-text-top logo-full">
+        <img src="{% static 'smallogo.png' %}" alt="DIFA Scraper Management Utility" height="30" class="d-inline-block align-text-top logo-small d-none">
       </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -55,7 +84,6 @@
             </ul>
         </li>
         </ul>
-
         <span class="navbar-text">
           Logged in as {{ request.user.username }}
         </span>
