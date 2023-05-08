@@ -11,10 +11,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
 from .utils import SCRAPER_MAPPING
 from .forms import CollectionForm 
+from django.http import JsonResponse
+from django.core import serializers
 
 def index(request):
     return render(request, 'datasets/index.html')
-
 
 # User authentication views
 def user_login(request):
@@ -311,3 +312,12 @@ def about(request):
 
 def searchpage(request):
     return render(request, 'datasets/searchpage.html')
+
+def search_results(request):
+    query = request.GET.get('q', '')
+    context = {'query': query}
+    return render(request, 'datasets/search_results.html', context)
+
+def datasets_json(request):
+    data = serializers.serialize('json', Dataset.objects.all())
+    return JsonResponse(data, safe=False)

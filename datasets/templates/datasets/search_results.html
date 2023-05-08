@@ -1,0 +1,57 @@
+{% extends 'datasets/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Search Results for "{{ query }}"</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <ul id="search-results" class="list-unstyled">
+        <!-- Results will be populated using JavaScript -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('{% url "datasets-json" %}')
+      .then(response => response.json())
+      .then(datasets => {
+        const fuseOptions = {
+          keys: [
+            'fields.dataset_name',
+            // 'fields.about_info',
+            'fields.sponsor_name',
+          ],
+          threshold: 0.1,
+          ignoreLocation: true,
+          includeScore: true,
+        };
+        const fuse = new Fuse(JSON.parse(datasets), fuseOptions);
+  
+        const searchResultsElement = document.getElementById('search-results');
+        const query = '{{ query }}';
+  
+        if (query) {
+          const results = fuse.search(query);
+
+          if (results.length > 0) {
+            results.forEach(result => {
+              const dataset = result.item.fields;
+              const datasetUrl = `{% url 'dataset' 0 %}`.replace('0', result.item.pk);
+              const listItem = document.createElement('li');
+              listItem.innerHTML = `<a href="${datasetUrl}">${dataset.dataset_name}</a>`;
+              searchResultsElement.appendChild(listItem);
+            });
+          } else {
+            searchResultsElement.innerHTML = '<li>No results found.</li>';
+          }
+        } else {
+          searchResultsElement.innerHTML = '<li>Please enter a search query.</li>';
+        }
+      });
+  });
+  </script>
+  
+{% endblock %}

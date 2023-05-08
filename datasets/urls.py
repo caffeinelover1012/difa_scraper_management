@@ -24,5 +24,7 @@ urlpatterns = [
     path('research_team/', views.research_team, name='research_team'),
     path('leadership_team/', views.leadership_team, name='leadership_team'),
     path('search/', views.searchpage, name='search'),
+    path('search-results/', views.search_results, name='search_results'),
+    path('datasets-json/', views.datasets_json, name='datasets-json'),
     path('logout/', views.user_logout, name='logout'),
 ]

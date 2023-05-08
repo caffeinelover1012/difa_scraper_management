@@ -16,9 +16,8 @@
     font-size: 90%;
 }
 .main-content {
-  padding-top: 30px;
-  /* transition: padding-top 0.3s; */
-  min-height: 100vh; /* Add this line */
+  min-height: 100vh; 
+  padding-top: 65px;
 }
 
     </style>
@@ -30,7 +29,7 @@
       {% include 'datasets/navbar.html' %}
       {% endif %}
 
-  <div class="container-fluid  main-content">
+  <div class="container-fluid main-content topm">
     {% for message in messages %}
     {% if message.tags == "success" %}
       <div class="alert alert-success">{{ message }}</div>
@@ -49,7 +48,7 @@ function handleNavbarScroll() {
   const navbar = document.querySelector('.custom-navbar');
   const logoFull = document.querySelector('.logo-full');
   const logoSmall = document.querySelector('.logo-small');
-  
+  const mainContent = document.querySelector('.main-content');
   if (window.scrollY > 20) {
     navbar.classList.add('scrolled');
     logoFull.classList.add('d-none');
