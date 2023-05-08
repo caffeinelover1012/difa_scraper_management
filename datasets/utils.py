@@ -24,3 +24,5 @@ def run_scraper(scraper_id):
         raise ValueError(f'Scraper with ID {scraper_id} not found.')
     scrape_function, input_param = SCRAPER_MAPPING[scraper_id]
     return scrape_function(input_param)  # Pass the URL to the scrape function
+
+# run_scraper(15)

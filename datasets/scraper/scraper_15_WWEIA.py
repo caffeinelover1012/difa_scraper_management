@@ -5,7 +5,7 @@ ORG_URL = "https://data.nal.usda.gov/dataset/what-we-eat-america-wweia-database"
 ORGANIZATION = "WWEIA"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes():
+def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
 
@@ -74,5 +74,5 @@ def get_data_attributes():
 
     return res
 
-result=get_data_attributes()
-print(result)
+# result=get_data_attributes()
+# print(result)
