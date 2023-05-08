@@ -7,17 +7,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: auto;
     justify-content: center;
-    height: 90vh;
-    margin-top: -30px;
+    height: 80vh;
+    margin-top: -40px;
   }
 
   .search-input {
     position: relative;
     display: flex;
     align-items: center;
+    min-width: 400px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 3rem;
@@ -60,13 +62,15 @@
 </style>
 
 <div class="center-screen">
-  <img src="{% static 'logo.png' %}" alt="DIFA Scraper Management Utility" height="150">
+  <img src="{% static 'logo.png' %}" alt="DIFA Scraper Management Utility" height="125" style="margin:10px">
+  <form action="{% url 'search_results' %}" method="GET">
   <div class="search-input">
-    <input type="text" placeholder="Search over 200 datasets">
-    <button class="input-group-text">
+    <input type="text" name="q" placeholder="Search over 200 datasets">
+    <button type="submit" class="input-group-text">
       <i class="fas fa-search"></i>
     </button>
   </div>
+  </form>
   <!-- <div class="caption">Search over 200 datasets</div> -->
 </div>
 
