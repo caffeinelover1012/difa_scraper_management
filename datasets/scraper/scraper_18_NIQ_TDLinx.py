@@ -1,10 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from time import sleep
-from datetime import date, datetime
-from date_utils import *
-from statics import *
+from .common_imports import *
+
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://nielseniq.com/global/en/solutions/tdlinx/"

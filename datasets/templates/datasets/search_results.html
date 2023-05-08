@@ -1,13 +1,38 @@
 {% extends 'datasets/base.html' %}
 
 {% block content %}
+<style>
+  .result-card {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .result-card .dataset-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .result-card .match {
+    color: #6c757d;
+  }
+  
+  .result-card .highlight {
+    font-weight: bold;
+    background-color: #ffff0066;
+  }
+</style>
+
 <div class="container mt-5">
   <h2>Search Results for "{{ query }}"</h2>
+  <p id="match-count" class="text-muted"></p>
   <div class="row">
     <div class="col-md-12">
-      <ul id="search-results" class="list-unstyled">
+      <div id="search-results">
         <!-- Results will be populated using JavaScript -->
-      </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -21,37 +46,63 @@
         const fuseOptions = {
           keys: [
             'fields.dataset_name',
-            // 'fields.about_info',
+            'fields.about_info',
             'fields.sponsor_name',
           ],
           threshold: 0.1,
           ignoreLocation: true,
           includeScore: true,
+          includeMatches: true, // Include matched information
         };
+        console.log(JSON.parse(datasets));
         const fuse = new Fuse(JSON.parse(datasets), fuseOptions);
   
         const searchResultsElement = document.getElementById('search-results');
+        const matchCountElement = document.getElementById('match-count');
         const query = '{{ query }}';
   
         if (query) {
           const results = fuse.search(query);
-
+          matchCountElement.innerText = `${results.length} matches found.`;
+          console.log(results);
           if (results.length > 0) {
             results.forEach(result => {
               const dataset = result.item.fields;
               const datasetUrl = `{% url 'dataset' 0 %}`.replace('0', result.item.pk);
-              const listItem = document.createElement('li');
-              listItem.innerHTML = `<a href="${datasetUrl}">${dataset.dataset_name}</a>`;
-              searchResultsElement.appendChild(listItem);
+              
+              const resultCard = document.createElement('div');
+              resultCard.className = 'result-card';
+              
+              const datasetNameLink = document.createElement('a');
+              datasetNameLink.href = datasetUrl;
+              datasetNameLink.className = 'dataset-name';
+              datasetNameLink.innerText = dataset.dataset_name;
+              
+              const match = document.createElement('p');
+              match.className = 'match';
+              match.innerHTML = dataset.about_info.slice(0, 200) + '...';
+
+              result.matches.forEach(matchedItem => { 
+              const start = Math.max(matchedItem.indices[0][0] - 10, 0);
+              const end = Math.min(matchedItem.indices[0][1] + 10, matchedItem.value.length - 1);
+              const snippet = matchedItem.value.slice(start, end + 1);
+              const highlighted = `<span class="highlight">${snippet}</span>`;
+              match.innerHTML = match.innerHTML.replace(snippet, highlighted);
             });
-          } else {
-            searchResultsElement.innerHTML = '<li>No results found.</li>';
+    
+              
+              resultCard.appendChild(datasetNameLink);
+              resultCard.appendChild(match);
+              searchResultsElement.appendChild(resultCard);
+            });
+            } else {
+            searchResultsElement.innerHTML = '<div class="result-card">No results found.</div>';
           }
         } else {
-          searchResultsElement.innerHTML = '<li>Please enter a search query.</li>';
+          searchResultsElement.innerHTML = '<div class="result-card">Please enter a search query.</div>';
         }
       });
   });
-  </script>
-  
+</script>
+
 {% endblock %}

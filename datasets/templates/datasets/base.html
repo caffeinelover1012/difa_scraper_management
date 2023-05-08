@@ -19,7 +19,6 @@
   min-height: 100vh; 
   padding-top: 65px;
 }
-
     </style>
   </head>
   
@@ -27,6 +26,12 @@
     <div class="flex-container" style="display: flex; flex-direction: column; min-height: 100vh;">
       {% if user.is_authenticated and request.path != '/' %}
       {% include 'datasets/navbar.html' %}
+      {% else %}
+      <style>
+        body{
+          margin-top: -100px;
+        }
+      </style>
       {% endif %}
 
   <div class="container-fluid main-content topm">
