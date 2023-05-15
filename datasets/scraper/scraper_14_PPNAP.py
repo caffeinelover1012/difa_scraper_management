@@ -25,14 +25,14 @@ def get_data_attributes(url):
     \n\nThe resulting prices are nationally representative of foods reported eaten by WWEIA/NHANES participants. The resulting price for any particular food may be derived from multiple brands and private labels, package sizes, flavors, and types. The IRI grocery scanner data represent individual products as purchased in a grocery store. The WWEIA/NHANES codes and supporting recipes in the FNDDS are more general (e.g., BBQ sauce versus a brand-specific BBQ sauce).'''
 
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
-
-    #Citation Method
-    DATASET_CITATION = "To cite the Purchase to Plate National Average Prices for WWEIA/NHANES dataset in APA format in your research paper, you can use the following citation format:\n\nU.S. Department of Agriculture, Agricultural Research Service. (year). Purchase to Plate National Average Prices for WWEIA/NHANES Foods [Data set]. Retrieved from [URL].\n\nFor example, in your reference list, the citation would look like this::\n\nU.S. Department of Agriculture, Agricultural Research Service. (2017). Purchase to Plate National Average Prices for WWEIA/NHANES Foods. Retrieved from https://www.ars.usda.gov/ARSUserFiles/80400525/pdf/DBrief/10_prices_national_wweia_2007-08.pdf\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
+    
     #Sponsor Name
     SPONSOR_NAME = "United States Department of Agriculture (USDA), Agricultural Research Service (ARS)."
     res["sponsor_name"] = SPONSOR_NAME
+    
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/105537/pp_national_average_prices_csv.zip?v=5938.6\n"
+    res["dataset_citation"] = DATASET_CITATION
 
     #Type of access to the dataset
     res["access_type"] = "Open Access"

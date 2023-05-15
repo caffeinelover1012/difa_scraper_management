@@ -15,14 +15,14 @@ def get_data_attributes(url):
     #Dataset Collection Method
     DATASET_COLLECTION_METHOD = "The PRISM dataset is collected through a process called parameter-elevation regressions on independent slopes model (PRISM). PRISM is a statistically-based, spatially-distributed climate model that uses a variety of input data sources to produce high-resolution climate data estimates for specific locations and time periods.\n\nThe input data for PRISM includes weather station data, remote sensing data, and digital elevation models. These data are combined using statistical models to create climate data estimates for various climate variables, such as temperature and precipitation, at high spatial resolutions.\n\nPRISM is designed to account for topographic and climatic differences across different regions, and is continuously updated as new data becomes available. The resulting PRISM dataset is widely used by researchers, government agencies, and other stakeholders for a variety of applications, including climate monitoring, water resource management, agriculture, and ecological modeling."
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
-
-    #Citation Method
-    DATASET_CITATION = "To cite the PRISM dataset in APA format in your research paper, you can use the following citation format:\n\nPRISM Climate Group. (Year). PRISM Climate Data [Data set]. Oregon State University. Retrieved from [URL] \n\nFor example, in your reference list, the citation would look like this::\n\nPRISM Climate Group. (2021). PRISM Climate Data [Data set]. Oregon State University. Retrieved from https://prism.oregonstate.edu/\n\nWhen the data are used, any description should clearly and prominently state, at a minimum, sponsor name, URL, and the dates of data creation and access. For example:\nPRISM Climate Group, Oregon State University, https://prism.oregonstate.edu, data created 4 Feb 2014, accessed 16 Dec 2020.\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
+    
     #Sponsor Name
     SPONSOR_NAME = "The PRISM Climate Group, Oregon State University."
     res["sponsor_name"] = SPONSOR_NAME
+
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from https://prism.oregonstate.edu/normals\n"
+    res["dataset_citation"] = DATASET_CITATION
 
     #Type of access to the dataset
     res["access_type"] = "Open Access" #Fee applied depending on dataset size/complexity and funding available for the activity.

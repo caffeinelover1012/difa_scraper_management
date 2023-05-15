@@ -16,14 +16,14 @@ def get_data_attributes(url):
     DATASET_COLLECTION_METHOD = "The Household Survey, a voluntary survey, collects data on energy-related characteristics and usage patterns of a national and sub-national (e.g., states) representative sample of housing units. The Energy Supplier Survey (ESS), a mandatory data collection, collects data on how much electricity, natural gas, propane/LPG, and fuel oil/kerosene were consumed in the sampled housing units during the reference year. The ESS also collects data on actual dollar amounts spent on these energy sources. EIA uses models (energy engineering-based models in the 2015 and 2020 survey) to produce consumption and expenditures estimates for heating, cooling, refrigeration, and other end uses in all housing units occupied as a primary residence in the United States using the data collected from the Household Survey and ESS. Wood-use estimates are also included as part of RECS. The target population for the RECS is all occupied housing units in the 50 states and the District of Columbia (DC) that are used as primary residences. The 2020 RECS introduced a completely self-administered design via web and paper questionnaire."
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
 
-    #Citation Method
-    DATASET_CITATION = "To cite the Residential Energy Consumption Survey dataset in APA format in your research paper, you can use the following citation format:\n\nU.S. Energy Information Administration. (year). Residential Energy Consumption Survey (RECS) [Data set]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this::\n\nU.S. Energy Information Administration. (2021). Residential Energy Consumption Survey (RECS) [Data set]. Retrieved from https://www.eia.gov/consumption/residential/data/2021/\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
     #Sponsor Name
     SPONSOR_NAME = "U.S. Energy Information Administration (EIA), a statistical agency of the U.S. Department of Energy."
     res["sponsor_name"]=SPONSOR_NAME
-    
+
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from https://www.eia.gov/consumption/residential/data/2020\n"
+    res["dataset_citation"] = DATASET_CITATION
+
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 

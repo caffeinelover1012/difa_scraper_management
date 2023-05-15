@@ -3,6 +3,8 @@ from .common_imports import *
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/"
 ORGANIZATION = "FoodAPS"
+DATASET_NAME = "National Household Food Acquisition and Purchase Survey (FoodAPS)"
+SPONSOR_NAME = "United States Department of Agriculture's Economic Research Service"
 
 # Define a function to get the data attributes for an organization
 def get_data_attributes(url):
@@ -11,9 +13,10 @@ def get_data_attributes(url):
     res['dataset_website_link'] = ORG_URL
     res['dataset_link'] = ORG_URL
     res['access_type'] = OPEN_ACCESS
-    res['sponsor_name'] = "United States Department of Agriculture's Economic Research Service"
-    res['dataset_name']="National Household Food Acquisition and Purchase Survey (FoodAPS)"
-    res['dataset_citation'] = f"To cite the {res['dataset_name']} dataset in APA format in your research paper, you can use the following citation format:\n{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\nFor example, in your reference list, the citation would look like this:\n {res['sponsor_name']} (2020). {res['dataset_name']} 2019 [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/50980/SAS%20data%20files.zip?v=9778.8\n Make sure to replace the [year of release] with the year your dataset was released, the [Data set] with name of your dataset used, and the [URL] with the specific URL of the dataset you used."
+    res['sponsor_name'] = SPONSOR_NAME
+    res['dataset_name']= DATASET_NAME
+    res['dataset_citation'] = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n\
+        For example, the citation would look like: {res['sponsor_name']} (2020). {res['dataset_name']} 2019 [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/50980/SAS%20data%20files.zip?v=9778.8"
     # Make a request to the organization's website
     response = requests.get(url)
     # Parse the HTML content of the response using BeautifulSoup
@@ -34,7 +37,12 @@ def get_data_attributes(url):
                 row_data = (col.find('a').get_text())
                 if "data files" in row_data:
                     row_idx.append(idx)
-    res['dataset_collection_method'] = "USDA-ERS Survey"
+    res['dataset_collection_method'] = "The survey collects information about\
+                                        Quantities and expenditures for all at-home and away-from-home foods and beverages purchased and acquired from all sources by all household members over a seven-day period;\
+                                        Eating occasions by all household members; Household characteristics, including income, program participation, non-food expenditures, food security, health status,\
+                                        and diet and nutrition knowledge; and Household access to food, including location of purchase and distance to food stores and restaurants. \
+                                        Nutrient information about purchased food as well as local retail environmental information were merged into the data set based on scanned barcodes, \
+                                        product descriptions, and household locations."
     for i in row_idx:
         key = rows[i].find_all('a')[0].get_text().split()[0]
         val = standardize(DATE_FMT, rows[i].find_all(
@@ -43,12 +51,3 @@ def get_data_attributes(url):
     res['last_updated'] = get_latest([date for date in last_updated.values()])
     res['dataset_status'] = 'Retired' if is_older_than_5yrs(res['last_updated']) else 'Active'
     return res
-
-# Loop through the organization dictionary and print the data attribute output
-# print(ORGANIZATION)
-# print('-' * len(ORGANIZATION))
-# data_attributes = get_data_attributes(ORG_URL)
-# for attribute, value in data_attributes.items():
-#     print(f'{attribute}: {value}',end="\n\n")
-# print()
-# print(data_attributes)
