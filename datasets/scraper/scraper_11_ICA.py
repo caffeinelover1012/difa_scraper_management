@@ -17,7 +17,7 @@ def get_data_attributes(url):
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
 
     #Citation Method
-    DATASET_CITATION = "To cite the Irish Census of Agriculture dataset in APA format in your research paper, you can use the following citation format:\n\nCentral Statistics Office. (year of release). Census of Agriculture. [dataset]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this::\n\nCentral Statistics Office. (2016). Census of Agriculture 2010: Land Use, Output and Income - Detailed Tables. [dataset]. Retrieved from https://www.census.gov/programs-surveys/cps.html.\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from https://www.cso.ie/en/statistics/agriculture/censusofagriculture2010/\n"
     res["dataset_citation"] = DATASET_CITATION
 
     #Sponsor Name

@@ -13,13 +13,19 @@ def get_data_attributes(url):
     res['sponsor_name'] = "Federal Reserve Board's Division of Research and Statistics"
     res['dataset_name'] = "Survey of Consumer Finances (SCF)"
     res['dataset_link'] = "https://www.federalreserve.gov/econres/scfindex.htm"
-    res['dataset_citation'] = f"To cite the {res['dataset_name']} dataset in APA format in your research paper, you can use the following citation format:\n{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\nFor example, in your reference list, the citation would look like this:\n {res['sponsor_name']} (2020). {res['dataset_name']} 2019 [Data set]. Retrieved from {res['dataset_link']}\n Make sure to replace the [year of release] with the year your dataset was released, the [Data set] with name of your dataset used, and the [URL] with the specific URL of the dataset you used."
+    res['dataset_citation'] = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']} 2019 [Data set]. Retrieved from {res['dataset_link']}\n"
     # Make a request to the organization's website
     response = requests.get(res['dataset_link'])
     about_link = "https://www.federalreserve.gov/econres/aboutscf.htm"
     ab_soup = BeautifulSoup(requests.get(about_link).content, 'html.parser')
     res['about_info'] = ab_soup.find(
         'div', attrs={'id': 'article'}).find('p').get_text()
+    
+    DATASET_COLLECTION_METHOD = "The survey has contained a panel element over two periods. Respondents to the 1983 survey were re-interviewed in 1986 and 1989. Respondents to the 2007 survey were re-interviewed in 2009.\
+                                The study is sponsored by the Federal Reserve Board in cooperation with the Department of the Treasury. Since 1992, data have been collected by the NORC at the University of Chicago. \
+                                Participation in the study is strictly voluntary. However, because only about 6,500 families were interviewed in the most recent study, every family selected is very important to the results. To maintain the scientific validity of the study, interviewers are not allowed to substitute respondents for families that do not participate. Thus, if a family declines to participate, it means that families like theirs may not be represented clearly in national discussions."
+    res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
+
     # Parse the HTML content of the response using BeautifulSoup
     soup = BeautifulSoup(response.content, 'html.parser')
     # about = (soup.find('section', id='primary').find(
@@ -45,6 +51,7 @@ def get_data_attributes(url):
 
     res['dataset_status'] = 'Retired' if is_older_than_5yrs(
         res['last_updated']) else 'Active'
+    res['other_info'] = "https://www.federalreserve.gov/econres/scf_faqs.htm"
     return res
 
 
