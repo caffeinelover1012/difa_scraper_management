@@ -53,7 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'difa_scraper_management.urls'
-
+LOGIN_URL = 'user_login'
+LOGIN_REDIRECT_URL  = 'search'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
