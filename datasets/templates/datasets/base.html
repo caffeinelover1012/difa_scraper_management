@@ -24,17 +24,9 @@
   
   <body>
     <div class="flex-container" style="display: flex; flex-direction: column; min-height: 100vh;">
-      {% if user.is_authenticated and request.path != '/' %}
       {% include 'datasets/navbar.html' %}
-      {% else %}
-      <style>
-        body{
-          margin-top: -100px;
-        }
-      </style>
-      {% endif %}
-
   <div class="container-fluid main-content topm">
+    <div class="errors">
     {% for message in messages %}
     {% if message.tags == "success" %}
       <div class="alert alert-success">{{ message }}</div>
@@ -44,6 +36,7 @@
       <div class="alert">{{ message }}</div>
     {% endif %}
   {% endfor %}
+</div>
     {% block content %}{% endblock %}  
   </div>
 </div>

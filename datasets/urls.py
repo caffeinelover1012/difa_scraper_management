@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.searchpage, name='index'),
+    path('search/', views.searchpage, name='search'),
     path('datasets/', views.datasets, name='datasets'),
     path('dataset/<int:dataset_id>/', views.dataset, name='dataset'),
     path('dataset/<int:dataset_id>/modification_request/', views.create_modification_request, name='create_modification_request'),
@@ -23,7 +24,6 @@ urlpatterns = [
     path('person/<int:person_id>/', views.person_detail, name='person_detail'),
     path('research_team/', views.research_team, name='research_team'),
     path('leadership_team/', views.leadership_team, name='leadership_team'),
-    path('search/', views.searchpage, name='search'),
     path('search-results/', views.search_results, name='search_results'),
     path('datasets-json/', views.datasets_json, name='datasets-json'),
     path('logout/', views.user_logout, name='logout'),

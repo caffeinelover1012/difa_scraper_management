@@ -4,6 +4,17 @@
 {% block title %}Collections{% endblock %}
 
 {% block content %}
+<style>
+  .modal-open .modal {
+    overflow: visible;
+    z-index: 10000;
+}
+.select2-dropdown {
+  z-index: 10051;
+}
+
+
+</style>
 
   <div class="container mt-1">
     <div class="row mb-4">
@@ -40,7 +51,7 @@
     </table>
   </div>
 <!-- Create Collection Modal -->
-<div class="modal fade" id="createCollectionModal" tabindex="-1" aria-labelledby="createCollectionModalLabel" aria-hidden="true">
+<div class="modal fade" id="createCollectionModal" style="z-index: 9999;" tabindex="-1" aria-labelledby="createCollectionModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -80,6 +91,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize Select2 for the datasets field
     $('#{{ form.datasets.auto_id }}').select2({
+      dropdownParent: $('body'),  // Add this line
       placeholder: 'Select datasets',
       allowClear: true,
       width: '100%',
