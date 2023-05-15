@@ -16,13 +16,16 @@ def get_data_attributes(url):
     DATASET_COLLECTION_METHOD = "The CPS is administered by the Census Bureau using a probability selected sample of about 60,000 occupied households. The fieldwork is conducted during the calendar week that includes the 19th of the month. The questions refer to activities during the prior week; that is, the week that includes the 12th of the month. Households from all 50 states and the District of Columbia are in the survey for 4 consecutive months, out for 8, and then return for another 4 months before leaving the sample permanently. This design ensures a high degree of continuity from one month to the next (as well as over the year). The 4-8-4 sampling scheme has the added benefit of allowing the constant replenishment of the sample without excessive burden to respondents.\n\nThe CPS questionnaire is a completely computerized document that is administered by Census Bureau field representatives across the country through both personal and telephone interviews. Additional telephone interviewing is conducted from the Census Bureau’s two centralized collection facilities in Jeffersonville, Indiana and Tucson, Arizona.\n\nMore information can be found at: https://www.census.gov/programs-surveys/cps/technical-documentation/methodology.html"
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
 
-    #Citation Method
-    DATASET_CITATION = "To cite the Current Population Survey (CPS) dataset in APA format in your research paper, you can use the following citation format:\n\nU.S. Census Bureau [date of access]. Current Population Survey. [dataset]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this::\n\nU.S. Census Bureau (2021). Current Population Survey [dataset]. Retrieved from https://www.census.gov/programs-surveys/cps.html.\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
     #Sponsor Name
     SPONSOR_NAME = "US Census Bureau"
     res["sponsor_name"]=SPONSOR_NAME
+
+    GENERAL_DATASET_SEARCH_TOOL_MDAT = "https://data.census.gov/mdat/#/"
+    res["dataset_link"] = GENERAL_DATASET_SEARCH_TOOL_MDAT
+
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from {res['dataset_link']}\n"
+    res["dataset_citation"] = DATASET_CITATION
 
     #Type of access to the dataset
     res["access_type"] = "Open Access"
@@ -66,10 +69,7 @@ def get_data_attributes(url):
         cps_datasets.append((dataset.text,dataset.get_attribute('href')))
         i+=1
 
-    res["other_info"] = cps_datasets
-
-    GENERAL_DATASET_SEARCH_TOOL_MDAT = "https://data.census.gov/mdat/#/"
-    res["dataset_link"] = GENERAL_DATASET_SEARCH_TOOL_MDAT 
+    res["other_info"] = cps_datasets 
 
     res["dataset_file_format"]=["csv","pdf","sas","txt"]
 

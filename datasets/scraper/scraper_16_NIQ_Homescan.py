@@ -3,7 +3,7 @@ from .common_imports import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://nielseniq.com/global/en/solutions/homescan/"
-ORGANIZATION = "WWEIA"
+ORGANIZATION = "NIQ Homescan"
 
 # Define a function to get the data attributes for an organization
 def get_data_attributes(url):
@@ -17,13 +17,13 @@ def get_data_attributes(url):
     DATASET_COLLECTION_METHOD = "The Nielsen Homescan dataset is collected using a panel of households who are given a handheld scanner or use a mobile app to scan the barcodes of the products they purchase. The panel is representative of the general population and households are chosen to participate based on their demographics. Panel members are typically given incentives such as cash, gift cards, or free products to encourage participation. The data collected includes information on the products purchased, prices paid, where the products were purchased, and other demographic information about the household. This data is then aggregated and analyzed to provide insights into consumer behavior and market trends."
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
 
-    #Citation Method
-    DATASET_CITATION = "To cite the Nielsen Homescan dataset in APA format in your research paper, you can use the following citation format:\n\nNielsen (Year). Homescan [Dataset]. NielsenIQ. Retrieved from [URL]. \n\nFor example, in your reference list, the citation would look like this::\n\nNielsen. (2018). Homescan. [Dataset]. NielsenIQ. https://www.nielsen.com/us/en/solutions/capabilities/homescan.html\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well."
-    res["dataset_citation"] = DATASET_CITATION
-
     #Sponsor Name
     SPONSOR_NAME = "NielsenIQ"
     res["sponsor_name"] = SPONSOR_NAME
+
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from https://nielseniq.com/global/en/\n"
+    res["dataset_citation"] = DATASET_CITATION
 
     #Type of access to the dataset
     res["access_type"] = "Restriced and Paid Access"

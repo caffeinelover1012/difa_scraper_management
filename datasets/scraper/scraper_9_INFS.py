@@ -19,14 +19,17 @@ def get_data_attributes(url):
     #Dataset Collection Method
     DATASET_COLLECTION_METHOD = "The data collected cover all the key financial and physical indicators at farm level viz inventories, sales, purchases, costs, subsidies, liabilities, assets, cropping programme, yields etc.\n\nIn recent years the NFS has extended the range of data covered to the farm household, as the increased emphasis on rural development and viability of rural communities has placed greater emphasis on farm household data e.g. off-farm employment and income, farm inheritance, household composition, age structure etc. Additional data are also being collected regarding environmental issues.\n\nData is collected using laptop computers on a regular basis throughout the year by a team of trained Teagasc Research Technicians located throughout the country. The NFS has always been conducted to ensure total confidentiality of individual farmer’s data. A unique code is used to identify each farm thus ensuring that data cannot be linked to a particular farm."
     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
-
-    #Citation Method
-    DATASET_CITATION = "To cite the Irish National Farm Survey (NFS) dataset in APA format in your research paper, you can use the following citation format:\n\nTeagasc. (year of release). National Farm Survey [Data set]. Retrieved from [URL]\n\nFor example, in your reference list, the citation would look like this:\n\nTeagasc. (2020). National Farm Survey 2019 [Data set]. Retrieved from https://www.teagasc.ie/publications/surveys/national-farm-survey/national-farm-survey-2019.php\n\nMake sure to replace the [year of release] with the year your dataset was released, the [Data set] with name of your dataset used, and the [URL] with the specific URL of the dataset you used."
-    res["dataset_citation"] = DATASET_CITATION
-
+    
     #Sponsor Name
     SPONSOR_NAME = "Teagasc, the Irish Agriculture and Food Development Authority."
     res["sponsor_name"] = SPONSOR_NAME
+
+    DATASET_LINK = "https://www.ucd.ie/issda/data/"
+    res["dataset_link"]=DATASET_LINK
+    
+    #Citation Method
+    DATASET_CITATION = f"{res['sponsor_name']} (year of release). {res['dataset_name']} [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n {res['sponsor_name']} (2020). {res['dataset_name']}  [Data set]. Retrieved from {res['dataset_link']}\n"
+    res["dataset_citation"] = DATASET_CITATION
 
     #Type of access to the dataset
     res["access_type"] = "Open Access"
