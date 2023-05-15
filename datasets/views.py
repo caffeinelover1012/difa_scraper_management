@@ -59,13 +59,11 @@ def user_logout(request):
 
 
 # Dataset-related views
-@login_required
 def datasets(request):
     datasets = Dataset.objects.all()
     return render(request, 'datasets/datasets.html', {'datasets': datasets})
 
 
-@login_required
 def dataset(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
     return render(request, 'datasets/dataset.html', {'dataset': dataset})
@@ -95,18 +93,6 @@ def scrape_dataset(request, dataset_id):
         messages.error(request, "Invalid ID or Dataset does not exist!")
         return redirect('datasets')
     
-@login_required
-def export_dataset(request, dataset_id):
-    # export dataset to Google Sheets
-    export_successful = True   
-    # redirect back to dataset page with success or error message
-    if export_successful:
-        messages.success(request, 'Dataset exported successfully.')
-    else:
-        messages.error(request, 'Failed to export dataset.')
-
-    return redirect('dataset', dataset_id=dataset_id)
-
 
 def modification_manager_check(user):
     return user.groups.filter(name='Modification Manager').exists()
@@ -218,7 +204,6 @@ def delete_modification_request(request, mod_request_id):
     return redirect('modification_requests')
 
 
-@login_required
 def collections(request):
     collections = Collection.objects.filter(user=request.user)
     form = CollectionForm()  # Create an instance of the form

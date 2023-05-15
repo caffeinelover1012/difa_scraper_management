@@ -20,7 +20,6 @@ urlpatterns = [
     path('modification_requests/reject/<int:mod_request_id>/', views.reject_request, name='reject_request'),
     path('modification_requests/modify/<int:mod_request_id>/', views.modify_modification_request, name='modify_modification_request'),
     path('modification_requests/delete/<int:mod_request_id>/', views.delete_modification_request, name='delete_modification_request'),
-    path('export_dataset/<int:dataset_id>/', views.export_dataset, name='export_dataset'),
     path('person/<int:person_id>/', views.person_detail, name='person_detail'),
     path('research_team/', views.research_team, name='research_team'),
     path('leadership_team/', views.leadership_team, name='leadership_team'),

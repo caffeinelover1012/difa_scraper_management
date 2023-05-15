@@ -64,7 +64,6 @@
     <form method="POST" action="{% url 'scrape_dataset' dataset_id=dataset.id %}">
       {% csrf_token %}
       <button type="submit" class="btn btn-primary">Scrape Again</button>
-      <a href="{% url 'export_dataset' dataset_id=dataset.id %}" class="btn btn-success ms-3" role="button">Export to Google Sheets</a>
         <!-- Add the following line inside the <div class="text-center mt-3"> element -->
   <a href="{% url 'create_modification_request' dataset_id=dataset.id %}" class="btn btn-warning ms-3" role="button">Create a Modification Request</a>
     </form>
