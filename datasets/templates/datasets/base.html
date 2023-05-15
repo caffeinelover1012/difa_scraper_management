@@ -24,7 +24,16 @@
   
   <body>
     <div class="flex-container" style="display: flex; flex-direction: column; min-height: 100vh;">
-      {% include 'datasets/navbar.html' %}
+
+{% if "login" in request.path or "register" in request.path %}
+<style>
+  .main-content{
+    margin-top: -100px;
+  }
+</style>
+  {% else %}
+  {% include 'datasets/navbar.html' %}
+{% endif %}
   <div class="container-fluid main-content topm">
     <div class="errors">
     {% for message in messages %}

@@ -23,7 +23,10 @@
       {% endfor %}
     <center><button type="submit" class="btn btn-success">Log In</button></center>
       <br>
-      <p>Don't have an account yet?  <a href="{% url 'register' %}">Create Account</a></p>
+      <div style="text-align: center;">
+      <p style="margin:0px">Don't have an account yet?  <a href="{% url 'register' %}">Create Account</a></p>
+      <p style="margin:0px">Continue as Guest?  <a href="{% url 'index' %}">Back to Home</a></p>
+    </div>
     </form>
   </div>
 </div>
