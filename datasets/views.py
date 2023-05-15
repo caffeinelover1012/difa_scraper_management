@@ -20,7 +20,7 @@ def index(request):
 # User authentication views
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('search')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -39,7 +39,8 @@ def user_login(request):
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('login')
+    
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():

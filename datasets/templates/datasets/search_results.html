@@ -79,13 +79,14 @@
               datasetNameLink.innerText = dataset.dataset_name;
               
               const match = document.createElement('p');
-              match.className = 'match';
+              match.className = 'match';  
               match.innerHTML = dataset.about_info.slice(0, 200) + '...';
 
               result.matches.forEach(matchedItem => { 
               const start = Math.max(matchedItem.indices[0][0] - 10, 0);
               const end = Math.min(matchedItem.indices[0][1] + 10, matchedItem.value.length - 1);
               const snippet = matchedItem.value.slice(start, end + 1);
+              // console.log(matchedItem);
               const highlighted = `<span class="highlight">${snippet}</span>`;
               match.innerHTML = match.innerHTML.replace(snippet, highlighted);
             });
