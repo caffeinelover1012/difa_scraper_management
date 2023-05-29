@@ -11,16 +11,16 @@ from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
 from .utils import SCRAPER_MAPPING
 from .forms import CollectionForm 
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.cache import cache
 
-def index(request):
-    return render(request, 'datasets/index.html')
+# def index(request):
+#     return render(request, 'datasets/index.html')
 
 # User authentication views
 def user_login(request):
-    if request.user.is_authenticated:
-        return redirect('search')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -29,13 +29,14 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                next_url = request.GET.get('next', 'search')  # get the 'next' parameter, if it doesn't exist, default to 'search'
+                print(next_url)
+                return redirect(next_url)
             else:
                 messages.error(request, "Invalid username or password.")
     else:
         form = LoginForm()
     return render(request, 'datasets/login.html', {'form': form})
-
 
 def register(request):
     if request.user.is_authenticated:
@@ -68,7 +69,7 @@ def dataset(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
     return render(request, 'datasets/dataset.html', {'dataset': dataset})
 
-
+@login_required
 def scrape_dataset(request, dataset_id):
     try:
         try:
@@ -124,6 +125,9 @@ def create_modification_request(request, dataset_id):
 
 @login_required
 def modification_requests(request):
+    if not request.user.is_superuser or not request.user.is_staff:
+        messages.error(request, "You are unauthorized to view that page!")
+        return redirect(datasets)
     mod_requests = ModificationRequest.objects.all().order_by('-id')
     return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
 
@@ -205,7 +209,7 @@ def delete_modification_request(request, mod_request_id):
 
 
 def collections(request):
-    collections = Collection.objects.filter(user=request.user)
+    collections = Collection.objects.all()
     form = CollectionForm()  # Create an instance of the form
     return render(request, 'datasets/collections.html', {'collections': collections, 'form': form})  # Pass the form to the context
 
@@ -230,10 +234,9 @@ def create_collection(request):
         return redirect('collections')
 
 
-@login_required
 def collection(request, collection_id):
     try:
-        collection = Collection.objects.get(id=collection_id, user=request.user)
+        collection = Collection.objects.get(id=collection_id)
     except Collection.DoesNotExist:
         messages.error(request, "The requested collection does not exist or you don't have permission to view it.")
         return redirect('collections')
@@ -243,6 +246,188 @@ def collection(request, collection_id):
     }
     return render(request, 'datasets/collection.html', context)
 
+
+
+def workshop(request):
+    day1_sessions = [
+        {
+            "start_time": "12:00pm",
+            "end_time": "12:30pm",
+            "duration": "30 minutes",
+            "session": "Day 1 Opening Remarks",
+            "description": "Greetings from the FAMPS and FSN Chairs",
+            "youtube_link":"https://www.youtube.com/watch?v=cjhrjQTeaq0",
+            "speakers": [12, 19]
+        },
+        {
+            "start_time": "12:30pm",
+            "end_time": "1:15pm",
+            "duration": "45 minutes",
+            "session": "Session 1",
+            "description": "Why should we care about data linkages?",
+            "youtube_link":"https://www.youtube.com/watch?v=NDuzX3wuIQw",
+            "speakers": [2]
+        },
+        {
+            "start_time": "1:15pm",
+            "end_time": "2:00pm",
+            "duration": "45 minutes",
+            "session": "Keynote speaker",
+            "description": "Methods for linking administrative data",
+            "youtube_link":"https://www.youtube.com/watch?v=5jJfv0RzP44",
+            "speakers": [1]
+        },
+        {
+            "start_time": "2:15pm",
+            "end_time": "2:45pm",
+            "duration": "30 minutes",
+            "session": "Session 2",
+            "description": "Linking Administrative Data: The UMETRICS Experience",
+            "youtube_link":"https://www.youtube.com/watch?v=p0lTVB4gQkE",
+            "speakers": [3]
+        },
+        {
+            "start_time":"2:45pm",
+            "end_time":"3:00pm",
+            "duration":"15 minutes",
+            "session":"Break",
+            "description":"Break",
+            "speakers":[]
+        },
+        {
+            "start_time": "3:00pm",
+            "end_time": "3:45pm",
+            "duration": "45 minutes",
+            "session": "Session 3",
+            "description": "Developments in data linkages",
+            "youtube_link":"https://www.youtube.com/watch?v=-_zdr6SRAQU",
+            "speakers": [20]
+        },
+        {
+            "start_time": "3:45pm",
+            "end_time": "4:15pm",
+            "duration": "30 minutes",
+            "session": "Session 4 (Research Presentations)",
+            "youtube_link":"https://www.youtube.com/watch?v=bPcZ-QW78Pw",
+            "description": "Frontiers in evidence-based policy making: COVID-19 and Schools",
+            "speakers": [4]
+        },
+        {
+            "start_time": "4:15pm",
+            "end_time": "4:45pm",
+            "duration": "30 minutes",
+            "session": "Session 4 (Research Presentations)",
+            "youtube_link":"https://www.youtube.com/watch?v=8Jw-jFjcFkE",
+            "description": "Evidence on WIC using administrative data linkage",
+            "speakers": [5]
+        },
+        {
+            "start_time": "4:45pm",
+            "end_time": "5:00pm",
+            "duration": "15 minutes",
+            "session": "Day 1 Wrap-up",
+            "description": "Closing from the FAMPS and FSN Chairs; Preview of Day 2",
+            "youtube_link":"#",
+            "speakers": [12, 19]
+        }
+        ]
+    day2_sessions = [
+    {
+        "start_time": "12:00pm",
+        "end_time": "12:15pm",
+        "duration": "15 minutes",
+        "session": "Day 2 Opening Remarks",
+        "description": "Greetings from the FAMPS and FSN Chairs; Highlights from Day 1",
+        "youtube_link": "https://www.youtube.com/watch?v=ndiQmUUxi9k",
+        "speakers": [12, 19]
+    },
+    {
+        "start_time": "12:15pm",
+        "end_time": "1:15pm",
+        "duration": "60 minutes",
+        "session": "Session 5",
+        "description": "Challenges and bottlenecks of working with administrative data",
+        "youtube_link": "https://www.youtube.com/watch?v=XWrJ4ewASqE",
+        "speakers": [6, 7, 8, 9]
+    },
+    {
+        "start_time": "1:15pm",
+        "end_time": "1:35pm",
+        "duration": "20 minutes",
+        "session": "Session 6",
+        "description": "Linking Administrative Data: The IPUMS Experience",
+        "youtube_link": "https://www.youtube.com/watch?v=GRfKbc8fs40",
+        "speakers": [10]
+    },
+    {
+        "start_time": "1:35pm",
+        "end_time": "2:05pm",
+        "duration": "30 minutes",
+        "session": "Session 7 (Research Presentations)",
+        "description": "Policy Analysis at the Intersection of Constraints and Nutrition",
+        "youtube_link": "https://www.youtube.com/watch?v=Vc4q-rcEOS4",
+        "speakers": [21]
+    },
+    {
+        "start_time": "2:05pm",
+        "end_time": "2:35pm",
+        "duration": "30 minutes",
+        "session": "Session 7 (Research Presentations)",
+        "description": "Aggregate Conditions, Child Growth, & the DHS",
+        "youtube_link": "https://www.youtube.com/watch?v=Gh2Gv24yp44",
+        "speakers": [11]
+    },
+    {
+        "start_time": "2:35pm",
+        "end_time": "2:50pm",
+        "duration": "15 minutes",
+        "session": "Break",
+        "description": "Break",
+        "speakers": []
+    },
+    {
+        "start_time": "2:50pm",
+        "end_time": "3:30pm",
+        "duration": "40 minutes",
+        "session": "Activity 3",
+        "description": "Deterministic Data Linkages: Matching and Fuzzy Matching",
+        "youtube_link": "https://www.youtube.com/watch?v=_yIWVTy-72k",
+        "speakers": [12]
+    },
+    {
+        "start_time": "3:30pm",
+        "end_time": "4:10pm",
+        "duration": "40 minutes",
+        "session": "Activity 2",
+        "description": "Data quality: Considerations when using linked data",
+        "youtube_link": "https://www.youtube.com/watch?v=poUAfpXeefA",
+        "speakers": [18]
+    },
+    {
+        "start_time": "4:10pm",
+        "end_time": "4:50pm",
+        "duration": "40 minutes",
+        "session": "Activity 1",
+        "description": "Navigating Licenses and Building a Research Plan to Access RDC Data",
+        "youtube_link": "https://www.youtube.com/watch?v=kN0pyEv3t3E",
+        "speakers": [19]
+    },
+    {
+        "start_time": "4:50pm",
+        "end_time": "5:00pm",
+        "duration": "10 minutes",
+        "session": "Day 2 Wrap-up",
+        "description": "Closing from the FAMPS and FSN Chairs",
+        "youtube_link": "https://www.youtube.com/watch?v=0zEtZ6092IQ",
+        "speakers": [12, 19]
+    }
+]
+
+
+    return render(request, 'datasets/workshop.html', context={"day1_sessions":day1_sessions, "day2_sessions":day2_sessions})
+
+def partners(request):
+    return render(request, 'datasets/partners.html')
 
 def person_detail(request, person_id):
     person = get_object_or_404(Person, pk=person_id)
@@ -272,6 +457,7 @@ def research_team(request):
     context = {
         'research_team_members': research_team_members,
     }
+    # print(SCRAPER_MAPPING)
     return render(request, 'datasets/research_team.html', context)
 
 def leadership_team(request):
@@ -307,3 +493,39 @@ def search_results(request):
 def datasets_json(request):
     data = serializers.serialize('json', Dataset.objects.all())
     return JsonResponse(data, safe=False)
+
+
+scraping_progress=0
+current=""
+def scrape_all_view(request):
+    if not request.user.is_superuser or not request.user.is_staff:
+        messages.error(request, "You are unauthorized to scrape all datasets!")
+        return HttpResponse('Please Log In as an authorized user!', status=401)
+    scraping_progress=0
+    for dataset_id in SCRAPER_MAPPING:
+        ds = Dataset.objects.get(pk=dataset_id)
+        cache.set('scraping_progress', scraping_progress)
+        cache.set('current_dataset', ds.dataset_name)
+        scraped_data = run_scraper(dataset_id)
+        # print("here: ", dataset,dataset is None)
+        # print(scraped_data)
+        # Update the 'last_scraped' attribute with the current date and time
+        scraped_data['last_scraped'] = timezone.now().isoformat()
+        # Update the database with the scraped data
+        for key, value in scraped_data.items():
+            setattr(ds, key, value)
+        ds.save()
+        scraping_progress+=1
+    messages.success(f"Scraped {len(SCRAPER_MAPPING)} datasets successfully!")
+    return redirect(datasets)
+
+def scraping_progress_view(request):
+    # Get the progress from the database or cache
+    progress = cache.get('scraping_progress', 0)
+    current_dataset = cache.get('current_dataset', '')
+    return JsonResponse({'progress': progress,'current': current_dataset, 'total':len(SCRAPER_MAPPING)})
+
+
+# def scrape_progress_view(request):
+#     progress = get_scraping_progress()  # replace with your actual function
+#     return JsonResponse({'progress': progress})

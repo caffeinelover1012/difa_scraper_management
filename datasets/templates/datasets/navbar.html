@@ -47,9 +47,11 @@
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'collections' %}active{% endif %}" href="{% url 'collections' %}">Collections</a>
           </li>
+          {% if request.user.is_superuser or request.user.is_staff %}
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'modification_requests' %}active{% endif %}" href="{% url 'modification_requests' %}">Modifications Portal</a>
           </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'search' %}">Search</a>
           </li>
@@ -63,7 +65,7 @@
                 <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
                 <li><a class="dropdown-item" href="{% url 'leadership_team' %}">Leadership Team</a></li>
                 <li><a class="dropdown-item" href="{% url 'research_team' %}">Research Team</a></li>
-                <li><a class="dropdown-item" href="partners.html">Partners</a></li>
+                <li><a class="dropdown-item" href="{% url 'partners' %}">Partners</a></li>
             </ul>
         </li>
         
@@ -73,9 +75,7 @@
                 Events
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownEvents">
-                <li><a class="dropdown-item" href="wdescription.html">Workshop Description</a></li>
-                <li><a class="dropdown-item" href="day1.html">Workshop Day 1</a></li>
-                <li><a class="dropdown-item" href="day2.html">Workshop Day 2</a></li>
+                <li><a class="dropdown-item" href="{% url 'workshop' %}">Workshop Description</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><h6 class="dropdown-header">Guest Speakers</h6></li>
                 {% for person in persons %}

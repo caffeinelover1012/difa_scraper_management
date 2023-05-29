@@ -6,7 +6,7 @@ DATASET_NAME = "Farm Accountancy Data Network (FADN)"
 SPONSOR_NAME = "European Union"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes():
+def get_data_attributes(url):
     res = {i: "N/A" for i in ATTRS}
     res['access_type'] = 'Open Access'
     res['sponsor_name'] = SPONSOR_NAME

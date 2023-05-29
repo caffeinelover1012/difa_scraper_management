@@ -1,0 +1,54 @@
+{% extends "datasets/base.html" %}
+{% load static %}
+{% block title %}
+  Partners
+{% endblock %}
+
+{% block content %}
+  <h2 style="text-align:center;">Partners</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center my-2">
+        <img src="{% static 'usda_logo.png' %}" alt="USDA Logo" class="partner-logo" onclick="window.location.href='https://www.usda.gov'">
+        <p class="mt-2">United States Department of Agriculture</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center my-2">
+        <img src="{% static 'osu_logo.png' %}" alt="OSU Logo" class="partner-logo" onclick="window.location.href='https://www.osu.edu'">
+        <p class="mt-2">Ohio State University</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center my-2">
+        <img src="{% static 'ers_logo.png' %}" alt="ERS Logo" class="partner-logo" onclick="window.location.href='https://www.ers.usda.gov'">
+        <p class="mt-2">Economic Research Service</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center my-2">
+        <img src="{% static 'asu_logo.png' %}" alt="ASU Logo" class="partner-logo" onclick="window.location.href='https://www.asu.edu'">
+        <p class="mt-2">Arizona State University</p>
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-12 text-center my-2">
+        <img src="{% static 'allegheny_logo.png' %}" alt="Allegheny College Logo" class="partner-logo" onclick="window.location.href='https://www.allegheny.edu'">
+        <p class="mt-2">Allegheny College</p>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 text-center my-2">
+        <img src="{% static 'aaea_logo.png' %}" alt="AAEA Logo" class="partner-logo" onclick="window.location.href='https://www.aaea.org'">
+        <p class="mt-2">Agricultural and Applied Economics Association</p>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block scripts %}
+  <style>
+    .partner-logo {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      transition: transform 0.3s;
+    }
+
+    .partner-logo:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+  </style>
+{% endblock %}

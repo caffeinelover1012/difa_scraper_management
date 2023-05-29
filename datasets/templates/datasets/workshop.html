@@ -1,0 +1,174 @@
+{% extends 'datasets/base.html' %}
+{% load custom_tags %} 
+{% load static %}
+
+{% block content %}
+<script>
+    // Function to open the Day 1 modal
+    function openDay1Modal() {
+      $('#day1Modal').modal('show');
+    }
+    function closeDay1Modal() {
+      $('#day1Modal').modal('hide');
+    }
+    // Function to open the Day 2 modal
+    function openDay2Modal() {
+      $('#day2Modal').modal('show');
+    }
+    function closeDay2Modal() {
+      $('#day2Modal').modal('hide');
+    }
+  </script>
+  <style>
+    .modal-dialog {
+  width: 70vw !important;
+  max-width: 100% !important;
+}
+
+.modal-content {
+  width: 100% !important;
+}
+  </style>
+<div class="modal fade" id="day1Modal" tabindex="-1" role="dialog" aria-labelledby="day1ModalLabel" style="z-index: 11100; margin-top: 40px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" onclick="closeDay1Modal()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="day1ModalLabel">Workshop Day 1</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Duration</th>
+                <th>Session</th>
+                <th>Description</th>
+                <th>Speaker(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for session in day1_sessions %}
+              <tr>
+                <td>{{ session.start_time }}</td>
+                <td>{{ session.end_time }}</td>
+                <td>{{ session.duration }}</td>
+                <td>{{ session.session }}</td>
+                {% if session.youtube_link %}
+                    <td><a href="{{ session.youtube_link }}">{{ session.description }}</a></td>
+                {% else %}
+                    <td>{{ session.description }}</td>
+                {% endif %}
+                <td>
+                  {% for speaker_id in session.speakers %}
+                    {% with speaker=speaker_id|fetch_speaker %}
+                  <a href="{% url 'person_detail' person_id=speaker_id %}">{{ speaker.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endwith %}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="day2Modal" tabindex="-1" role="dialog" aria-labelledby="day2ModalLabel" style="z-index: 11100; margin-top: 40px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" onclick="closeDay2Modal()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="day2ModalLabel">Workshop Day 2</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Duration</th>
+                <th>Session</th>
+                <th>Description</th>
+                <th>Speaker(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for session in day2_sessions %}
+              <tr>
+                <td>{{ session.start_time }}</td>
+                <td>{{ session.end_time }}</td>
+                <td>{{ session.duration }}</td>
+                <td>{{ session.session }}</td>
+                {% if session.youtube_link %}
+                    <td><a href="{{ session.youtube_link }}">{{ session.description }}</a></td>
+                {% else %}
+                    <td>{{ session.description }}</td>
+                {% endif %}                <td>
+                  {% for speaker_id in session.speakers %}
+                  {% with speaker=speaker_id|fetch_speaker %}
+                  <a href="{% url 'person_detail' person_id=speaker_id %}">{{ speaker.name }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endwith %}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container mt-5">
+  <h2 class="text-center text-decoration-underline">Evidence Based Policy for Agricultural and Applied Economists Virtual Workshop</h2>
+
+  <!-- Card for the workshop days -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h3><i class="fas fa-calendar-day"></i> Workshop Dates</h3>
+    </div>
+    <div class="card-body">
+        <h5><a href="#day1Modal" onclick="openDay1Modal()" data-toggle="modal"><i class="fas fa-arrow-right"></i>Day 1 (Part One): Friday, October 1, 2021, 12-5pm ET</a></h5>
+        <h5><a href="#day2Modal" onclick="openDay2Modal()" data-toggle="modal"><i class="fas fa-arrow-right"></i>Day 2 (Part One): Friday, October 8, 2021, 12-5pm ET</a></h5>
+       </div>
+  </div>
+
+  <!-- Card for the workshop description -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h3><i class="fas fa-info-circle"></i> About the Workshop</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Evidence-based policymaking is more essential than ever given many concurrent challenges facing society today. To tackle these policymaking challenges, applied economists can make strategic use of quantitative and qualitative data. Despite access to more data than ever before, no single dataset is sufficient for providing a comprehensive analysis or solution to many questions and problems. In these cases, researchers are forced to either do an incomplete analysis or attempt to link datasets (e.g., NHANES, CPS, ATUS, SNAP, IRI). Even before determining whether there is a need to link data, researchers must be familiar with the availability and attributes of different datasets a priori. Thus, detailed knowledge of data sources and training in data linkages are imperative for producing impactful research, even when contextual, econometric, and disciplinary knowledge is already present.
+        <br><br>
+        Please join us for this two-day virtual workshop, during which we begin to explore some of these roadblocks. During the workshop, participants will learn about innovations in data identification and linkages, and high-quality resources that have the potential for catalyzing new and emerging initiatives in the field from a knowledgeable set of panelists.      </p>
+    </div>
+  </div>
+
+  <!-- Card for 'Who should attend' -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h3><i class="fas fa-users"></i> Who Should Attend?</h3>
+    </div>
+    <div class="card-body">
+      <p>
+        Our intended audience is anyone interested in learning about opportunities for linking data sets often used by agricultural and applied economists. We have a rich agenda with speakers from multiple research areas within agricultural and applied economics. During the workshop, participants will experience a mix of research presentations that use state-of-the art data linkages, discussions of challenges and opportunities in data linkages, as well as several opportunities for hands-on learning experience.
+    </p>
+    </div>
+  </div>
+
+  <!-- Card for 'Registration' -->
+  <div class="card mt-4 mb-5">
+    <div class="card-header">
+      <h3><i class="fas fa-clipboard-check"></i> Registration</h3>
+    </div>
+    <div class="card-body">
+        <p>To register for the event, please complete the <a href="{% static 'PC52 Registration Form.pdf' %}" download><i class="fas fa-file-pdf"></i> PC52 Registration form.</a> Registered participants will receive an email confirmation with the details to join via Zoom.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

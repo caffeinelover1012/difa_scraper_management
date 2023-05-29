@@ -3,9 +3,89 @@
 {% block title %}Datasets{% endblock %}
 
 {% block content %}
+  <style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 11000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+    }
+    .modal .modal-dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        margin: 0;
+    }
+    .loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .lds-facebook {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-facebook div {
+        display: inline-block;
+        position: absolute;
+        left: 8px;
+        width: 16px;
+        background: #007bff;
+        animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    .lds-facebook div:nth-child(1) {
+        left: 8px;
+        animation-delay: -0.24s;
+    }
+    .lds-facebook div:nth-child(2) {
+        left: 32px;
+        animation-delay: -0.12s;
+    }
+    .lds-facebook div:nth-child(3) {
+        left: 56px;
+        animation-delay: 0;
+    }
+    @keyframes lds-facebook {
+        0% {
+            top: 8px;
+            height: 64px;
+        }
+        50%, 100% {
+            top: 24px;
+            height: 32px;
+        }
+    }
+  </style>
   
+  <div class="container mt-4">
+    <div id="loading-modal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="loader-wrapper">
+                    <div class="lds-facebook"><div></div><div></div><div></div></div>
+                <div class="modal-body">
+                    <p id="progress" style="height:40px; font-size: medium;" class="text-center progress">Processing... </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   <div class="container mt-1">
-    <h2 class="mb-4">Datasets</h2>
+    <div class="mb-2" style="display: flex; align-items: center; justify-content: space-between; vertical-align: baseline;">
+      <h2>Datasets</h2>
+        <button class="btn btn-success" id="scrape-all-btn">Scrape All</button>
+      </div>
+
     <input class="form-control mb-4" id="searchInput" type="text" placeholder="Search datasets">
 
     <table class="table table-striped table-bordered">
@@ -15,6 +95,7 @@
           <th>Name</th>
           <th>Last Scraped</th>
           <th>Actions</th>
+
         </tr>
       </thead>
       <tbody id="datasetsTable">
@@ -72,5 +153,41 @@
     }
   }
 });
+
+$('#scrape-all-btn').click(function() {
+    $.ajax({
+        url: '{% url "scrape_all" %}',
+        success: function(data) {
+            // Close the modal when scraping is done
+            $("#loading-modal").hide();
+        },
+        error: function(xhr, status, error) {
+            // Check if the user is unauthorized
+            if (xhr.status == 401 || xhr.status == 403) {
+                alert("You must be logged in to scrape all datasets");
+                // Redirect the user to the login page
+                window.location.href = "{% url 'login' %}";
+            } else {
+                // Handle any other errors
+                alert("An error occurred: " + error);
+            }
+        }
+    });
+
+    // Open the modal
+    $("#loading-modal").show();
+    
+    // Periodically check the scraping progress
+    setInterval(function() {
+        $.ajax({
+            url: '{% url "scrape_progress" %}',
+            success: function(data) {
+                // Update the progress text
+                $("#progress").text("Scraping "+ data.current + " | Progress: " + data.progress + "/" + data.total);
+            }
+        });
+    }, 1000); // Update every second
+});
+
 </script>
 {% endblock %}

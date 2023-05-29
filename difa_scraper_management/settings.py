@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,8 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'difa_scraper_management.urls'
-LOGIN_URL = 'user_login'
-LOGIN_REDIRECT_URL  = 'search'
+LOGIN_URL = 'login'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
