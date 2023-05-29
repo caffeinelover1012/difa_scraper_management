@@ -423,7 +423,6 @@ def workshop(request):
     }
 ]
 
-
     return render(request, 'datasets/workshop.html', context={"day1_sessions":day1_sessions, "day2_sessions":day2_sessions})
 
 def partners(request):
