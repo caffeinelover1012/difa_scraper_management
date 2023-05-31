@@ -1,11 +1,11 @@
 from .common_imports import *
 
-DATE_FMT = "%d-%m-%Y"
+DATE_FMT = "%B %d, %Y"
 ORG_URL = "https://www.census.gov/programs-surveys/acs"
 ORGANIZATION = "ACS"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes(url):
+def get_data_attributes():
 
     res = {i: "N/A" for i in ATTRS}
     res["dataset_name"] = "American Community Survey (ACS)"
@@ -25,13 +25,14 @@ def get_data_attributes(url):
 
     # Initialize Browser
     options = Options()
+    options.add_argument("--disable-features=Permissions-Policy")
     options.add_argument("--headless")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--start-maximized")
     browser = webdriver.Chrome(options=options)
     # To maximize the browser window
     browser.maximize_window()
-    browser.get(url)
+    browser.get(ORG_URL)
     sleep(3)
 
     about_info = ""
@@ -72,10 +73,9 @@ def get_data_attributes(url):
     res["dataset_status"]=status
 
     #Find when the dataset was last updated
-    browser.find_element(By.XPATH,'//*[@id="listArticlesContainer_List_296343523"]/div[2]/a[1]').click()
+    browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/a[1]').click()
     sleep(3)
-    last_updated=browser.find_element(By.XPATH,'//*[@id="textcore-3d89543f20"]').text
-    print(last_updated)
+    last_updated=browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div').text
     last_updated_date=standardize(DATE_FMT,last_updated[8:])
     res["last_updated"]=last_updated_date
 
