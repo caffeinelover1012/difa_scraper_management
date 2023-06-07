@@ -3,12 +3,8 @@
 
 {% block title %}Log In{% endblock %} 
 {% block content %}
-
-<div
-  class="d-flex align-items-center justify-content-center"
-  style="height: 100vh"
->
-  <div class="" style="border: 1px solid #ccc; border-radius: 10px; padding: 30px; background-color: #f8f9fa;">
+  <div class="d-flex align-items-center justify-content-center">
+  <div style="border: 1px solid #ccc; border-radius: 10px; padding: 30px; background-color: #f8f9fa;">
     <h2 class="text-center">Log In</h2>
     <form method="POST" action="{% url 'login' %}">
       {% csrf_token %} 

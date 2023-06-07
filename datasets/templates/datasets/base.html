@@ -23,13 +23,19 @@
   </head>
   
   <body>
-    <div class="flex-container" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <div class="flex-container test" style="display: flex; flex-direction: column; min-height: 100vh;">
 
 {% if "login" in request.path or "register" in request.path %}
 <style>
-  .main-content{
-    margin-top: -100px;
-  }
+ {% if messages %}
+ .errors{
+  margin: 5px;
+  margin-bottom: 20vh;
+ }
+ .main-content{
+  padding: 0;
+ }
+ {% endif %}
 </style>
   {% else %}
   {% include 'datasets/navbar.html' %}

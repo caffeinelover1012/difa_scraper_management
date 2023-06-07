@@ -56,7 +56,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="text-center mt-3">
+  <div class="text-center m-3">
     <form method="POST" action="{% url 'scrape_dataset' dataset_id=dataset.id %}">
       {% csrf_token %}
       <button type="submit" class="btn btn-primary">Scrape Again</button>
