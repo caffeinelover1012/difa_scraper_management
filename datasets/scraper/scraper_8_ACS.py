@@ -23,47 +23,29 @@ def get_data_attributes(url):
     
     res["access_type"] = OPEN_ACCESS
 
-    # Initialize Browser
-    options = Options()
-    options.add_argument("--disable-features=Permissions-Policy")
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
     about_info = ""
     #Collect dataset info from main page
-    overview_text = browser.find_element(By.XPATH,'//*[@id="textcore-e064157133"]/p').text
+    overview_text = "The American Community Survey (ACS) helps local officials, community leaders, and businesses understand the changes taking place in their communities. It is the premier source for detailed population and housing information about our nation."
     about_info += overview_text
-
-    #Redirect to about the ACS page and gather about info
-    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[1]/a").click()
-    sleep(3)
-    about1 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div/section/div[2]/p[2]').text
-    about2 = browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/div/section/div[2]/p[2]').text
+    about1 = " The American Community Survey (ACS) is an ongoing survey that provides vital information on a yearly basis about our nation and its people. Information from the survey generates data that help determine how more than $675 billion in federal and state funds are distributed each year."
+    about2 = " Through the ACS, we know more about jobs and occupations, educational attainment, veterans, whether people own or rent their homes, and other topics. Public officials, planners, and entrepreneurs use this information to assess the past and plan the future. When you respond to the ACS, you are doing your part to help your community plan for hospitals and schools, support school lunch programs, improve emergency services, build bridges, and inform businesses looking to add jobs and expand to new markets, and more."
     about_info = about_info + "\n\n" + about1 + "\n\n" + about2
     #Store About info to dictionary
     res["about_info"] = about_info
 
-    #Go back to the main page.
-    browser.find_element(By.XPATH,'//*[@id="breadContainer"]/ul/li[3]/a').click()
-    sleep(3)
-
     #Get the ACS data link from Data -> data.census.gov - https://data.census.gov/
-    acs_dataset_link=browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[2]").get_attribute('href')
+    acs_dataset_link="https://data.census.gov/"
     res["dataset_link"]=acs_dataset_link
     res["dataset_file_format"]=["csv","excel"]
 
     #Click on data release plan to see the latest data
-    browser.find_element(By.XPATH,"/html/body/div[3]/div/div/div[8]/div/div[4]/div/div/div[2]/div/a[1]").click()
-    sleep(3)
+    response = requests.get("https://www.census.gov/programs-surveys/acs/news/data-releases.html")
+    soup = BeautifulSoup(response.content,'html.parser')
+
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
-    latest_year_available=browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/ul/li[1]/a').text
+    latest_year_available = soup.find('a',class_='uscb-tabs-link uscb-padding-LR-10').get_text()
+    
     current_date=date.today()
     current_year=current_date.year
     year_difference=int(current_year)-int(latest_year_available)
@@ -72,11 +54,14 @@ def get_data_attributes(url):
         status="Inactive"
     res["dataset_status"]=status
 
+    latest_link = "https://www.census.gov/" + soup.find('div',id='listArticlesContainer_List_1929147522').find('a').get('href')
+    
     #Find when the dataset was last updated
-    browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/a[1]').click()
-    sleep(3)
-    last_updated=browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div').text
+    response = requests.get(latest_link)
+    soup = BeautifulSoup(response.content,'html.parser')
+    
+    last_updated = soup.find('div',id='textcore-43ff463df2').find('i').get_text()
     last_updated_date=standardize(DATE_FMT,last_updated[8:])
     res["last_updated"]=last_updated_date
-
+    
     return res

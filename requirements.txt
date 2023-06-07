@@ -10,6 +10,7 @@ django-widget-tweaks==1.4.12
 exceptiongroup==1.1.1
 h11==0.14.0
 idna==3.4
+lxml==4.9.2
 outcome==1.2.0
 Pillow==9.5.0
 pycparser==2.21

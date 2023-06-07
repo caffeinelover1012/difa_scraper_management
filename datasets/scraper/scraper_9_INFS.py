@@ -34,30 +34,13 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
     
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    browser.maximize_window()
-    browser.get(url)
-    sleep(3)
-    #Accept cookies on the page
-    browser.find_element(By.XPATH,'/html/body/div[2]/div[3]/div/div[1]/div/div[2]/div/button[3]').click()
-    about_info = ""
-    #Collect dataset info from main page
-    about1 = browser.find_element(By.XPATH,'/html/body/main/div/article/p[1]').text
-    about2 = browser.find_element(By.XPATH,'/html/body/main/div/article/p[2]').text
-    about_info = about1 + "\n\n" + about2
+    about_info = "The National Farm Survey (NFS) has been conducted by Teagasc on an annual basis since 1972. The survey is operated as part of the Farm Accountancy Data Network of the EU and fulfils Ireland’s statutory obligation to provide data on farm output, costs and income to the European Commission. A random, nationally representative sample, of between 1,000 and 1,200 farms depending on the year, is selected annually in conjunction with the Central Statistics Office (CSO). Each farm is assigned a weighting factor so that the results of the survey are representative of the national population of farms. Pigs and poultry systems are not represented because of the small number of farms in these systems. Co-operation in the survey is voluntary but the survey is supported by the main farming organisations. The success of the NFS is largely dependent on the voluntary co-operation of farmers in providing reliable and accurate data on their farm businesses."  
 
     #Store About info to dictionary
     res["about_info"] = about_info
 
     #Find the main uses of Irish NFS dataset
-    dataset_usage = []
-    uses = browser.find_elements(By.XPATH ,'/html/body/main/div/article/p[*]/strong')
-    for use in uses:
-        dataset_usage.append(use.text)
+    dataset_usage = ["Financial","Research","Policy","Farm advice/benchmark performance","EU Farm Accountancy Data Network (FADN)","National Data on Agriculture"]
     res["other_info"] = [{"dataset_usage":dataset_usage}]
 
     # Get the INFS dataset link
@@ -71,14 +54,15 @@ def get_data_attributes(url):
     res["other_info"].append({"dataset_access_info":INFS_DATA_ACCESS_INFO})
     res["other_info"].append({"dataset_reports":DATASET_REPORTS})
 
-    #Click on National Farm Survey Reports tab
-    browser.find_element(By.XPATH, '/html/body/main/div/div[1]/div/nav/ul/li[1]/ul/li[1]/a').click()
-
-    #Go to the latest collected report page
-    browser.find_element(By.XPATH, '/html/body/main/div/article/ul/li[1]/a').click()
-
-    # Find the last updated date of data and compute if the last collected is not more than 5 years of duration.
-    last_updated = browser.find_element(By.XPATH,'/html/body/main/div/article/div/article/div/div').text.split('\n')[0]
+    response = requests.get('https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/national-farm-survey-reports/')
+    soup = BeautifulSoup(response.content,'html.parser')
+    
+    latest_link = "https://www.teagasc.ie/" + soup.find('article',class_="content-primary").find('a').get('href')
+    
+    # # Find the last updated date of data and compute if the last collected is not more than 5 years of duration.
+    response = requests.get(latest_link)
+    soup = BeautifulSoup(response.content,'html.parser')
+    last_updated = soup.find('div',class_='publication-info').get_text().split('\n')[1].strip()
     last_updated_date = standardize(DATE_FMT,last_updated)
     res["last_updated"] = last_updated_date
 
@@ -91,17 +75,4 @@ def get_data_attributes(url):
         status = "Inactive"
     res["dataset_status"] = status
 
-    #Close and quit all browser driver instances
-    browser.quit()
-
     return res
-
-
-
-# # Loop through the organization dictionary and print the data attribute output
-# print(ORGANIZATION)
-# print('-' * len(ORGANIZATION))
-# data_attributes = get_data_attributes(ORG_URL)
-# for attribute, value in data_attributes.items():
-#     print(f'{attribute}: {value}', end="\n\n")
-# print()

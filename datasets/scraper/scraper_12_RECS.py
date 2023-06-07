@@ -27,31 +27,22 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
     about_info = "EIA administers the Residential Energy Consumption Survey (RECS) to a nationally representative sample of housing units. Traditionally, specially trained interviewers collect energy characteristics on the housing unit, usage patterns, and household demographics. For the 2020 survey cycle, EIA used Web and mail forms to collect detailed information on household energy characteristics. This information is combined with data from energy suppliers to these homes to estimate energy costs and usage for heating, cooling, appliances and other end uses — information critical to meeting future energy demand and improving efficiency and building design.\n\nFirst conducted in 1978, the fifteenth RECS collected data from nearly 18,500 households in housing units statistically selected to represent the 123.5 million housing units that are occupied as a primary residence. Data from the 2020 RECS are tabulated by geography and for particularly characteristics, such as housing unit type and income, that are of particular interest to energy analysis.\n\nThe results of each RECS include data tables, a microdata file, and a series of reports. Data tables are generally organized across two headings; 'Household Characteristics' and 'Consumption & Expenditures.'"
     #Collect dataset info by redirecting to About this Survey page
     res["about_info"] = about_info
 
-    #Get the dataset link
-    dataset_link = browser.find_element(By.XPATH,'//*[@id="innerX"]/div[2]/ul/li[2]/a').get_attribute('href')
-    res["dataset_link"] = dataset_link 
-    browser.find_element(By.XPATH,'//*[@id="innerX"]/div[2]/ul/li[2]/a').click()
-    sleep(3)
-    browser.find_element(By.XPATH,'//*[@id="tab-container"]/ul/a[2]').click()
-    sleep(3)
+    response = requests.get(ORG_URL)
+    soup = BeautifulSoup(response.content,'html.parser')
 
+    #Get the dataset link
+    dataset_link = "https://www.eia.gov/" + soup.find('li', class_="dropdown").find('a').get('href')
+    res["dataset_link"] = dataset_link 
+
+    microdata = dataset_link + "/index.php?view=microdata"
+    response = requests.get(microdata)
+    soup = BeautifulSoup(response.content,'html.parser')
     #Find when the dataset was last updated: DATA -> MICRODATA -> Release Date
-    last_updated = browser.find_element(By.XPATH,'//*[@id="microdata"]/table/tbody/tr/td[4]').text
+    last_updated = soup.find('table',class_='basic_table').find_all('td')[-1].get_text()
     res["last_updated"]=last_updated
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
@@ -65,8 +56,5 @@ def get_data_attributes(url):
     res["dataset_status"]=status
 
     res["dataset_file_format"]=["pdf","xls","zip"]
-
-    #Close and quit all browser driver instances
-    browser.quit()
 
     return res

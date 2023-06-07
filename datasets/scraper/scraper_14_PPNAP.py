@@ -37,40 +37,34 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
-    about_info = ""
-    overview_info =  browser.find_elements(By.XPATH,'//*[@id="primary"]/div/p[*]')
-    i = 1
-    for info in overview_info:
-        if i > 2:
-            break
-        about_info += info.text + "\n\n"
+    about_info = "The Purchase to Plate Suite (PP-Suite) is a set of data products developed by linking household and retail grocery scanner data with the USDA Food and Nutrient Database for Dietary Studies (FNDDS), one of USDA’s nutrition databases. The National Average Prices allow users to import price estimates for foods found in USDA dietary survey data. Restricted access elements of the Purchase to Plate Suite include the Crosswalk, Price Tool, and Ingredient Tool. The Purchase to Plate National Average Prices (PP-NAP) for WWEIA/NHANES provides unit price estimates for the foods participants reported eating in What We Eat in America (WWEIA), the dietary component of the National Health and Nutrition Examination Survey (NHANES). The estimates are derived using the Purchase to Plate Crosswalk, the Purchase to Plate Price Tool, and retail grocery scanner data. The primary purpose of the PP-NAP is to support the updates of the market baskets for the USDA Food Plans, including the Thrifty Food Plan. Each price series covers 2 years of data (e.g., 2015/16)."
     #Collect dataset info by redirecting to About this Survey page
     res["about_info"] = about_info
 
+    response = requests.get(ORG_URL)
+    soup = BeautifulSoup(response.content,'html.parser')
+
     #Get the dataset link
     dataset_link = []
-    links = browser.find_elements(By.XPATH,'//*[@id="primary"]/table/tbody/tr[*]/td[*]/a')
+    links = soup.find('section',id="primary").find('table').find_all('a')
+    default_link = "https://www.ers.usda.gov/"
     for link in links:
-        dataset_link.append(link.get_attribute('href'))
-    res["dataset_link"] = dataset_link 
+        dataset_link.append(default_link + link.get('href'))
+    res["dataset_link"] = dataset_link
 
     #Find when the dataset was last updated
+    rows = soup.find('section',id="primary").find('table').find_all('tr')
     all_dates = []
-    dates = browser.find_elements(By.XPATH,'//*[@id="primary"]/table/tbody/tr[*]/td[2]')
-    for dat in dates:
-        all_dates.append(standardize(DATE_FMT,dat.text))
-
+    count = 0
+    for row in rows:
+        if count==0:
+            count+=1
+            continue
+        cols = row.find_all('td')
+        for col in range(len(cols)):
+            if col==1:
+                dat = cols[col].get_text()
+                all_dates.append(standardize(DATE_FMT,dat))
     last_updated_date = min(all_dates)
     res["last_updated"] = last_updated_date
 
@@ -85,8 +79,5 @@ def get_data_attributes(url):
     res["dataset_status"]=status
 
     res["dataset_file_format"]=["csv","xlsx"]
-
-    #Close and quit all browser driver instances
-    browser.quit()
 
     return res

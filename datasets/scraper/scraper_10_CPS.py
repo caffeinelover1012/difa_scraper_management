@@ -30,55 +30,25 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
-    about_info = ""
-    #Collect dataset info by redirecting to About this Survey page
-    browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[1]/a').click()
-    # sleep(3)
-    paragraphs = browser.find_elements(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div[1]/div/section/div/*')
-    for para in paragraphs:
-        about_info += para.text
+    about_info = "The Current Population Survey (CPS) is one of the oldest, largest, and most well-recognized surveys in the United States.  It is immensely important, providing information on many of the things that define us as individuals and as a society – our work, our earnings, and our education. In addition to being the primary source of monthly labor force statistics, the CPS is used to collect data for a variety of other studies that keep the nation informed of the economic and social well-being of its people.  This is done by adding a set of supplemental questions to the monthly basic CPS questions.  Supplemental inquiries vary month to month and cover a wide variety of topics such as child support, volunteerism, health insurance coverage, and school enrollment.  Supplements are usually conducted annually or biannually, but the frequency and recurrence of a supplement depend completely on what best meets the needs of the supplement’s sponsor. The CPS data collection has been approved by the Office of Management and Budget (OMB Number 0607-0049).  Without this number, we could not conduct this survey."
     res["about_info"] = about_info
 
-    #Go back to the main page.
-    browser.find_element(By.XPATH,'//*[@id="breadContainer"]/ul/li[3]/a').click()
-    # sleep(3)
-
-    #Get the CPS datasets
-    browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[6]/div/div[2]/nav/ul/li[2]/a').click()
-    sleep(3)
-    browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[8]/div/div/div/div[1]/div[2]/a[3]').click()
-    sleep(3)
-    cps_datasets = []
-    all_datasets = browser.find_elements(By.XPATH,'//*[@id="listArticlesContainer_List_925177770"]/div[2]/a[*]')
-    basic_cps = ""
-    i=0
-    for dataset in all_datasets:
-        if i == 1:
-            basic_cps = dataset
-        cps_datasets.append((dataset.text,dataset.get_attribute('href')))
-        i+=1
+    cps_datasets = [{"Annual Social and Economic Supplements":"https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html"},
+                    {"Basic Monthly CPS":"https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html"},
+                    {"CPS Basic Extraction Files":"https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic-extractions.html"},
+                    {"CPS Certification Items Extract Files":"https://www.census.gov/data/datasets/time-series/demo/cps/cps-cert.html"},
+                    {"CPS Supplement and Replicate Weights":"https://www.census.gov/data/datasets/time-series/demo/cps/cps-supp_cps-repwgt.html"}]
 
     res["other_info"] = cps_datasets 
 
-    res["dataset_file_format"]=["csv","pdf","sas","txt"]
+    res["dataset_file_format"] = ["csv","pdf","sas","txt"]
 
-    #Click on data release plan to see the latest data
-    basic_cps.click()
-    # sleep(3)
+    #Go to Basic Monthly CPS data release plan to see the latest data
+    response = requests.get('https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html')
+    soup = BeautifulSoup(response.content,'html.parser')
 
     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
-    latest_year_available=browser.find_element(By.XPATH,'/html/body/div[3]/div/div/div[10]/div/div/ul/li[1]/a').text
+    latest_year_available = soup.find('ul',id="list-tab-1979780401").find('a').get_text()
     current_date=date.today()
     current_year=current_date.year
     year_difference=int(current_year)-int(latest_year_available)
@@ -88,11 +58,9 @@ def get_data_attributes(url):
     res["dataset_status"]=status
 
     #Find when the dataset was last updated
-    last_updated=browser.find_element(By.XPATH,'//*[@id="uscb-automation-lastmodified-date"]').text
-    last_updated_date=standardize(DATE_FMT,last_updated[20:])
+    last_updated = soup.find('div',id="lastModifiedDiv").get_text()
+    
+    last_updated_date=standardize(DATE_FMT,last_updated[20:].strip())
     res["last_updated"]=last_updated_date
-
-    #Close and quit all browser driver instances
-    browser.quit()
 
     return res

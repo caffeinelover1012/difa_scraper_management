@@ -49,5 +49,5 @@ def get_data_attributes(url):
             'td', attrs={'data-label': 'Last Updated'})[0].get_text())
         last_updated[key.lower()] = val
     res['last_updated'] = get_latest([date for date in last_updated.values()])
-    res['dataset_status'] = 'Retired' if is_older_than_5yrs(res['last_updated']) else 'Active'
+    res['dataset_status'] = 'Inactive' if is_older_than_5yrs(res['last_updated']) else 'Active'
     return res

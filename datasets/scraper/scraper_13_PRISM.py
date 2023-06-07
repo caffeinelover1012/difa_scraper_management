@@ -5,7 +5,7 @@ ORG_URL = "https://prism.oregonstate.edu/"
 ORGANIZATION = "PRISM"
 
 # Define a function to get the data attributes for an organization
-def get_data_attributes(url):
+def get_data_attributes():
 
     res = {i: "N/A" for i in ATTRS}
 
@@ -30,26 +30,18 @@ def get_data_attributes(url):
     ABOUT_INFO = "The PRISM Climate Group gathers climate observations from a wide range of monitoring networks, applies sophisticated quality control measures, and develops spatial climate datasets to reveal short- and long-term climate patterns. The resulting datasets incorporate a variety of modeling techniques and are available at multiple spatial/temporal resolutions, covering the period from 1895 to the present. PRISM datasets provide estimates of seven primary climate elements: precipitation (ppt), minimum temperature (tmin), maximum temperature (tmax), mean dew point (tdmean), minimum vapor pressure deficit (vpdmin), maximum vapor pressure deficit (vpdmax), and total global shortwave solar radiation on a horizontal surface (soltotal; available only as normals at this time). Mean temperature (tmean) is derived as the average of tmax and tmin. Three ancillary solar radiation variables are provided in the normals dataset: total global solar radiation on a horizontal surface under clear sky conditions (solclear), effective cloud transmittance (soltrans), and total global solar radiation on a sloped surface (solslope)."
     res["about_info"] = ABOUT_INFO
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
     #Get the dataset link
-    dataset_links = []
-    links = browser.find_elements(By.XPATH,'//*[@id="wrapper"]/p[*]/a')
-    for link in links:
-        dataset_links.append(link.get_attribute('href'))
+    dataset_links = [{"30-Year Normals":"https://prism.oregonstate.edu/normals","Comparisons":"https://prism.oregonstate.edu/comparisons",
+                      "This Month":"https://prism.oregonstate.edu/mtd","Prior 6 Months":"https://prism.oregonstate.edu/6month/",
+                      "Recent Years":"https://prism.oregonstate.edu/recent","Historical Past":"https://prism.oregonstate.edu/historical",
+                      "Projects":"https://prism.oregonstate.edu/projects","Data Explorer":"https://prism.oregonstate.edu/explorer"}]
     res["dataset_link"] = dataset_links
 
+    response = requests.get('https://prism.oregonstate.edu/')
+    soup = BeautifulSoup(response.content,'html.parser')
+
     #Find the status of the dataset by checking the footer of webpage.
-    footer = browser.find_element(By.XPATH,'//*[@id="footer"]').text
+    footer = soup.find('div',id="footer").get_text()
     current_date=date.today()
     current_year=current_date.year
 
@@ -59,12 +51,9 @@ def get_data_attributes(url):
         #Find when the dataset was last updated
         last_updated_date = current_date.strftime('%B %d, %Y')
         res["last_updated"]=last_updated_date
-
+        
     res["dataset_status"]=status
 
     res["dataset_file_format"]=["png","zip","bil","xml","hdr","txt","csv","prj","stx"]
-
-    #Close and quit all browser driver instances
-    browser.quit()
 
     return res

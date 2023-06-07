@@ -24,21 +24,12 @@ def get_data_attributes(url):
     DATASET_COLLECTION_METHOD = "The information collected annually in the Member States for each of the 80,000 FADN sample farms includes approximately 1000 variables and refers to: Physical and structural data (location, crop areas, livestock numbers, etc.). Economic and financial data (production value of the different crops, stocks, sales, purchases, production costs, assets, liabilities, production quotas and subsidies, etc.). Data is collected through a Liaison Agency in each Member State or nominated bodies. The sample in each Member State is stratified according to region, economic size and type of farming to ensure its representativeness. The FADN sample does, however, not cover all agricultural holdings, but only those which due to their size are considered to be commercial. The quality of data in FADN in terms of completeness and time consistency is one if its main strengths, since a sophisticated quality check is done regularly."
     res['dataset_collection_method'] = DATASET_COLLECTION_METHOD
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get("https://data.europa.eu/data/datasets/farm-accountancy-data-network-public-database?locale=en")
-    sleep(3)
-
-    #Find when the dataset was last updated
-    last_updated=browser.find_element(By.XPATH,'/html/body/div/div[3]/div[2]/div/div[1]/div[2]/div[3]/span[2]').text
-    res['last_updated'] = standardize(DATE_FMT,last_updated)
-    res['dataset_status'] = 'Inactive' if is_older_than_5yrs(res['last_updated']) else 'Active'
-    print(res['last_updated'])
-    print(res)
+    # response = requests.get("https://data.europa.eu/data/datasets/farm-accountancy-data-network-public-database?locale=en")
+    # soup = BeautifulSoup(response.content, 'html.parser')
+    # last_updated = soup.find('span',class_="d-inline-block").get_text()
+    # print(last_updated)
+    # res['last_updated'] = standardize(DATE_FMT,last_updated)
+    # res['dataset_status'] = 'Inactive' if is_older_than_5yrs(res['last_updated']) else 'Active'
+    # print(res['last_updated'])
+    
     return res

@@ -27,23 +27,15 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
     about_info = "An Agricultural Census is a statistical operation to compile census data on crops, livestock, farm labour and miscellaneous agricultural items for collecting, processing and disseminating data on all farms and farmers in a country.The Census of Agriculture survey is a statutory survey conducted every 10 years under the provisions of the Statistics (Census of Agriculture) Order, 2020 (S.I. No 281 of 2020). Under Sections 26 and 27 of the 1993 Statistics Act you are obliged by law to complete and return this form. Any person who fails or refuses to provide this information or who knowingly provides false information may be subject to prosecution under Part VI of the Act."
     #Collect dataset info by redirecting to About this Survey page
     res["about_info"] = about_info
 
+    response = requests.get(ORG_URL)
+    soup = BeautifulSoup(response.content,'html.parser')
+
     #Find when the dataset was last updated
-    last_updated=browser.find_element(By.XPATH,'//*[@id="dateModified"]/p').text
+    last_updated=soup.find('div',id="dateModified").find('p').get_text()
     last_updated_date=standardize(DATE_FMT,last_updated[19:])
     res["last_updated"]=last_updated_date
 
@@ -57,14 +49,9 @@ def get_data_attributes(url):
         status="Inactive"
     res["dataset_status"]=status
 
-    browser.find_element(By.XPATH,'//*[@id="110099li_12"]/a').click()
-    sleep(3)
-    dataset_link = browser.find_element(By.XPATH,'/html/body/div[5]/div[2]/div/div/div[2]/div/div[2]/ul/li[1]/a').get_attribute('href')
+    dataset_link = "https://ec.europa.eu/eurostat/web/agriculture/data/main-tables"
     res["dataset_link"] = dataset_link 
 
     res["dataset_file_format"]=["pdf"]
-
-    #Close and quit all browser driver instances
-    browser.quit()
 
     return res

@@ -29,29 +29,18 @@ def get_data_attributes(url):
     #Type of access to the dataset
     res["access_type"] = "Open Access"
 
-    #Initialize Browser
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(options=options)
-    # To maximize the browser window
-    browser.maximize_window()
-    browser.get(ORG_URL)
-    sleep(3)
-
     about_info = "What We Eat in America (WWEIA), NHANES is a national food survey conducted as a partnership between the U.S. Department of Health and Human Services (HHS) and the U.S. Department of Agriculture (USDA). WWEIA represents the integration of two nationwide surveys - USDA's Continuing Survey of Food Intakes by Individuals (CSFII) and HHS' NHANES. Under the integrated framework, HHS is responsible for the sample design and data collection. USDA is responsible for the survey's dietary data collection methodology, development and maintenance of the food and nutrient databases used to code and process the data. The two surveys were integrated in 2002."
     res["about_info"] = about_info
 
     #Get the dataset link
-    browser.find_element(By.XPATH,'//*[@id="data-and-resources"]/div/ul/li/div/span/a').click()
-    dataset_link = browser.find_element(By.XPATH,'//*[@id="main"]/div/section/div/div/div/div[1]/div/div/div/div/article/div/div[3]/div/div/div/a').get_attribute('href')
+    dataset_link = "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/food-surveys-research-group/docs/wweianhanes-overview/"
     res["dataset_link"] = dataset_link
     
+    response = requests.get(dataset_link)
+    soup = BeautifulSoup(response.content,'html.parser')
+
     #Find when the dataset was last updated
-    all_dates = []
-    browser.find_element(By.XPATH,'//*[@id="main"]/div/section/div/div/div/div[1]/div/div/div/div/article/div/div[3]/div/div/div/a').click()
-    last_updated = browser.find_element(By.XPATH,'/html/body/footer/div[1]/div').text
+    last_updated = soup.find('div',class_="page-last-modified").get_text().strip().replace('\n',"")
     last_updated = last_updated[15:]
     last_updated_date = standardize(DATE_FMT,last_updated)
 
@@ -69,10 +58,4 @@ def get_data_attributes(url):
 
     res["dataset_file_format"] = ["pdf"]
 
-    #Close and quit all browser driver instances
-    browser.quit()
-
     return res
-
-# result=get_data_attributes()
-# print(result)
