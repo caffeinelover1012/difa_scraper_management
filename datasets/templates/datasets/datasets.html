@@ -160,6 +160,9 @@ $('#scrape-all-btn').click(function() {
         success: function(data) {
             // Close the modal when scraping is done
             $("#loading-modal").hide();
+            clearInterval(intervalId);
+            window.location.href = data.redirect_url
+            // setTimeout(function() { location.reload(); }, 1000);
         },
         error: function(xhr, status, error) {
             // Check if the user is unauthorized
@@ -171,6 +174,8 @@ $('#scrape-all-btn').click(function() {
                 // Handle any other errors
                 alert("An error occurred: " + error);
             }
+            clearInterval(intervalId);
+
         }
     });
 
@@ -178,7 +183,7 @@ $('#scrape-all-btn').click(function() {
     $("#loading-modal").show();
     
     // Periodically check the scraping progress
-    setInterval(function() {
+    const intervalId = setInterval(function() {
         $.ajax({
             url: '{% url "scrape_progress" %}',
             success: function(data) {
