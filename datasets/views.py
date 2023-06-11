@@ -12,10 +12,11 @@ from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
 from .utils import SCRAPER_MAPPING
 from .forms import CollectionForm 
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
+from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.cache import cache
+from rest_framework import viewsets
+from .serializers import DatasetSerializer, CleanedDatasetSerializer
 
 # def index(request):
 #     return render(request, 'datasets/index.html')
@@ -54,11 +55,18 @@ def register(request):
     return render(request, 'datasets/register.html', {'form': form, 'errors': form.errors, 'messages': messages.get_messages(request)})
 
 
+class DatasetViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Dataset.objects.all()
+    serializer_class = DatasetSerializer
+
+class CleanedDatasetViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Dataset.objects.all()
+    serializer_class = CleanedDatasetSerializer
+    
 @login_required
 def user_logout(request):
     logout(request)
     return redirect('index')
-
 
 # Dataset-related views
 def datasets(request):
@@ -489,11 +497,6 @@ def search_results(request):
     query = request.GET.get('q', '')
     context = {'query': query}
     return render(request, 'datasets/search_results.html', context)
-
-def datasets_json(request):
-    data = serializers.serialize('json', Dataset.objects.all())
-    return JsonResponse(data, safe=False)
-
 
 scraping_progress=0
 current=""

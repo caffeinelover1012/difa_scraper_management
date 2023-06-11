@@ -1,8 +1,14 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+from .views import DatasetViewSet, CleanedDatasetViewSet
+router = DefaultRouter()
+router.register(r'datasets/clean', CleanedDatasetViewSet)
+router.register(r'datasets', DatasetViewSet)
 
 urlpatterns = [
     path('', views.searchpage, name='index'),
+    path('api/', include(router.urls)),
     path('search/', views.searchpage, name='search'),
     path('datasets/', views.datasets, name='datasets'),
     path('dataset/<int:dataset_id>/', views.dataset, name='dataset'),
@@ -28,6 +34,5 @@ urlpatterns = [
     path('partners/', views.partners, name='partners'),
     path('scrape_progress/', views.scraping_progress_view, name = 'scrape_progress'),
     path('search-results/', views.search_results, name='search_results'),
-    path('datasets-json/', views.datasets_json, name='datasets-json'),
     path('logout/', views.user_logout, name='logout'),
 ]
