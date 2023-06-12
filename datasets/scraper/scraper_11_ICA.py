@@ -8,7 +8,7 @@ ORGANIZATION = "ICA"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
+    res['acronym'] = "ICA"
     res["dataset_name"] = "Irish Census of Agriculture (ICA)"
     res["dataset_website_link"] = ORG_URL
 

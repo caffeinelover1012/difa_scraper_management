@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
 from .utils import SCRAPER_MAPPING
 from .forms import CollectionForm 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.cache import cache
 from rest_framework import viewsets

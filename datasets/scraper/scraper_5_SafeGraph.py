@@ -8,6 +8,7 @@ ORGANIZATION = "SafeGraph"
 
 def get_data_attributes(url):
     res = {i: "N/A" for i in ATTRS}
+    res['acronym'] = "SafeGraph"
     res['dataset_website_link'] = ORG_URL
     res['access_type'] = 'Paid Access'
     res['last_updated'] = "Monthly"

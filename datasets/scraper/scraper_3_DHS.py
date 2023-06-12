@@ -8,6 +8,7 @@ ORGANIZATION = "DHS"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
+    res['acronym'] = "DHS"
     res['dataset_name']="Demographic Health Survey (DHS)"
     res['dataset_website_link'] = ORG_URL
 

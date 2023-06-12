@@ -8,7 +8,7 @@ ORGANIZATION = "PP-NAP"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
+    res['acronym'] = "PPNAP"
     res["dataset_name"] = "Purchase to Plate National Average Prices (PP-NAP)"
     res["dataset_website_link"] = ORG_URL
 

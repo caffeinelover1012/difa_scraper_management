@@ -8,7 +8,7 @@ ORGANIZATION = "RECS"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
+    res['acronym'] = "RECS"
     res["dataset_name"] = "Residential Energy Consumption Survey (RECS)"
     res["dataset_website_link"] = ORG_URL
 

@@ -8,6 +8,7 @@ ORGANIZATION = "ATUS"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
+    res['acronym'] = "ATUS"
     res['dataset_website_link'] = 'https://www.bls.gov/tus/modules/ehdatafiles.htm'
     res['dataset_link'] = ORG_URL
     res['access_type'] = OPEN_ACCESS

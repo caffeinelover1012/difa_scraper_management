@@ -8,7 +8,7 @@ ORGANIZATION = "PRISM"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
+    res['acronym'] = "PRISM"
     res["dataset_name"] = "PRISM"
     res["dataset_website_link"] = ORG_URL
 

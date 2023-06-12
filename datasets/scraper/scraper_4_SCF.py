@@ -8,6 +8,7 @@ ORGANIZATION = "Survey of Consumer Finances"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
+    res['acronym'] = "SCF"
     res['dataset_website_link'] = url
     res['access_type'] = 'Open Access'
     res['sponsor_name'] = "Federal Reserve Board's Division of Research and Statistics"

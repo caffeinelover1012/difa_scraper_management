@@ -8,7 +8,7 @@ ORGANIZATION = "WWEIA"
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
-
+    res['acronym'] = "WWEIA"
     res["dataset_name"] = "What We Eat In America (WWEIA)"
     res["dataset_website_link"] = ORG_URL
 

@@ -10,6 +10,7 @@ SPONSOR_NAME = "United States Department of Agriculture's Economic Research Serv
 def get_data_attributes(url):
 
     res = {i: "N/A" for i in ATTRS}
+    res['acronym'] = "FoodAPS"
     res['dataset_website_link'] = ORG_URL
     res['dataset_link'] = ORG_URL
     res['access_type'] = OPEN_ACCESS
