@@ -17,11 +17,15 @@
 </style>
 
   <div class="container mt-1">
-    <div class="row mb-4">
+    <div class="row mb-4 align-items-center">
       <div class="col-md-8">
         <h2>Collections</h2>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="userCollectionsSwitch">
+          <label class="form-check-label" for="userCollectionsSwitch">Show only my collections</label>
+        </div>
       </div>
-      <div class="col-md-4 d-flex justify-content-end align-items-center">
+      <div class="col-md-4 d-flex justify-content-md-end justify-content-md-end"> <!-- Modified this line -->
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCollectionModal">Create Collection</button>
       </div>
     </div>
@@ -39,14 +43,22 @@
         </tr>
       </thead>
       <tbody id="collectionsTable">
-        {% for collection in collections %}
-          <tr>
-            <td>{{ collection.id }}</td>
-            <td>{{ collection.name }}</td>
-            <td>{{ collection.description }}</td>
-            <td><a href="{% url 'collection' collection_id=collection.id %}" class="btn btn-primary">View</a></td>
-          </tr>
-        {% endfor %}
+        {% for collection in global_collections %}
+        <tr data-user-collection="false">
+          <td>{{ collection.id }}</td>
+          <td>{{ collection.name }}</td>
+          <td>{{ collection.description }}</td>
+          <td><a href="{% url 'collection' collection_id=collection.id %}" class="btn btn-primary">View</a></td>
+        </tr>
+      {% endfor %}
+      {% for collection in user_collections %}
+        <tr data-user-collection="true">
+          <td>{{ collection.id }}</td>
+          <td>{{ collection.name }}</td>
+          <td>{{ collection.description }}</td>
+          <td><a href="{% url 'collection' collection_id=collection.id %}" class="btn btn-primary">View</a></td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
@@ -91,13 +103,31 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Initialize Select2 for the datasets field
     $('#{{ form.datasets.auto_id }}').select2({
-      dropdownParent: $('body'),  // Add this line
+      dropdownParent: $('body'), 
       placeholder: 'Select datasets',
       allowClear: true,
       width: '100%',
       multiple: true,
     });
-  });
+  
+    const userCollectionsSwitch = document.getElementById('userCollectionsSwitch');
+
+    userCollectionsSwitch.addEventListener('change', (e) => {
+  const showOnlyUserCollections = e.target.checked;
+  const tableRows = document.querySelectorAll('#collectionsTable tr');
+
+  for (const row of tableRows) {
+    // Check if the collection is owned by the user
+    const isUserCollection = row.getAttribute('data-user-collection') === 'true';
+
+    if (showOnlyUserCollections && !isUserCollection) {
+      row.style.display = 'none';
+    } else {
+      row.style.display = '';
+    }
+  }
+});
+userCollectionsSwitch.checked = false;
 
   document.getElementById('searchInput').addEventListener('input', (e) => {
       const searchValue = e.target.value.toLowerCase();
@@ -112,5 +142,6 @@
         }
       }
   });
+});
 </script>
 {% endblock %}

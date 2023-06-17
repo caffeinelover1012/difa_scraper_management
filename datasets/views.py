@@ -218,9 +218,10 @@ def delete_modification_request(request, mod_request_id):
 
 
 def collections(request):
-    collections = Collection.objects.all()
+    global_collections = Collection.objects.all()
+    user_collections = Collection.objects.filter(user=request.user)
     form = CollectionForm()  # Create an instance of the form
-    return render(request, 'datasets/collections.html', {'collections': collections, 'form': form})  # Pass the form to the context
+    return render(request, 'datasets/collections.html', {'global_collections': global_collections, 'user_collections': user_collections, 'form': form})
 
 
 @login_required

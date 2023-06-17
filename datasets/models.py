@@ -10,7 +10,7 @@ class Dataset(models.Model):
     dataset_name = models.CharField(max_length=255)
     about_info = models.TextField(blank=True)
     last_updated = models.CharField(max_length=255, blank=True)
-    dataset_file_format = models.CharField(max_length=255, blank=True)
+    dataset_file_format = models.CharField(max_length=1024, blank=True)
     dataset_status = models.CharField(max_length=255, blank=True)
     sponsor_name = models.CharField(max_length=255, blank=True)
     access_type = models.CharField(max_length=255, blank=True)
