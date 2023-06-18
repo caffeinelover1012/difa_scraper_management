@@ -102,11 +102,11 @@
 
                 if (start > 50) {
                     const preSnippet = about_info.slice(0, 50);
-                    const postSnippet = about_info.slice(end + 1, Math.min(end + 100, about_info.length));
-                    about_info = `${preSnippet}...${highlighted}...${postSnippet}`;
+                    const postSnippet = about_info.slice(end + 1, Math.min(end + 250, about_info.length));
+                    about_info = `${preSnippet}......${highlighted}${postSnippet}`;
                 } else {
                     const preSnippet = about_info.slice(0, start);
-                    about_info = `${preSnippet} ${highlighted}...${about_info.slice(end + 1, Math.min(end + 200, about_info.length))}`;
+                    about_info = `${preSnippet} ${highlighted}${about_info.slice(end + 1, Math.min(end + 250, about_info.length))}`;
                 }
             }
             }
