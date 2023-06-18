@@ -7,15 +7,15 @@ class User(AbstractUser):
     pass
 
 class Dataset(models.Model):
-    dataset_name = models.CharField(max_length=255)
+    dataset_name = models.CharField(max_length=700)
     about_info = models.TextField(blank=True)
     last_updated = models.CharField(max_length=255, blank=True)
     dataset_file_format = models.CharField(max_length=1024, blank=True)
     dataset_status = models.CharField(max_length=255, blank=True)
-    sponsor_name = models.CharField(max_length=255, blank=True)
+    sponsor_name = models.CharField(max_length=700, blank=True)
     access_type = models.CharField(max_length=255, blank=True)
-    dataset_link = models.CharField(max_length=255, blank=True)
-    dataset_website_link = models.CharField(max_length=255, blank=True)
+    dataset_link = models.CharField(max_length=700, blank=True)
+    dataset_website_link = models.CharField(max_length=700, blank=True)
     dataset_citation = models.TextField(blank=True)
     dataset_collection_method = models.TextField(blank=True)
     last_scraped = models.CharField(max_length=255, blank=True)

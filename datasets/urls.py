@@ -8,7 +8,7 @@ router.register(r'datasets', DatasetViewSet)
 
 urlpatterns = [
     path('', views.searchpage, name='index'),
-    path('api/', include(router.urls)),
+    path('api/', include((router.urls, 'api'))),
     path('search/', views.searchpage, name='search'),
     path('datasets/', views.datasets, name='datasets'),
     path('dataset/<int:dataset_id>/', views.dataset, name='dataset'),
