@@ -87,8 +87,7 @@ def scrape_dataset(request, dataset_id):
                     return redirect('datasets')
             dataset = Dataset.objects.create(pk=dataset_id)
         scraped_data = run_scraper(dataset_id)
-        # print("here: ", dataset,dataset is None)
-        # print(scraped_data)
+
         # Update the 'last_scraped' attribute with the current date and time
         scraped_data['last_scraped'] = timezone.now().isoformat()
 
@@ -233,8 +232,6 @@ def create_collection(request):
         form = CollectionForm(request.POST)
         if form.is_valid():
             new_collection = form.save(commit=False)
-            # print('here')
-            # print(new_collection)
             new_collection.user = request.user
             new_collection.save()
             form.save_m2m()  # Save the many-to-many relationship (datasets)
@@ -281,8 +278,6 @@ def scrape_all_view(request):
         cache.set('scraping_progress', scraping_progress)
         cache.set('current_dataset', ds.dataset_name)
         scraped_data = run_scraper(dataset_id)
-        # print("here: ", dataset,dataset is None)
-        # print(scraped_data)
         # Update the 'last_scraped' attribute with the current date and time
         scraped_data['last_scraped'] = timezone.now().isoformat()
         # Update the database with the scraped data
@@ -509,7 +504,6 @@ def research_team(request):
     context = {
         'research_team_members': research_team_members,
     }
-    # print(SCRAPER_MAPPING)
     return render(request, 'datasets/research_team.html', context)
 
 def leadership_team(request):
