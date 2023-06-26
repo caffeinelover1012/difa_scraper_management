@@ -18,9 +18,6 @@ from django.core.cache import cache
 from rest_framework import viewsets
 from .serializers import DatasetSerializer, CleanedDatasetSerializer
 
-# def index(request):
-#     return render(request, 'datasets/index.html')
-
 # User authentication views
 def user_login(request):
     if request.method == 'POST':
@@ -55,14 +52,6 @@ def register(request):
     return render(request, 'datasets/register.html', {'form': form, 'errors': form.errors, 'messages': messages.get_messages(request)})
 
 
-class DatasetViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Dataset.objects.all()
-    serializer_class = DatasetSerializer
-
-class CleanedDatasetViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Dataset.objects.all()
-    serializer_class = CleanedDatasetSerializer
-    
 @login_required
 def user_logout(request):
     logout(request)
@@ -77,6 +66,15 @@ def datasets(request):
 def dataset(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
     return render(request, 'datasets/dataset.html', {'dataset': dataset})
+
+class DatasetViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Dataset.objects.all()
+    serializer_class = DatasetSerializer
+
+class CleanedDatasetViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Dataset.objects.all()
+    serializer_class = CleanedDatasetSerializer
+    
 
 @login_required
 def scrape_dataset(request, dataset_id):
@@ -104,8 +102,18 @@ def scrape_dataset(request, dataset_id):
         return redirect('datasets')
     
 
+
+# Modifications Portal Views
 def modification_manager_check(user):
     return user.groups.filter(name='Modification Manager').exists()
+
+@login_required
+def modification_requests(request):
+    if not request.user.is_superuser or not request.user.is_staff:
+        messages.error(request, "You are unauthorized to view that page!")
+        return redirect(datasets)
+    mod_requests = ModificationRequest.objects.all().order_by('-id')
+    return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
 
 @login_required
 def create_modification_request(request, dataset_id):
@@ -130,15 +138,6 @@ def create_modification_request(request, dataset_id):
         form = DatasetModificationRequestForm(dataset=dataset)
 
     return render(request, 'datasets/create_modification_request.html', {'form': form, 'dataset': dataset})
-
-
-@login_required
-def modification_requests(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        messages.error(request, "You are unauthorized to view that page!")
-        return redirect(datasets)
-    mod_requests = ModificationRequest.objects.all().order_by('-id')
-    return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
 
 @login_required
 def view_changes(request, mod_request_id):
@@ -217,6 +216,8 @@ def delete_modification_request(request, mod_request_id):
     return redirect('modification_requests')
 
 
+# Collection Related Views
+
 def collections(request):
     global_collections = Collection.objects.all()
     user_collections = None
@@ -259,7 +260,47 @@ def collection(request, collection_id):
     return render(request, 'datasets/collection.html', context)
 
 
+# Search and Scrape Views
+def searchpage(request):
+    return render(request, 'datasets/searchpage.html')
 
+def search_results(request):
+    query = request.GET.get('q', '')
+    context = {'query': query}
+    return render(request, 'datasets/search_results.html', context)
+
+scraping_progress=0
+current=""
+def scrape_all_view(request):
+    if not request.user.is_superuser or not request.user.is_staff:
+        messages.error(request, "You are unauthorized to scrape all datasets!")
+        return HttpResponse('Please Log In as an authorized user!', status=401)
+    scraping_progress=0
+    for dataset_id in SCRAPER_MAPPING:
+        ds = Dataset.objects.get(pk=dataset_id)
+        cache.set('scraping_progress', scraping_progress)
+        cache.set('current_dataset', ds.dataset_name)
+        scraped_data = run_scraper(dataset_id)
+        # print("here: ", dataset,dataset is None)
+        # print(scraped_data)
+        # Update the 'last_scraped' attribute with the current date and time
+        scraped_data['last_scraped'] = timezone.now().isoformat()
+        # Update the database with the scraped data
+        for key, value in scraped_data.items():
+            setattr(ds, key, value)
+        ds.save()
+        scraping_progress+=1
+    messages.success(request, f"Scraped {len(SCRAPER_MAPPING)} datasets successfully!")
+    return  JsonResponse({'redirect_url':reverse('datasets')})
+
+def scraping_progress_view(request):
+    # Get the progress from the database or cache
+    progress = cache.get('scraping_progress', 0)
+    current_dataset = cache.get('current_dataset', '')
+    return JsonResponse({'progress': progress,'current': current_dataset, 'total':len(SCRAPER_MAPPING)})
+
+
+# Side Pages views
 def workshop(request):
     day1_sessions = [
         {
@@ -488,50 +529,7 @@ def leadership_team(request):
     }
     return render(request, 'datasets/leadership_team.html', context)
 
-
 def about(request):
     return render(request, 'datasets/about.html')
 
 
-def searchpage(request):
-    return render(request, 'datasets/searchpage.html')
-
-def search_results(request):
-    query = request.GET.get('q', '')
-    context = {'query': query}
-    return render(request, 'datasets/search_results.html', context)
-
-scraping_progress=0
-current=""
-def scrape_all_view(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        messages.error(request, "You are unauthorized to scrape all datasets!")
-        return HttpResponse('Please Log In as an authorized user!', status=401)
-    scraping_progress=0
-    for dataset_id in SCRAPER_MAPPING:
-        ds = Dataset.objects.get(pk=dataset_id)
-        cache.set('scraping_progress', scraping_progress)
-        cache.set('current_dataset', ds.dataset_name)
-        scraped_data = run_scraper(dataset_id)
-        # print("here: ", dataset,dataset is None)
-        # print(scraped_data)
-        # Update the 'last_scraped' attribute with the current date and time
-        scraped_data['last_scraped'] = timezone.now().isoformat()
-        # Update the database with the scraped data
-        for key, value in scraped_data.items():
-            setattr(ds, key, value)
-        ds.save()
-        scraping_progress+=1
-    messages.success(request, f"Scraped {len(SCRAPER_MAPPING)} datasets successfully!")
-    return  JsonResponse({'redirect_url':reverse('datasets')})
-
-def scraping_progress_view(request):
-    # Get the progress from the database or cache
-    progress = cache.get('scraping_progress', 0)
-    current_dataset = cache.get('current_dataset', '')
-    return JsonResponse({'progress': progress,'current': current_dataset, 'total':len(SCRAPER_MAPPING)})
-
-
-# def scrape_progress_view(request):
-#     progress = get_scraping_progress()  # replace with your actual function
-#     return JsonResponse({'progress': progress})
