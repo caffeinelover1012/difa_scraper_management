@@ -26,7 +26,7 @@ class DatasetModificationRequestForm(forms.Form):
         super(DatasetModificationRequestForm, self).__init__(*args, **kwargs)
         
         for field in Dataset._meta.get_fields():
-            if field.name != 'id' and field.name != 'collection'and hasattr(field, 'verbose_name'):
+            if field.name != 'last_scraped' and field.name != 'id' and field.name != 'collection'and hasattr(field, 'verbose_name'):
                 self.fields[field.name] = forms.CharField(
                     label=field.verbose_name.capitalize().replace('_', ' '),
                     initial=getattr(dataset, field.name, ''),
