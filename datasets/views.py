@@ -23,16 +23,16 @@ def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
                 next_url = request.GET.get('next', 'search')  # get the 'next' parameter, if it doesn't exist, default to 'search'
                 print(next_url)
                 return redirect(next_url)
             else:
-                messages.error(request, "Invalid username or password.")
+                messages.error(request, "Invalid Email or password.")
     else:
         form = LoginForm()
     return render(request, 'datasets/login.html', {'form': form})
