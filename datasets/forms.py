@@ -14,11 +14,24 @@ class LoginForm(forms.Form):
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+    institution_employer_name = forms.CharField(max_length=100)
+    institution_personal_website = forms.URLField(required=False)
+    occupation_category = forms.CharField(max_length=100)
+    occupation_title = forms.CharField(max_length=100)
+    field_of_research = forms.CharField(max_length=100)
+    research_areas = forms.CharField(max_length=255)
+    general_research_statement = forms.CharField(max_length=255)
+    how_did_you_learn = forms.CharField(max_length=255)
     class Meta:
         model = get_user_model()
         # print(model)
-        fields = ('username', 'email', 'password1', 'password2')
-
+        fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name',
+                  'institution_employer_name', 'institution_personal_website', 'occupation_category',
+                  'occupation_title', 'field_of_research', 'research_areas', 'general_research_statement',
+                  'how_did_you_learn')
+#ListJS
 
 class DatasetModificationRequestForm(forms.Form):
     def __init__(self, *args, **kwargs):

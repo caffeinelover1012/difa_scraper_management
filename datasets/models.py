@@ -4,7 +4,19 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    pass
+    first_name = models.CharField(max_length=30,blank=True)
+    last_name = models.CharField(max_length=30,blank=True)
+    institution_employer_name = models.CharField(max_length=100,blank=True)
+    institution_personal_website = models.URLField(blank=True, null=True)
+    occupation_category = models.CharField(max_length=100,blank=True)
+    occupation_title = models.CharField(max_length=100,blank=True)
+    field_of_research = models.CharField(max_length=100,blank=True)
+    research_areas = models.CharField(max_length=255,blank=True)
+    general_research_statement = models.CharField(max_length=255,blank=True)
+    how_did_you_learn = models.CharField(max_length=255,blank=True)
+    
+    def __str__(self):
+        return self.first_name
 
 class Dataset(models.Model):
     dataset_name = models.CharField(max_length=700)
