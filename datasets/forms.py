@@ -10,7 +10,6 @@ class LoginForm(forms.Form):
     class Meta:
         model = get_user_model()
 
-
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.', required=True)
     first_name = forms.CharField(max_length=30, required=True)
