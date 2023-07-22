@@ -20,7 +20,7 @@
           <tr>
             <td>{{ mod_request.id }}</td>
             <td><a href="{% url 'dataset' dataset_id=mod_request.dataset.id %}">{{ mod_request.dataset.dataset_name }}</a></td>
-            <td>{{ mod_request.user.username }}</td>
+            <td>{{ mod_request.user.email }}</td>
             <td>
               <a href="{% url 'view_changes' mod_request_id=mod_request.id %}" class="btn btn-info btn-sm">View Changes</a>
             </td>
