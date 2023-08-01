@@ -1,38 +1,87 @@
 {% extends "datasets/base.html" %} 
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Register{% endblock %}
 
 {% block content %}
 <div class="d-flex align-items-center justify-content-center">
-  <div class="" style="border: 1px solid #ccc; border-radius: 10px; padding: 40px; background-color: #f8f9fa;">
-    <h2 class="text-center">Create Account</h2>
-    <p><br>Password Requirements:
-      <ul>
-      <li>A special character</li>
-      <li>An uppercase character</li>
-      <li>A minimum of 8 characters</li>
-      <li>An alphabetic character</li>
-      <li>A numeric character</li>
-      <li>A lowercase character</li></ul></p>
-    <form method="POST" action="{% url 'register' %}">
+  <div class="" style="border: 1px solid #ccc; border-radius: 10px; padding: 40px; background-color: #f8f9fa; width:65%;">
+    <h2 class="text-center">Welcome to DIFA</h2>
+    <h5 class="text-center">Create your account</h5>
+    <form method="POST" action="{% url 'register' %}" id="registrationForm">
       {% csrf_token %}
       {% for field in form %}
       <div class="form-group mb-3">
-        <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+        <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}{% if field.field.required %}<span class="text-danger">*</span>{% endif %}</label>
         {{ field|add_class:"form-control" }}
         {% for error in field.errors %}
           <div class="invalid-feedback" style="display: block;">{{ error }}</div>
         {% endfor %}
       </div>
       {% endfor %}
-      <center><button type="submit" class="btn btn-success">Register</button></center>
-      <br>
-      <div style="text-align: center;">
-        <p style="margin:0px">Already have an account?  <a href="{% url 'login' %}">Login</a></p>
-        <p style="margin:0px">Continue as Guest?  <a href="{% url 'index' %}">Back to Home</a></p>
-      </div>
+      <center><button type="submit" class="btn btn-success" disabled>Register</button></center>
     </form>
+    <br>
+    <div style="text-align: center;">
+      <p style="margin:0px">Already have an account?  <a href="{% url 'login' %}">Login</a></p>
+      <p style="margin:0px">Continue as Guest?  <a href="{% url 'index' %}">Back to Home</a></p>
+    </div>
+    <div id="passwordRequirements" class="position-absolute bg-white border p-2" style="right: 20px; top: 50%; display: none;">
+      <p>Password Requirements:</p>
+      <ul style="list-style-type: none;">
+        <li id="specialCharacter">A special character <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="uppercaseCharacter">An uppercase character <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="length">A minimum of 8 characters <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="alphabet">An alphabetic character <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="numeric">A numeric character <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="lowercaseCharacter">A lowercase character <i class="fas fa-times" style="color:red;"></i></li>
+        <li id="passwordMatch">Password confirmation matches <i class="fas fa-times" style="color:red;"></i></li>
+      </ul>
+    </div>
   </div>
 </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const passwordInput = document.querySelector('input[name="password1"]');
+  const passwordConfirmInput = document.querySelector('input[name="password2"]');
+  const requirements = document.getElementById('passwordRequirements');
+
+  passwordInput.addEventListener('input', validatePassword);
+  passwordConfirmInput.addEventListener('input', validatePassword);
+
+  function validatePassword() {
+    requirements.style.display = 'block';
+
+    checkRequirement('specialCharacter', /[^A-Za-z0-9]/.test(passwordInput.value));
+    checkRequirement('uppercaseCharacter', /[A-Z]/.test(passwordInput.value));
+    checkRequirement('length', passwordInput.value.length >= 8);
+    checkRequirement('alphabet', /[A-Za-z]/.test(passwordInput.value));
+    checkRequirement('numeric', /[0-9]/.test(passwordInput.value));
+    checkRequirement('lowercaseCharacter', /[a-z]/.test(passwordInput.value));
+    checkRequirement('passwordMatch', passwordInput.value === passwordConfirmInput.value);
+
+    const allChecks = Array.from(requirements.querySelectorAll('i'));
+    if (allChecks.every(check => check.className === 'fas fa-check text-success')) {
+      document.querySelector('button[type="submit"]').disabled = false;
+    } else {
+      document.querySelector('button[type="submit"]').disabled = true;
+    }
+  }
+
+  function checkRequirement(id, condition) {
+    const element = document.getElementById(id);
+    if (condition) {
+      element.querySelector('i').className = 'fas fa-check text-success';
+      element.style.color = 'green';
+    } else {
+      element.querySelector('i').className = 'fas fa-times text-danger';
+      element.style.color = 'red';
+    }
+  }
+});
+
+</script>
 {% endblock %}
