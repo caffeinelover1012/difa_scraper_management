@@ -7,6 +7,7 @@ SPONSOR_NAME = "European Union"
 
 # Define a function to get the data attributes for an organization
 def get_data_attributes(url):
+    
     res = {i: "N/A" for i in ATTRS}
     res['acronym'] = "FADN"
     res['access_type'] = 'Open Access'

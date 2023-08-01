@@ -8,7 +8,7 @@ SPONSOR_NAME = "United States Department of Agriculture's Economic Research Serv
 
 # Define a function to get the data attributes for an organization
 def get_data_attributes(url):
-
+    
     res = {i: "N/A" for i in ATTRS}
     res['acronym'] = "FoodAPS"
     res['dataset_website_link'] = ORG_URL

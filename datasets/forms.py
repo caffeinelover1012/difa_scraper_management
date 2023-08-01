@@ -11,18 +11,6 @@ class LoginForm(forms.Form):
         model = get_user_model()
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.', required=True)
-    first_name = forms.CharField(max_length=30, required=True)
-    last_name = forms.CharField(max_length=30, required=True)
-    institution_employer_name = forms.CharField(max_length=100, required=True)
-    institution_personal_website = forms.URLField(required=False)
-    occupation_category = forms.CharField(max_length=100, required=True)
-    occupation_title = forms.CharField(max_length=100, required=True)
-    field_of_research = forms.CharField(max_length=100, required=True)
-    research_areas = forms.CharField(max_length=255, required=True)
-    general_research_statement = forms.CharField(max_length=255, required=True)
-    how_did_you_learn = forms.CharField(max_length=255, required=True)
-
     class Meta:
         model = get_user_model()
         fields = ('email', 'password1', 'password2', 'first_name', 'last_name',

@@ -10,6 +10,7 @@ ORGANIZATION = "NFS"
 DATASET_NAME = "Irish National Farm Survey (NFS)"
 
 def get_data_attributes(url):
+    
     res = {i: "N/A" for i in ATTRS}
     res['acronym'] = "INFS"
     #Create a dictionary to store dataset info
