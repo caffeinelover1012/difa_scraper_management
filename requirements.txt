@@ -9,6 +9,7 @@ Django==4.1.7
 django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
 exceptiongroup==1.1.1
+gunicorn==21.2.0
 h11==0.14.0
 idna==3.4
 lxml==4.9.2
