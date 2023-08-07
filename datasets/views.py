@@ -277,15 +277,19 @@ def scrape_all_view(request):
         ds = Dataset.objects.get(pk=dataset_id)
         cache.set('scraping_progress', scraping_progress)
         cache.set('current_dataset', ds.dataset_name)
-        scraped_data = run_scraper(dataset_id)
-        # Update the 'last_scraped' attribute with the current date and time
+        try:
+            scraped_data = run_scraper(dataset_id)
+        except Exception:
+            print(Exception)
+            messages.error(request, f" Internal Server Error occured after updating {(scraping_progress)} datasets! Please try again later.")
+            return  JsonResponse({'redirect_url':reverse('datasets')})
         scraped_data['last_scraped'] = timezone.now().isoformat()
         # Update the database with the scraped data
         for key, value in scraped_data.items():
             setattr(ds, key, value)
         ds.save()
         scraping_progress+=1
-    messages.success(request, f"Scraped {len(SCRAPER_MAPPING)} datasets successfully!")
+    messages.success(request, f"Scraped {(scraping_progress)} datasets successfully!")
     return  JsonResponse({'redirect_url':reverse('datasets')})
 
 def scraping_progress_view(request):
