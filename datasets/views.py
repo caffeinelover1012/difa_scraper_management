@@ -29,7 +29,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 next_url = request.GET.get('next', 'search')  # get the 'next' parameter, if it doesn't exist, default to 'search'
-                print(next_url)
+                # print(next_url)
                 return redirect(next_url)
             else:
                 messages.error(request, "Invalid Email or password.")
@@ -504,11 +504,16 @@ def person_detail(request, person_id):
     return render(request, 'datasets/person_template.html', context)
 
 def research_team(request):
-    research_team_members = Person.objects.filter(team='research')
+    first_people_ids = [22, 23]
+    first_people = [Person.objects.get(pk=person_id) for person_id in first_people_ids]
+    remaining_people = Person.objects.filter(team='research').exclude(id__in=first_people_ids).order_by('name')
+    research_team_members = list(first_people) + list(remaining_people)
+
     context = {
         'research_team_members': research_team_members,
     }
     return render(request, 'datasets/research_team.html', context)
+
 
 def leadership_team(request):
     leadership_team_members = Person.objects.filter(team='leadership')

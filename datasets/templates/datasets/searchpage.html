@@ -65,13 +65,12 @@
   <img src="{% static 'logo.png' %}" alt="DIFA Scraper Management Utility" height="125" style="margin:10px">
   <form action="{% url 'search_results' %}" method="GET">
   <div class="search-input">
-    <input type="text" name="q" placeholder="Search over 200 datasets">
+    <input type="text" name="q" placeholder="Search datasets">
     <button type="submit" class="input-group-text">
       <i class="fas fa-search"></i>
     </button>
   </div>
   </form>
-  <!-- <div class="caption">Search over 200 datasets</div> -->
 </div>
 
 {% endblock %}
