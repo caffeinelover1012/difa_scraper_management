@@ -7,18 +7,22 @@ from django.utils import timezone
 from .forms import LoginForm, RegistrationForm, DatasetModificationRequestForm
 from .models import Dataset, ModificationRequest, Collection, Person
 from .utils import run_scraper
-import json
 from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
 from .utils import SCRAPER_MAPPING
 from .forms import CollectionForm 
 from django.http import HttpResponse, JsonResponse
-from django.contrib.admin.views.decorators import staff_member_required
 from django.core.cache import cache
 from rest_framework import viewsets
 from .serializers import DatasetSerializer, CleanedDatasetSerializer
+import json
+import logging
 
+logger = logging.getLogger('datasets')
+
+# ------------------------------------------------------------------------------------------
 # User authentication views
+# ------------------------------------------------------------------------------------------
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -26,13 +30,14 @@ def user_login(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(request, username=email, password=password)
-            if user is not None:
+            if user:
                 login(request, user)
-                next_url = request.GET.get('next', 'search')  # get the 'next' parameter, if it doesn't exist, default to 'search'
-                # print(next_url)
+                next_url = request.GET.get('next', 'search')  # Redirect to next URL or default to 'search'
                 return redirect(next_url)
             else:
                 messages.error(request, "Invalid Email or password.")
+        else:
+            logger.warning("Invalid login form submission by %s", request.META.get('REMOTE_ADDR'))
     else:
         form = LoginForm()
     return render(request, 'datasets/login.html', {'form': form})
@@ -40,13 +45,15 @@ def user_login(request):
 def register(request):
     if request.user.is_authenticated:
         return redirect('login')
-    
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Account created successfully.")
             return redirect('login')
+        else:
+            logger.warning("Invalid registration form submission by %s", request.META.get('REMOTE_ADDR'))
     else:
         form = RegistrationForm()
     return render(request, 'datasets/register.html', {'form': form, 'errors': form.errors, 'messages': messages.get_messages(request)})
@@ -57,7 +64,9 @@ def user_logout(request):
     logout(request)
     return redirect('index')
 
+# ------------------------------------------------------------------------------------------
 # Dataset-related views
+# ------------------------------------------------------------------------------------------
 def datasets(request):
     datasets = Dataset.objects.all()
     return render(request, 'datasets/datasets.html', {'datasets': datasets})
@@ -75,79 +84,111 @@ class CleanedDatasetViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Dataset.objects.all()
     serializer_class = CleanedDatasetSerializer
     
-
 @login_required
 def scrape_dataset(request, dataset_id):
     try:
-        try:
-            dataset = Dataset.objects.get(pk=dataset_id)
-        except ObjectDoesNotExist:
-            if SCRAPER_MAPPING.get(dataset_id) is None:
-                    messages.error(request, "Invalid ID or Dataset does not exist!")
-                    return redirect('datasets')
-            dataset = Dataset.objects.create(pk=dataset_id)
-        scraped_data = run_scraper(dataset_id)
+        dataset = Dataset.objects.get(pk=dataset_id)
+    except ObjectDoesNotExist:
+        if SCRAPER_MAPPING.get(dataset_id) is None:
+            messages.error(request, "Invalid ID or Dataset does not exist!")
+            return redirect('datasets')
+        dataset = Dataset.objects.create(pk=dataset_id)
 
-        # Update the 'last_scraped' attribute with the current date and time
-        scraped_data['last_scraped'] = timezone.now().isoformat()
+    try:
+        scraped_data = run_scraper(dataset_id)
+        scraped_data['last_scraped'] = timezone.now().isoformat()  # Update the 'last_scraped' attribute
 
         # Update the database with the scraped data
         for key, value in scraped_data.items():
             setattr(dataset, key, value)
         dataset.save()
+        messages.success(request, "Scraped and updated successfully!")
         return redirect('dataset', dataset_id=dataset.id)
-    except:
-        messages.error(request, "Invalid ID or Dataset does not exist!")
+    except Exception as e:
+        logger.error("Error scraping dataset ID %s: %s", dataset_id, str(e), exc_info=True)
+        messages.error(request, "An error occurred while scraping the dataset!")
         return redirect('datasets')
     
-
-
+# ------------------------------------------------------------------------------------------
 # Modifications Portal Views
+# ------------------------------------------------------------------------------------------
 def modification_manager_check(user):
-    return user.groups.filter(name='Modification Manager').exists()
+    return user.is_authenticated and (user.is_superuser or user.is_staff or user.groups.filter(name='Modification Manager').exists())
+
+def modification_manager(view_func):
+    decorator = user_passes_test(
+        modification_manager_check,
+        login_url='datasets',
+    )
+    def _wrapped_view_func(request, *args, **kwargs):
+        if not modification_manager_check(request.user):
+            messages.error(request, "You are unauthorized to view that page!")
+        return decorator(view_func)(request, *args, **kwargs)
+
+    return _wrapped_view_func
 
 @login_required
+@modification_manager
 def modification_requests(request):
-    if not request.user.is_superuser or not request.user.is_staff:
-        messages.error(request, "You are unauthorized to view that page!")
-        return redirect(datasets)
     mod_requests = ModificationRequest.objects.all().order_by('-id')
     return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
 
 @login_required
+@modification_manager
 def create_modification_request(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
 
     if request.method == 'POST':
         form = DatasetModificationRequestForm(request.POST, dataset=dataset)
         if form.is_valid():
-            # Read changes from the 'changes_json' field
-            changes_json = request.POST['changes_json']
-            changes_dict = json.loads(changes_json)
+            try:
+                # Read changes from the 'changes_json' field
+                changes_json = request.POST['changes_json']
+                changes_dict = json.loads(changes_json)
 
-            mod_request = ModificationRequest(
-                dataset=dataset,
-                user=request.user,
-                changes=json.dumps(changes_dict),
-            )
-            mod_request.save()
-            messages.success(request, 'Modification request submitted successfully.')
-            return redirect('dataset', dataset_id=dataset.id)
+                # Check if there are any real changes
+                no_changes = True
+                for field, new_value in changes_dict.items():
+                    current_value = getattr(dataset, field, '')
+                    if current_value != new_value:
+                        no_changes = False
+                        break
+
+                if no_changes:
+                    messages.error(request, 'No changes detected. Please make some changes before submitting.')
+                    return redirect('create_modification_request', dataset_id=dataset.id)
+
+                # Create the modification request
+                mod_request = ModificationRequest(
+                    dataset=dataset,
+                    user=request.user,
+                    changes=json.dumps(changes_dict),
+                )
+                mod_request.save()
+                messages.success(request, 'Modification request submitted successfully.')
+                logger.info("Modification request created for dataset %s by user %s", dataset_id, request.user)
+                return redirect('dataset', dataset_id=dataset.id)
+            except Exception as e:
+                logger.error("Error creating modification request: %s", str(e), exc_info=True)
+                messages.error(request, 'An error occurred while creating the modification request.')
     else:
         form = DatasetModificationRequestForm(dataset=dataset)
 
     return render(request, 'datasets/create_modification_request.html', {'form': form, 'dataset': dataset})
 
 @login_required
+@modification_manager
 def view_changes(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     dataset = mod_request.dataset
     try:
         changes = json.loads(mod_request.changes)
-    except JSONDecodeError:
+    except JSONDecodeError as e:
         changes = {}
+        error_message = f"Invalid JSON data in changes field for modification request ID: {mod_request_id}. JSON data: {mod_request.changes}"
+        logger.error(error_message, exc_info=True)  # Log the error along with traceback
         messages.warning(request, 'Invalid JSON data in changes field.')
-    
+
     # Add current value to the changes dictionary
     for field, new_value in changes.items():
         current_value = getattr(dataset, field, '')
@@ -156,10 +197,8 @@ def view_changes(request, mod_request_id):
     return render(request, 'datasets/view_changes.html', {'mod_request': mod_request, 'changes': changes})
 
 @login_required
+@modification_manager
 def approve_request(request, mod_request_id):
-    if not any("ModificationManagers" in str(group) for group in request.user.groups.all()):
-        messages.error(request, "You don't have permission to approve or reject modification requests.")
-        return redirect('modification_requests')
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     if mod_request.status != 'pending':
         messages.warning(request, "This modification request has already been reviewed.")
@@ -168,14 +207,13 @@ def approve_request(request, mod_request_id):
     mod_request.status = 'approved'
     mod_request.approver = request.user
     mod_request.save()
+    logger.info("Modification request %s approved by user %s", mod_request_id, request.user)
     messages.success(request, f'Modification request {mod_request.id} approved.')
     return redirect('modification_requests')
 
 @login_required
+@modification_manager
 def reject_request(request, mod_request_id):
-    if not any("ModificationManagers" in str(group) for group in request.user.groups.all()):
-        messages.error(request, "You don't have permission to approve or reject modification requests.")
-        return redirect('modification_requests')
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     if mod_request.status != 'pending':
         messages.warning(request, "This modification request has already been reviewed.")
@@ -188,11 +226,8 @@ def reject_request(request, mod_request_id):
     return redirect('modification_requests')
 
 @login_required
+@modification_manager
 def modify_modification_request(request, mod_request_id):
-    if not any("ModificationManagers" in str(group) for group in request.user.groups.all()):
-        messages.error(request, "You don't have permission to modify modification requests.")
-        return redirect('modification_requests')
-
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
 
     if request.method == 'POST':
@@ -208,54 +243,63 @@ def modify_modification_request(request, mod_request_id):
     return redirect('view_changes', mod_request_id=mod_request.id)
 
 @login_required
+@modification_manager
 def delete_modification_request(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, pk=mod_request_id)
     mod_request.delete()
     messages.success(request, 'Modification request deleted successfully.')
     return redirect('modification_requests')
 
-
+# ------------------------------------------------------------------------------------------
 # Collection Related Views
-
+# ------------------------------------------------------------------------------------------
 def collections(request):
+    # Query global collections
     global_collections = Collection.objects.all()
     user_collections = None
+    
+    # If the user is authenticated, fetch user's collections
     if request.user.is_authenticated:
-            user_collections = Collection.objects.filter(user=request.user)
-    form = CollectionForm()  # Create an instance of the form
-    return render(request, 'datasets/collections.html', {'global_collections': global_collections, 'user_collections': user_collections, 'form': form})
+        user_collections = Collection.objects.filter(user=request.user)
 
+    form = CollectionForm()  # Create an instance of the form
+    return render(request, 'datasets/collections.html', {
+        'global_collections': global_collections,
+        'user_collections': user_collections,
+        'form': form
+    })
 
 @login_required
 def create_collection(request):
     if request.method == 'POST':
         form = CollectionForm(request.POST)
         if form.is_valid():
+            # Create a collection object without saving to the database
             new_collection = form.save(commit=False)
             new_collection.user = request.user
             new_collection.save()
             form.save_m2m()  # Save the many-to-many relationship (datasets)
             messages.success(request, 'Collection created successfully.')
-            return redirect('collections')
+            logger.info("Collection created by user %s", request.user)
         else:
             messages.error(request, 'There was an error creating the collection.')
-            return redirect('collections')
+            logger.warning("Error creating collection by user %s: %s", request.user, form.errors)
+
+        return redirect('collections')
     else:
         return redirect('collections')
 
-
 def collection(request, collection_id):
     try:
+        # Fetch the specific collection using provided collection_id
         collection = Collection.objects.get(id=collection_id)
     except Collection.DoesNotExist:
         messages.error(request, "The requested collection does not exist or you don't have permission to view it.")
+        logger.warning("Collection with ID %s not found", collection_id)
         return redirect('collections')
 
-    context = {
-        'collection': collection,
-    }
+    context = {'collection': collection}
     return render(request, 'datasets/collection.html', context)
-
 
 # Search and Scrape Views
 def searchpage(request):
@@ -266,40 +310,60 @@ def search_results(request):
     context = {'query': query}
     return render(request, 'datasets/search_results.html', context)
 
-scraping_progress=0
-current=""
+scraping_progress = 0
+current = ""
+
 def scrape_all_view(request):
     if not request.user.is_superuser or not request.user.is_staff:
         messages.error(request, "You are unauthorized to scrape all datasets!")
+        logger.warning("Unauthorized scrape attempt by user %s", request.user)
         return HttpResponse('Please Log In as an authorized user!', status=401)
-    scraping_progress=0
+    
+    user_id = request.user.id
+    # Initialize progress for this specific user
+    request.session[f'scrape_progress_{user_id}'] = 0
+
+    scraping_progress = 0
     for dataset_id in SCRAPER_MAPPING:
         ds = Dataset.objects.get(pk=dataset_id)
-        cache.set('scraping_progress', scraping_progress)
-        cache.set('current_dataset', ds.dataset_name)
+        # Use user-specific keys in the cache
+        cache.set(f'scraping_progress_{user_id}', scraping_progress)
+        cache.set(f'current_dataset_{user_id}', ds.dataset_name)
+        
+        # Try to scrape data for the dataset_id
         try:
             scraped_data = run_scraper(dataset_id)
-        except Exception:
-            print(Exception)
-            messages.error(request, f" Internal Server Error occured after updating {(scraping_progress)} datasets! Please try again later.")
-            return  JsonResponse({'redirect_url':reverse('datasets')})
+        except Exception as e:
+            # Log the actual exception details
+            logger.error("Error scraping dataset_id %s: %s", dataset_id, e)
+            messages.error(request, f"Internal Server Error occurred after updating {(scraping_progress)} datasets! Please try again later.")
+            return JsonResponse({'redirect_url': reverse('datasets')})
+
+        # Add timestamp to scraped data
         scraped_data['last_scraped'] = timezone.now().isoformat()
+        
         # Update the database with the scraped data
         for key, value in scraped_data.items():
             setattr(ds, key, value)
+        
         ds.save()
-        scraping_progress+=1
+        scraping_progress += 1
+
     messages.success(request, f"Scraped {(scraping_progress)} datasets successfully!")
-    return  JsonResponse({'redirect_url':reverse('datasets')})
+    return JsonResponse({'redirect_url': reverse('datasets')})
 
 def scraping_progress_view(request):
-    # Get the progress from the database or cache
-    progress = cache.get('scraping_progress', 0)
-    current_dataset = cache.get('current_dataset', '')
-    return JsonResponse({'progress': progress,'current': current_dataset, 'total':len(SCRAPER_MAPPING)})
+    user_id = request.user.id
 
+    # Retrieve the scraping progress and current dataset from the cache using user-specific keys
+    progress = cache.get(f'scraping_progress_{user_id}', 0)
+    current_dataset = cache.get(f'current_dataset_{user_id}', '')
 
-# Side Pages views
+    # Return the progress, current dataset, and total count in JSON format
+    return JsonResponse({'progress': progress, 'current': current_dataset, 'total': len(SCRAPER_MAPPING)})
+# ------------------------------------------------------------------------------------------
+# Static Site Pages views
+# ------------------------------------------------------------------------------------------
 def workshop(request):
     day1_sessions = [
         {
@@ -534,5 +598,3 @@ def leadership_team(request):
 
 def about(request):
     return render(request, 'datasets/about.html')
-
-
