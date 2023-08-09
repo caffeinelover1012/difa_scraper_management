@@ -4,5 +4,6 @@ __pycache__/
 **/*.pyo
 **/*.pyd
 venv/
+venv10/
 testenv/
 **/db.sqlite3
