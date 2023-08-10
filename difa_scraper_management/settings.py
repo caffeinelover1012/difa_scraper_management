@@ -175,7 +175,7 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            "handlers": ["console"],
+            "handlers": ["console", "file"],
             "propagate": True,
         },
         "django.request": {
@@ -184,7 +184,7 @@ LOGGING = {
             "propagate": False,
         },
         "datasets": {
-            "handlers": ["console", "mail_admins"],
+            "handlers": ["console", "mail_admins", "file"],
             "level": "INFO",
         },
     },

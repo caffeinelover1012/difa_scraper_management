@@ -18,7 +18,7 @@ from .serializers import DatasetSerializer, CleanedDatasetSerializer
 import json
 import logging
 
-logger = logging.getLogger('datasets')
+logger = logging.getLogger(__name__)
 
 # ------------------------------------------------------------------------------------------
 # User authentication views

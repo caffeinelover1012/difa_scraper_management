@@ -6,3 +6,4 @@ __pycache__/
 venv/
 testenv/
 **/db.sqlite3
+**/*.log
