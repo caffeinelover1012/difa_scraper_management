@@ -151,3 +151,54 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+	
+LOGGING = {	
+    "version": 1,	
+    "disable_existing_loggers": False,	
+    "formatters": {	
+        "verbose": {	
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",	
+            "style": "{",	
+        },	
+    },	
+    "filters": {	
+        "require_debug_true": {	
+            "()": "django.utils.log.RequireDebugTrue",	
+        },	
+    },	
+    "handlers": {	
+        "file": {	
+            "level": "INFO",	
+            "class": "logging.FileHandler",	
+            "filename": "ds.log",  # Path to the log file	
+            "formatter": "verbose",	
+        },	
+        "console": {	
+            "level": "INFO",	
+            "filters": ["require_debug_true"],	
+            "class": "logging.StreamHandler",	
+            "formatter": "verbose",	
+        },	
+        "mail_admins": {	
+            "level": "ERROR",	
+            "class": "django.utils.log.AdminEmailHandler",	
+            "formatter": "verbose",	
+        },	
+    },	
+    "loggers": {	
+        "django": {	
+            "handlers": ["console", "file"],	
+            "propagate": True,	
+        },	
+        "django.request": {	
+            "handlers": ["mail_admins"],	
+            "level": "ERROR",	
+            "propagate": False,	
+        },	
+        "datasets": {	
+            "handlers": ["console", "mail_admins", "file"],	
+            "level": "INFO",	
+        },	
+    },	
+}
