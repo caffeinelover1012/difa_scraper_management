@@ -12,23 +12,37 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5_1(sw_!di_yybrc_w2p#zrg#ep&m3gv6srem8y%9d*si%q1vm'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['localhost','dataifa.org','www.dataifa.org','wpc-dataifa.wpc.aws.asu.edu']
+DEBUG = env('DEBUG')
+PROD = env('PROD')
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        env('ALLOWED_HOSTS',default='').split(','),
+    )
+)
 
 # Application definition
-
 INSTALLED_APPS = [
     'rest_framework',
     'datasets',
@@ -40,7 +54,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
 ]
-AUTH_USER_MODEL = 'datasets.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,9 +77,9 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 USE_X_FORWARDED_HOST = True
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ROOT_URLCONF = 'difa_scraper_management.urls'
+ROOT_URLCONF = env('ROOT_URLCONF')
 LOGIN_URL = 'login'
-TEMPLATES = [
+TEMPLATES = [ 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'datasets' / 'templates'],
@@ -84,18 +97,29 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'difa_scraper_management.wsgi.application'
-
+AUTH_USER_MODEL = 'datasets.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if PROD:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': env("DB_NAME"),
+            'USER': env("DB_USER"),
+            'PASSWORD': env("DB_PASSWORD"),
+            'HOST': env("DB_HOST"),
+            'PORT': env("DB_PORT"),
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -171,7 +195,7 @@ LOGGING = {
         "file": {	
             "level": "INFO",	
             "class": "logging.FileHandler",	
-            "filename": "ds.log",  # Path to the log file	
+            "filename": "ds.log",  
             "formatter": "verbose",	
         },	
         "console": {	
