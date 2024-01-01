@@ -1,18 +1,20 @@
 {% extends "datasets/base.html" %}
 {% load custom_tags %}
+{% load static %}
 
 {% block title %}Collection{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 <div class="container mt-5">
-  <div class="card">
-    <div class="card-header">
-      <h4>{{ collection.name }}</h4>
+  <div class="card dna-card">
+    <div class="card-header" style="background-color: #F8F9FA; color: white;">
+      <h4 class="dataset-title" style="color:black">{{ collection.name }}</h4>
     </div>
     <div class="card-body">
       <h6 class="card-title">Collection Creator: {{ collection.user.email }}</h6>
-      <p class="card-text">Description: {{ collection.description }}</p>
+      <p class="card-text dataset-description">Description: {{ collection.description }}</p>
     </div>
   </div>
 
@@ -31,7 +33,7 @@
         <tr>
           <td>{{ dataset.id }}</td>
           <td>{{ dataset.dataset_name }}</td>
-          <td><a href="{% url 'dataset' dataset_id=dataset.id %}" class="btn btn-primary">View Dataset</a></td>
+          <td><a href="{% url 'dataset' dataset_id=dataset.id %}" class="btn btn-view">View Dataset</a></td>
         </tr>
         {% endfor %}
       </tbody>

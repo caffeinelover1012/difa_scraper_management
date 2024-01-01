@@ -3,109 +3,266 @@
 
 {% block title %}About Us{% endblock %}
 
-
-
-{% block scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 250,
-    easing: 'ease-in-out',
-    once: true,
-  });
-</script>
-{% endblock %}
-
 {% block content %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 
 <style>
-  .img-fluid {
-    max-height: 100%;
-    max-width: 100%;
-    display: block;
-    align-self: center;
-    justify-content: center;
-  }
-  @media (min-width: 992px) {
-    .img-fluid {
-      max-height: 100%;
-      max-width: 350px;
-    }
+  /* Custom CSS for About Us Page */
+  .modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
   }
 
+  #hero-background {
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+  }
+  
+  #main-content {
+    text-align: center;
+    color: #26176F;
+  }
+  
+  #main-content-words {
+    margin-top: 50px;
+  }
+  
+  #project-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  #project-mission {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  
+  #about-section {
+    padding: 50px 0;
+  }
+  
   .about-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: 2rem;
+    color: #26176F;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  #bottom-wrapper {
+    background-color: #F8F9FA;
+    padding: 50px 0;
+  }
+  
+  #bottom-content {
+    text-align: center;
+  }
+  
+  #why-difa p, #at-difa-we p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .btn-light {
+    background-color: #26176F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-light:hover {
+    background-color: #3d3f91;
   }
 
-  .card-body {
-    padding: 0;
-  }
+  
   .card {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      padding: 25px;
-      transition: all 0.3s ease;
-    }
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+  }
 
-    .card:hover {
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-      transform: translateY(-5px);
-    }
+  .card-title {
+    color: #26176F;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
 
-    .section-title {
-      font-family: 'Roboto', sans-serif;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+  .card-text {
+    font-size: 1rem;
+    color: #333333;
+    margin-top: 10px;
+  }
+  
+  #bottom-wrapper {
+    background-color: #E8E8E8;
+    padding: 50px 0;
+  }
 
-    .img-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  #bottom-content .btn-light {
+    font-size: 0.9rem;
+    padding: 15px 25px;
+  }
+
+  #bottom-content p {
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #project-title {
+      font-size: 2.5rem;
     }
+  
+    #project-mission {
+      font-size: 1.2rem;
+    }
+  
+    .about-title {
+      font-size: 1.5rem;
+    }
+  
+    #bottom-content {
+      padding: 0 15px;
+    }
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .video-container {
+      width: 65vw;
+      height: auto;
+    }
+  }
+  .modal-dialog {
+    width: 70vw !important;
+    max-width: 100% !important;
+  }
+  
+  .modal-content {
+    width: 100% !important;
+  }
   </style>
 
-
-  <div class="container">
-    <h1 class="mb-4 text-center" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 48px;">About</h1>
-
-    <div class="row mt-5">
-      <div class="col-md-6" data-aos="fade-up">
-        <div class="card mb-4">
-          <h2 class="section-title">Why Data Integration?</h2>
-          <p>Policy-based research in food and agriculture requires a comprehensive analysis, using contextual, econometric, and disciplinary knowledge. Integrating disparate data allows researchers to have more complete information about the markets they study, the potential need for policy, and the intended and unintended impacts of suggested policies. However, the technical and logistical skills needed to build datasets that rely on the use of multiple disparate data sets may be a barrier for many applied economists.</p>
+  <div id="hero-background" style="background: #F8F9FA">
+    <div id="main-content">
+      <div id="main-content-words">
+        <img class="img-fluid" src="{% static 'difafinal.png' %}">
+        <h1 id="project-title">Data Integration in Food and Agriculture</h1>
+        <p id="project-mission">Transforming data into actionable insights for agricultural policy and research.</p>
+        <div class="container mt-4">
+          <div class="video-container">
+            <iframe src="https://drive.google.com/file/d/1GIGFr0DyXrO9dl9FKukqelAG7IKAWFs1/preview" height="480px" width="700px" allow="autoplay"></iframe>
+          </div>
         </div>
       </div>
-      <div class="col-md-6" data-aos="fade-up">
-        <div class="img-container">
-          <img src="{% static 'react-vis-force.gif' %}" alt="Data Integration" class="img-fluid">
-        </div>
-      </div>
-    </div>
-
-    <div class="row mt-5">
-      <div class="col-md-6" data-aos="fade-up">
-        <div class="card mb-4">
-          <h2 class="section-title">Our Approach</h2>
-          <p>To begin building this online tool, we will identify and document available data resources, both public and private, commonly used by agricultural and applied economists. The compilation of data sources will serve as the inputs for the online resource. We also continuously strive to improve our tool by gathering user feedback, refining our data sources, and enhancing the user experience to make it as seamless as possible. Our team is dedicated to staying up-to-date with the latest developments in the field and incorporating them into our platform for the benefit of our users.</p>
-        </div>
-      </div>
-      <div class="col-md-6" data-aos="fade-up">
-        <div class="card mb-4">
-          <h2 class="section-title">Our Objective</h2>
-          <p>The Data Integration in Food and Agriculture (DIFA) tool will provide dataset-specific information pertinent to accessing and utilizing the corresponding data, and linking it with other relevant datasets. In this tool, we will generate easily consumable information that describes key attributes of data resources. These attributes include outcome variables and how they are measured; whether the data is publicly available or licensed; a brief description of sampling methods; the structure of the data; and opportunities and previous work done to link one data source to others.</p>
-         </div>
     </div>
   </div>
-{% endblock %}
 
+  <div id="about-section" class="container">
+    <div class="row">
+      <div class="col-md-4" data-aos="fade-up" onclick="openDetailModal('modalContent1')">
+        <div class="card" title="Click for more details" aria-label="Click to learn more about Why DataIFA?">
+          <h3 class="card-title">Why DIFA?</h3>
+          <p class="card-text">Integrating diverse data sets to enhance policy-based research in food and agriculture.</p>
+        </div>
+      </div>
 
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100" onclick="openDetailModal('modalContent2')">
+      <div class="card" title="Click for more details" aria-label="Click to learn more about Our Approach">
+        <h3 class="card-title">Our Approach</h3>
+        <p class="card-text">Documenting data resources, improving user experience, and leading agricultural economics research.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" onclick="openDetailModal('modalContent3')">
+      <div class="card" title="Click for more details" aria-label="Click to learn more about Our Objective">
+        <h3 class="card-title">Our Objective</h3>
+        <p class="card-text">Providing essential information for utilizing datasets, fostering data linkage in the field.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  
+<!-- Central Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true" style="z-index: 11100;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalLabel">More Details</h5>
+        <button type="button" onclick="closeDetailModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+      </div>
+      <div class="modal-body" id="modalContent">
+        <!-- Content will be loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bottom-wrapper">
+  <div id="bottom-content" class="container text-center">
+    <div id="why-difa">
+      <p>Empowering Research and Policy Development</p>
+    </div>
+    <div id="at-difa-we">
+      <p>Driving innovation and informed decision-making in agricultural policy.</p>
+      <a href="{% url 'index' %}" class="btn btn-light">Get Started</a>
+    </div>
+  </div>
+</div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+  });
+
+  function closeDetailModal() {
+    $('#detailModal').modal('hide');
+  }
+  
+  function openDetailModal(contentId) {
+    // Load content based on the ID
+    const contentMap = {
+      'modalContent1': 'Policy-based research in food and agriculture requires a comprehensive analysis, using contextual, econometric, and disciplinary knowledge. Integrating disparate data allows researchers to have more complete information about the markets they study, the potential need for policy, and the intended and unintended impacts of suggested policies. However, the technical and logistical skills needed to build datasets that rely on the use of multiple disparate data sets may be a barrier for many applied economists.',
+      'modalContent2': 'To begin building this online tool, we will identify and document available data resources, both public and private, commonly used by agricultural and applied economists. The compilation of data sources will serve as the inputs for the online resource. We also continuously strive to improve our tool by gathering user feedback, refining our data sources, and enhancing the user experience to make it as seamless as possible. Our team is dedicated to staying up-to-date with the latest developments in the field and incorporating them into our platform for the benefit of our users.',
+      'modalContent3': 'The Data Integration in Food and Agriculture (DIFA) tool will provide dataset-specific information pertinent to accessing and utilizing the corresponding data, and linking it with other relevant datasets. In this tool, we will generate easily consumable information that describes key attributes of data resources. These attributes include outcome variables and how they are measured; whether the data is publicly available or licensed; a brief description of sampling methods; the structure of the data; and opportunities and previous work done to link one data source to others.'
+    };
+    document.getElementById('modalContent').innerHTML = contentMap[contentId];
+    $('#detailModal').modal('show');
+  }
+</script>
+{% endblock content %}
+  

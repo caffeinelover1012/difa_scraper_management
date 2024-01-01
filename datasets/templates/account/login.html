@@ -1,0 +1,123 @@
+{% extends "account/base.html" %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Log In" %}{% endblock head_title %}
+
+{% block styles %}
+    <style>
+        #id_captcha {
+            border: none;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+{% endblock styles %}
+
+{% block content %}
+<section style="padding-top: 2em;">
+  <div class="container py-4">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-lg-6 col-md-7 col-sm-9">
+        <div class="my-5 p-5 bg-light rounded-3" style="border-radius: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1);"> <!-- Used Bootstrap classes for background and rounding, kept your styles for border and shadow -->
+          {% if form.errors %}
+          <strong>There were some errors with your form submission:</strong>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+              {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+
+          <h1 class="mt-1 pb-1 text-center" style="font-family: 'Poppins', sans-serif;">{% trans "Sign In" %}</h1>
+
+            {% get_providers as socialaccount_providers %}
+            {% if socialaccount_providers %}
+            <p class="mt-1 mb-5 pb-1 text-center" style="font-family: 'Poppins', sans-serif; font-size: 12px;">{% blocktrans with site.name as site_name %}Don't have an account yet? <a href="{{ signup_url }}" style="text-decoration: underline; color: black">Register Here</a>
+            {% endblocktrans %}</p>
+
+            <div class="socialaccount_ballot">
+              <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+              </ul>
+            </div>
+
+            <div class="login-or" style="position: relative;">
+              <h3 style="position: relative;
+              width: 79%;
+              text-align: center;
+              border-bottom: 1px solid #e2e2e6;
+              line-height: 0.01em;
+              margin: 35px;"><span style="position: relative;
+              font-size: .4em;
+              background-color: #e4f2ff;
+              padding-left: 1em;
+              padding-right: 1em;
+              font-stretch: condensed;">{% trans 'OR continue with email' %}</span></h3>
+            <div>
+
+            {% include "socialaccount/snippets/login_extra.html" %}
+            {% else %}
+            <p>{% blocktrans %}If you have not created an account yet, then please
+            <a href="{{ signup_url }}">register</a> here.{% endblocktrans %}</p>
+            {% endif %}
+
+            <form class="login mt-5" method="POST" action="{% url 'account_login' %}">
+              {% csrf_token %}
+              <div>
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form1Example13">{{ form.login.label }}</label>
+                  {% render_field form.login placeholder="Email" class="form-control form-control-md" style="border-color: #26176F" %}
+                  {% if form.login.errors %}
+                  <div class="invalid-feedback">
+                    {{ form.login.errors|striptags }}
+                  </div>
+                  {% endif %}
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form1Example23">{{ form.password.label }}</label>
+                  {% render_field form.password placeholder="Password" class="form-control form-control-md" style="border-color: #26176F" %}
+                        {% if form.password.errors %}
+                  <div class="invalid-feedback">
+                    {{ form.password.errors|striptags }}
+                  </div>
+                  {% endif %}
+                  <a class="mt-1" href="{% url 'account_reset_password' %}" style="text-decoration: underline; font-family: 'Poppins', sans-serif; color:black; display: flex; justify-content: flex-end; font-size: 12px;">{% trans "Forgot Password?" %}</a>
+                </div>
+
+                <div>
+                  <p style="display: inline-block; margin-right: 10px;" type="checkbox" value="" id="form1Example3" checked>{{ form.remember }}</p>
+                  <p class="form-check-label" for="form1Example3" style="display: inline-block; font-family: 'Poppins', sans-serif;">{{ form.remember.label }}</p>
+                </div>
+
+                  <div class="form-outline mb-4">
+                      {% render_field form.captcha placeholder="Captcha" class="form-control form-control-md" style="border-color: #26176F" %}
+                      {% if form.captcha.errors %}
+                          <div class="text-danger">
+                              {{ form.captcha.errors|striptags }}
+                          </div>
+                      {% endif %}
+                  </div>
+              <div>
+
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+
+              <button type="submit" class="btn btn-lg btn-block" style="color: white; background-color: #26176F; font-family: 'Poppins', sans-serif; display: block; margin: 0 auto;">{% trans "Sign In" %}</button>
+
+            </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

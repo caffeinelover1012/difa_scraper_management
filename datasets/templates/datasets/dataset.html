@@ -1,68 +1,108 @@
-{% extends "datasets/base.html" %}
+{% extends 'datasets/base.html' %}
+{% load static %}
 
 {% block title %}{{ dataset.dataset_name }}{% endblock %}
 
+
+
 {% block content %}
-  <h2 class="text-center">{{ dataset.dataset_name }}</h2>
-  <table class="table table-striped table-bordered mx-auto" style="width: 80%;">
-    <tbody>
-      <tr>
-        <th>Name</th>
-        <td>{{ dataset.dataset_name }}</td>
-      </tr>
-      <tr>
-        <th>About</th>
-        <td>{{ dataset.about_info }}</td>
-      </tr>
-      <tr>
-        <th>Last Updated</th>
-        <td>{{ dataset.last_updated }}</td>
-      </tr>
-      <tr>
-        <th>File Format</th>
-        <td>{{ dataset.dataset_file_format }}</td>
-      </tr>
-      <tr>
-        <th>Status</th>
-        <td{% if dataset.dataset_status|lower == 'active' %} class="text-success"{% else %} class="text-danger"{% endif %}>{{ dataset.dataset_status }}</td>
-      </tr>
-      <tr>
-        <th>Sponsor Name</th>
-        <td>{{ dataset.sponsor_name }}</td>
-      </tr>
-      <tr>
-        <th>Access Type</th>
-        <td>{{ dataset.access_type }}</td>
-      </tr>
-      <tr>
-        <th>Dataset Files</th>
-        <td>{{ dataset.dataset_link|urlize }}</td>
-      </tr>
-      <tr>
-        <th>Dataset Details</th>
-        <td>{{ dataset.dataset_website_link|urlize }}</td>
-      </tr>
-      <tr>
-        <th>Dataset Citation (APA format)</th>
-        <td>{{ dataset.dataset_citation }}</td>
-      </tr>
-      <tr>
-        <th>Dataset Collection Method</th>
-        <td>{{ dataset.dataset_collection_method }}</td>
-      </tr>
-      <tr>
-        <th>Other Info</th>
-        <td>{{ dataset.other_info }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="text-center m-3">
-    <form method="POST" action="{% url 'scrape_dataset' dataset_id=dataset.id %}">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-primary">Scrape Again</button>
-        <!-- Add the following line inside the <div class="text-center mt-3"> element -->
-  <a href="{% url 'create_modification_request' dataset_id=dataset.id %}" class="btn btn-warning ms-3" role="button">Create a Modification Request</a>
-    </form>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap">
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<style>
+  .modal-dialog {
+    width: 70vw !important;
+    max-width: 100% !important;
+  }
+  
+  .modal-content {
+    width: 100% !important;
+  }
+</style>
+
+<div class="container my-5">
+  <!-- Main DNA Card (i) -->
+  <div class="dna-card mb-4 text-left">
+    <h1 class="dataset-title">{{ dataset.dataset_name }}</h1>
+    <h2 class="sponsor-title">{{ dataset.sponsor_name }}</h2>
+    <p class="dataset-description">{{ dataset.about_info|linebreaks }}</p>
+    <div class="button-group">
+      <a href="{{ dataset.dataset_link }}" class="btn dataset-btn"><i class="fas fa-file-alt"></i> Dataset Files</a>
+      <a href="{{ dataset.dataset_website_link }}" class="btn provider-btn"><i class="fas fa-external-link-alt"></i> Provider Details</a>
+      <span class="access-type {{ 'access-type-'|add:dataset.access_type|lower }}">
+        {% if dataset.access_type == scraper_constants.OPEN_ACCESS %}
+          <i class="fas fa-lock-open"></i>
+        {% elif dataset.access_type == scraper_constants.PAID_ACCESS %}
+          <i class="fas fa-dollar-sign"></i>
+        {% elif dataset.access_type == scraper_constants.RESTRICTED_ACCESS %}
+          <i class="fas fa-lock"></i>
+        {% endif %}
+        {{ dataset.access_type }}
+      </span>
+      </div>
   </div>
 
-{% endblock %}
+  <!-- Metadata (ii) and Data Attributes (iii) -->
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="metadata-card">
+        <h3 class="table-heading">Metadata</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">Last Updated</th>
+              <td>{{ dataset.last_updated }}</td>
+            </tr>
+            <tr>
+              <th scope="row">File Format</th>
+              <td>{{ dataset.dataset_file_format }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Status</th>
+              <td><span class="status-{{ dataset.dataset_status|lower }}">{{ dataset.dataset_status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="citation-link">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#citationModal">Cite this Dataset <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="data-attributes-card">
+        <h3 class="table-heading">Data Attributes</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">Collection Method</th>
+              <td>{{ dataset.dataset_collection_method|linebreaks  }}</td>
+          </tr>
+          <tr>
+              <th scope="row">Other Info</th>
+              <td>{{ dataset.other_info|linebreaks }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Citation Modal --> 
+<div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalLabel" aria-hidden="true" style="margin-top: 10%; z-index:11000;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="citationModalLabel">Dataset Citation</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ dataset.dataset_citation|linebreaks }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

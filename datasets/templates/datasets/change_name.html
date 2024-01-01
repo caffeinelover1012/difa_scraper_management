@@ -1,0 +1,72 @@
+{% extends 'datasets/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}{% trans "Change Name" %}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+<style>
+    .change-name-container {
+        padding-top: 1em;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .change-name-card {
+        background-color: #f8f9fa;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .change-name-header {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        color: #26176F;
+        margin-bottom: 20px;
+    }
+    .form-label {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+    }
+    .btn-submit {
+        background-color: #26176F;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container change-name-container">
+    <div class="change-name-card">
+        <h1 class="change-name-header">{% trans "Change Your Name" %}</h1>
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ field|capfirst }}: {{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="post" action="{% url 'change_name' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-outline mb-3">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field|add_class:"form-control" }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-submit">{% trans "Update Name" %}</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

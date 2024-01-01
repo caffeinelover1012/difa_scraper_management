@@ -1,0 +1,3698 @@
+[
+  {
+    "model": "datasets.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$yX70FxjMzCzoSYv8Z0y1tw$EmQjx6zk8U/eZ575o7kf0UuZEsXe57uB/sUP9hQq7gk=",
+      "last_login": "2023-04-20T21:46:45.441Z",
+      "is_superuser": false,
+      "email": "profdrew@gmail.com",
+      "first_name": "",
+      "last_name": "",
+      "institution_employer_name": "",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-04-12T22:05:21.432Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$QIY0ZE4QNNloTd26daXtZv$iNWGeIrdasnOxkBKcOXPzOxIteeYOx/8/d2m9lsuqnU=",
+      "last_login": "2023-10-11T18:28:49.731Z",
+      "is_superuser": true,
+      "email": "shubhk5020@gmail.com",
+      "first_name": "Shubh",
+      "last_name": "Khandelwal",
+      "institution_employer_name": "",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2023-04-13T01:18:28Z",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$8cg0IsG0jf7DwJIepOl5Hj$QFxhkv+zQm1UD/gTVoRjtV2e9mjmJPjvWlqf0jYBfiw=",
+      "last_login": "2023-09-15T02:29:58.649Z",
+      "is_superuser": true,
+      "email": "amehta64@asu.edu",
+      "first_name": "",
+      "last_name": "",
+      "institution_employer_name": "",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": true,
+      "date_joined": "2023-05-08T22:06:17.723Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$OhjiseQOU8GgUfpWT8lwhG$fFC56eiIQAssd4dhoXUKL8iGOu7JDdRPtl45aYY27vM=",
+      "last_login": "2023-05-16T16:56:33.682Z",
+      "is_superuser": false,
+      "email": "test@gmail.com",
+      "first_name": "",
+      "last_name": "",
+      "institution_employer_name": "",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-05-16T15:18:43.788Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$kEeAbuDa5Fu6RUIs8kN1x1$MGbAxAuh6K8W4KfMyekFZo/otods9+dDpVv0Ilf1OKM=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "feaaef@gmail.com",
+      "first_name": "",
+      "last_name": "",
+      "institution_employer_name": "",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-06-07T23:16:08.808Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$5WrugeVkMaYZSnWYD5Wbdj$Usa1lu/fxwdmWB6S/GYg+w3FZlVrHsYjfCPMzyYqAYA=",
+      "last_login": "2023-07-06T06:12:06.461Z",
+      "is_superuser": false,
+      "email": "test1@gmail.com",
+      "first_name": "Shubh",
+      "last_name": "khandelwal",
+      "institution_employer_name": "asu",
+      "institution_personal_website": "https://www.asu.edu",
+      "occupation_category": "efohoe",
+      "occupation_title": "hfeoiho",
+      "field_of_research": "oehoi",
+      "research_areas": "feohsoih",
+      "general_research_statement": "feohsioh",
+      "how_did_you_learn": "rshoihfse",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-07-06T06:07:46.223Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$5xgCdCTvPJCw2Vxt2Rm8Kr$oGvapbo+e0PliRXusKgnS4RPPOi4iLI0t6fZDfte/mw=",
+      "last_login": "2023-08-01T02:28:01.981Z",
+      "is_superuser": false,
+      "email": "shubhvk10@gmail.com",
+      "first_name": "Shubh",
+      "last_name": "Khandelwal",
+      "institution_employer_name": "ASU",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-08-01T02:22:47.103Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$gceoTEzgXQweNNyFLceEyS$go8sjpgipBi7CnKAmxz4vyw9ObaSOzl/wKZ1ZaBqlKY=",
+      "last_login": "2023-08-31T07:47:20.037Z",
+      "is_superuser": false,
+      "email": "tttran29@asu.edu",
+      "first_name": "Teresa",
+      "last_name": "Tran",
+      "institution_employer_name": "Arizona State University",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-08-31T07:47:03.431Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$oQHtMPKmpoXXhl3URPOQzc$12k67IQBf//pBZf//+wR32w6h9jtjS3CAJigBCO3EP0=",
+      "last_login": "2023-09-15T03:02:10.208Z",
+      "is_superuser": false,
+      "email": "aryan_test@gmail.com",
+      "first_name": "Aryan",
+      "last_name": "Mehta",
+      "institution_employer_name": "ASU",
+      "institution_personal_website": null,
+      "occupation_category": "Engineering",
+      "occupation_title": "Software Engineer",
+      "field_of_research": "Computer Science",
+      "research_areas": "",
+      "general_research_statement": "Arizona State",
+      "how_did_you_learn": "Founder",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-15T03:02:05.611Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$mRbTXqh3pQ4MXZRQWdxxMh$WthlHsQ03l54pxNdUCJaFblxB0mXtqZtmdgADoj8hxU=",
+      "last_login": "2023-09-16T08:17:50.831Z",
+      "is_superuser": false,
+      "email": "s@asu.edu",
+      "first_name": "Cock",
+      "last_name": "Sucker",
+      "institution_employer_name": "Abcd",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-16T08:17:42.187Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$VxpzbtSXsVecHUPdu3qZou$gfJoAlNop1YiyOq+jfnRuqcxeY7N0ONKLNPbAFBOnOI=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "0@gmail.com",
+      "first_name": "8HROHN6EIJ1VLNW",
+      "last_name": "3UEDDRVIVQ3ZUSI",
+      "institution_employer_name": "9918073OQVP3DJT",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:16:06.061Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 12,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$KUHubCJOOJtJJAz0F0ElW5$mjCbLN0/J+b0m/G+rHsj5PFYttrZM+x34zS1Ph/0NdE=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "JC5Q8HF4A9ORTAV@gmail.com",
+      "first_name": "96AGG5K5KLJW86W",
+      "last_name": "5UFO5AXB06T8ON5",
+      "institution_employer_name": "IA8Z8N8HG4NNVEN",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:21:12.057Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 13,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$xC8WlpXCT4tGsf2FWMkr3r$jHQPalHKPJupIj/unAb5y+4yDg8rgH64NahLoERAR4Y=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "HFD6LGV1ROMSJWH@gmail.com",
+      "first_name": "L939KEJQHPI7C4K",
+      "last_name": "4XA7L7ZTN7GD1AG",
+      "institution_employer_name": "GVK5Q1WNGNESJWX",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:31:02.529Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 14,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$o9jEKsMYGLoU2A6XsHlcON$Vxeh4V/6Niu7xU6IBXWOR8HmTOGqErS6p8VmrXHqAj0=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "BQ9OGVPY1N68K2H@gmail.com",
+      "first_name": "FXB7J5UA6UEORX2",
+      "last_name": "D8VUAH3JUMOYYJJ",
+      "institution_employer_name": "UI1Q0OTB26ZF7MK",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:31:32.414Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 15,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$AkI4Mi6XLP5Nygq1a7EFZD$oN7K6tV7mpiOtuVIPZtLSrY+vFu+F7G3BjcCH6vdHHA=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "ZTHDC5OIBNELIKU@gmail.com",
+      "first_name": "2H0OP0ME49MVXIP",
+      "last_name": "ELP4GSG4AY81LTL",
+      "institution_employer_name": "4U9CPRIJU6BUZA2",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:32:17.578Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 16,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$kBoKryK2k2cnXz7P3lCHZM$TBwHYdbXoqk9NprGoWMJgzLM9XOKjthRYdxp0tbtYdY=",
+      "last_login": "2023-09-28T20:33:23.465Z",
+      "is_superuser": false,
+      "email": "WBV5OFT24JV3EDH@gmail.com",
+      "first_name": "F2PA1YXO562IEF9",
+      "last_name": "YVU5JM5LDG3ZW23",
+      "institution_employer_name": "QUIW8GTGLB2QMMW",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:33:02.057Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 17,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$yqW9SvHqyKIOaG3IPxl6mr$E86pGyCHhgi1NS9mCdRl8AoaBseF5DsyxIXPPZkzblc=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "39KIBQTUAF54T7N@gmail.com",
+      "first_name": "1U5NS0XVW874PVN",
+      "last_name": "190OVKQT7913QO9",
+      "institution_employer_name": "E3GIYPVW9RYWFER",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:36:29.314Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 18,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$GSpLzJHBqA6yofXAGs8eKe$ERSoKsIUnQChJ2kpN8hG7sjtaX0kKGlKS9X2fys/JHQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "5VWGJ396KVOUIQD@gmail.com",
+      "first_name": "2RZM4UZZ69TQQPX",
+      "last_name": "H9NZA1YM1ZMY72T",
+      "institution_employer_name": "43IGNI2OTK2HQ9M",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:36:39.436Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 19,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$mTY12LBZ4oSxU9l7Rpp2W1$chh98CFTyddj3q41Sw4NJn77xPi6d5acUGGaFkiQxjo=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "33Z4GH2JQIQ282D@gmail.com",
+      "first_name": "TLHRNA6QYXPL0AO",
+      "last_name": "MIHXPFKA3BP4VXV",
+      "institution_employer_name": "D2B0O4RPBPFFCW8",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:36:49.340Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 20,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$zM72vYTmwEjr5RVOiCnNFA$SwnIMMBMCbPX9oXGbNykWhJ0Av9F1bw62jF0VxbDz74=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "Z8N00CLFATXQPJK@gmail.com",
+      "first_name": "ALOKIXVAEZIEGJI",
+      "last_name": "QZJYL6OEGGOPAZ2",
+      "institution_employer_name": "8MS16I6QFX1PBC0",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:36:59.185Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 21,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$9yejanKrPHAv0A9GlGuxco$Y0LgmapZk2axynBv1j5e+Wv4g95msP4VsMJa6eQ1ILo=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "YTHS6FZACNEKAON@gmail.com",
+      "first_name": "T99OBXO4F3NOWDF",
+      "last_name": "94US6SG7Y9ID37J",
+      "institution_employer_name": "HB141TJSMSMZN3C",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:37:09.217Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 22,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$jJEavM81le5sjiYUQ6wiFJ$RaqdgcBU4DNleYVNuqY5ZVcKGgpbzgslRVHEtzyEyck=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "ZMRMS2BDWUQCJKH@gmail.com",
+      "first_name": "V9SCNXWSLYMEN3U",
+      "last_name": "3VFYMMFIRSDEJEI",
+      "institution_employer_name": "71AQJIEACF8XPZX",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:37:19.000Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 23,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$2rKY4aHpAqclzNd7ybRiTO$+Y+6SxpcFear/GbPhxJjpOD2DjkzWKGlxOq01yozZ5E=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "9P6TUTJ1Y4KM094@gmail.com",
+      "first_name": "143GOC8NQWL9UYL",
+      "last_name": "PO70E076M2YVNKM",
+      "institution_employer_name": "4QAQZ614H398L2Q",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:37:28.856Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 24,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$u7ofpwMiUbLiIFFxUw2QJu$PHlXaJOeROUAQCqOspLQyqUgF9bYkomcSSS6eOL+mv8=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "RU2NOXKOLHJSKUO@gmail.com",
+      "first_name": "HNP73LKT244FG9Z",
+      "last_name": "U5HAXZH4DLSPKMF",
+      "institution_employer_name": "CP2N59GK1YO6VWA",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:37:38.916Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 25,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$aCRG9p4HsXUCTs5x2Tjfiw$nt8ivwYbizQ5eDKSSQgz8aluNU3K08efNdlwRikprNw=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "JP1G1TQ483B47CB@gmail.com",
+      "first_name": "Y4PD9XCV94KBHYR",
+      "last_name": "MKTKCEL0DAG9YW2",
+      "institution_employer_name": "32GYZI7NZJLGQ42",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:37:48.677Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 26,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$tQdK6GsFkwhXrHIj0mambV$8mjqZBd7nZTPBRwEn9bXWL81l1VSM0glMOOsZeoKvNA=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "PR9VODHEXBIKLVI@gmail.com",
+      "first_name": "2N9R63R924IF8GS",
+      "last_name": "G956FUQFDS86U9Q",
+      "institution_employer_name": "CRRNIII5PGKLV11",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:38:03.526Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 27,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$HO7Pzcl8ZHAemH2fV2c3F3$4ZmYp66FHrJpcslWsJHGMlbY5RJmAOy5J+gor++IXpE=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "OSRNVFFBMHVXJF0@gmail.com",
+      "first_name": "19BWQKTMHYZV1Y1",
+      "last_name": "9PFUEUMU7JI1RWP",
+      "institution_employer_name": "5FA8Q1TB5HXTANB",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:38:13.115Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 28,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$gQG4fGkzs2pLwkJ5AxOBvw$3iyv5e3b9z+OzpYmwPG2kQPcCsCkq0Xha2PV9SDhPSs=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "GD6H8SWGGLL7KQD@gmail.com",
+      "first_name": "XUDT9ZZ278AP22I",
+      "last_name": "EDYT2T73U3HFZ4A",
+      "institution_employer_name": "QGVWWPJ9WCTTPBF",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:38:39.076Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 29,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$Ljxn74yKnZqs10rmlui1Jk$dwvHMUq5FEmhfPnLKL012ChJOtXMkL37UTuD6RPsVMo=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "4WA37K7QZQMHIN6@gmail.com",
+      "first_name": "IVKQ372AAZ5CXW9",
+      "last_name": "RA1M7WUBQO5ZKVD",
+      "institution_employer_name": "1HFGEJ9OO34S1FP",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:38:48.635Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 30,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$AXWzpuTTAlyPegYCqfKJsy$m62ju93GVKFL1yVk3CUDBqXU44BGV7m1PtfuvuzibrY=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "7OVGBXMIKVHHD84@gmail.com",
+      "first_name": "B4AQIWJ49P7YNEL",
+      "last_name": "N89UQUD6G0DE2EA",
+      "institution_employer_name": "MCHNCI1YWZKC59E",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:38:58.193Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 31,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$nLfrDnoBPbWk7L5qmTtr3L$h8CmogTqMj53PE5aZM3R9NR22zWAfzRJQrDsWksIvWU=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "VQ7OSG7UMROEWON@gmail.com",
+      "first_name": "7A7X9ZY7U8RQIEK",
+      "last_name": "Y27ALTELDMUFWV7",
+      "institution_employer_name": "YUZB0QTGDLRP24T",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:39:53.586Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 32,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$4Q4ydUyxYi9IitDl2VKa1u$Ux/vWpBZnSyk9xMk1WHUtXUK1dXv8viw3sWzcB8ax1s=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "TQ611IOR1SDIM66@gmail.com",
+      "first_name": "1Q4U3UVGV65MKLX",
+      "last_name": "8FK17J6L9UVP2UF",
+      "institution_employer_name": "V6S1HZ4PHHK2ZL5",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:03.286Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 33,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$vzHKPTcZMa1y14YfWlEQ72$aFzggLpyTb7CKxQ8Lwzt64v3XHSXIH9m4SKvtOKAa2c=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "WXLQNJUTB7VT55K@gmail.com",
+      "first_name": "NDEHJSX2E0UYRJ9",
+      "last_name": "NAMZFUX9QQLXZ1Z",
+      "institution_employer_name": "935PFEKEB6LNJVM",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:12.970Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 34,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$zg9i5fPpPwFyCgQZw9V4cH$8LXzwPCTdVJVOrMicvOZLRptUSaYKeczI7IgSErVAQY=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "PR3CGVSPXRNQ163@gmail.com",
+      "first_name": "D2BWQ281R44X87U",
+      "last_name": "AGQY8VXZK0QTV03",
+      "institution_employer_name": "XS4DOWE6UJXXFVG",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:22.660Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 35,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$9DDKibfBhrbLziDRxLj1ik$ClZGL/i+bdOdsYf/jeWwR9TIZ0Rtfou6bM+TIln4xlI=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "KDHZZHTMASCD0CK@gmail.com",
+      "first_name": "16K9YIESM2KB2QZ",
+      "last_name": "75F7OCZ4XUFZTOH",
+      "institution_employer_name": "1SH88CHFRAGZMOZ",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:32.297Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 36,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$f62yhOg0933EGh5BLno23H$CBa9nsVmHCyQZD/n84HcEBEWHLKZzO4uoHGxyxObCSU=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "XWJB4JNVUSQW2G1@gmail.com",
+      "first_name": "T2UG5NWFQ7GBT99",
+      "last_name": "1QOUBK3NCE11QG2",
+      "institution_employer_name": "2GI43VHLCZZHNJX",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:41.965Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 37,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$nWKNoM1hqiPKCeLkgjHkXB$LQ1ub209H97/Gyt1KrFvpprhWqc/FkRWAevAUybYfPE=",
+      "last_login": "2023-09-28T20:40:58.580Z",
+      "is_superuser": false,
+      "email": "skhand15@asu.edu",
+      "first_name": "Shubh",
+      "last_name": "Khandelwal",
+      "institution_employer_name": "Shubh",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:48.175Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 38,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$ks4CW0RA9KfpDoLSTnsi0B$DXJJVOV7Fg1PcRQOWgqU8Eafx5ZbwG0NkQjJ0+lrFjc=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "7R5Q5DMBJHPL8WK@gmail.com",
+      "first_name": "U59NDDXZNZ9MEH2",
+      "last_name": "V7B94FPFTD1CO8F",
+      "institution_employer_name": "V9OKYX33P46JH5F",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:40:51.444Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 39,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$CdQmdNnCBSHcnfZgteCPyy$ERG6J91uUNavQfTTLn2KlDQtuOoSeR1J22LsKrwxVmo=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "TISSIBPPEQ2IVG9@gmail.com",
+      "first_name": "89WE48QS2WC1STR",
+      "last_name": "VYP17YU0LDNZLKE",
+      "institution_employer_name": "87BYCHW2PWZ3O6Y",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:01.020Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 40,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$fveGOycLcLoGrBhcKVaynk$4Hg1pD4bY4B+4yNTcNaMIE3y3RkuVWfCpJr6Sbj4HTo=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "4MPW3MKDY1K42I5@gmail.com",
+      "first_name": "1DSX4YIX23W1GFD",
+      "last_name": "KA71633261WAOP6",
+      "institution_employer_name": "SA72AWR9HJLQ1X8",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:10.594Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 41,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$mAsW1wOwqPuG01NgL1qlD5$kSa8zdVO6hPxtZUGdE5JIWm3HJDBfvzNJZfeLckdEJM=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "DH1PY1BGUAUDL0N@gmail.com",
+      "first_name": "ZD7DJ62Y783IGRS",
+      "last_name": "TERG6TEG6CUMGLQ",
+      "institution_employer_name": "NQWTZZOS2Y800QT",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:20.173Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 42,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$0EaNOaCNH4CEYBKdCXjIL9$YX/8LJsraAXVQNuKvF4enEj2XzzVP01bf3GLp9j4dx8=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "H7GIHA5H32GVZE4@gmail.com",
+      "first_name": "9I6ZHB1C7PB2GCV",
+      "last_name": "DSCQORR3HEIA2Z4",
+      "institution_employer_name": "2OI62CMBK1ZN7MG",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:29.734Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 43,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$RQoOz3uPSlGeZxtu1q3sEE$o5IPjyikvoHF2bQsudYvPuVuogvxONZFM4NALv6dU7E=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "7TJCMI7YI8IEOGS@gmail.com",
+      "first_name": "M13LL5YNOQWVWFU",
+      "last_name": "015JXK4TLKUUPFG",
+      "institution_employer_name": "ZZ0QYPUDHAJR0LT",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:42.750Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 44,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$Z3RBNIEAQwicBDkAMD0H1c$u8iakItkTmDvy9Smy97daG74ZiSrC22cOkUgtJMbVyU=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "7ZAPOJ2Y6NKX4O7@gmail.com",
+      "first_name": "INUAD5OU1EJDI55",
+      "last_name": "I4BXH7N7SVCKD9X",
+      "institution_employer_name": "YKDH1BEHBKDM4IK",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:41:54.638Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 45,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$s45o4A52lk89ueeF3EZ4lS$Uw9xhDcYvJyhHOipkTsE+ytZfyGS3rYqymMcVqLsbms=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "JGNB8JN86XQZR33@gmail.com",
+      "first_name": "6HN8O0LE0RGHAM6",
+      "last_name": "OA0H8TJKSZRXF0X",
+      "institution_employer_name": "79I9PGZ8SJ6E839",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:03.702Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 46,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$3Om24RxqPLIbmbgZw5wxl7$Yv4iimBkE4zYZko+qIXH16Dn9SZJPBPlDsDLfmFVINk=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "H0SNJLC9T8Y6BLC@gmail.com",
+      "first_name": "JBN21XHZMV8ASEP",
+      "last_name": "H3M7OM7SMJ2PYXY",
+      "institution_employer_name": "K6FVTL42VZIZJDK",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:23.073Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 47,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$TYpMtrGfu5ib0812KzsDW4$PAyS5zMZmbrS3KUvo60itLe1/L20sTs6HRKGIpEWgA8=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "510QHCYI1XA3H8A@gmail.com",
+      "first_name": "ZIITW47U82FSUDD",
+      "last_name": "EIGAJX9TO7SFCSP",
+      "institution_employer_name": "MPJK87RSSJ4OD4K",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:32.211Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 48,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$umoH36W9rF5Jka4DEt33dK$DyD/XIpmKpddkrKUIIUOqCwKHRw7M2IZgXnSUW2xbBc=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "4L0BTI4IRF1MOI4@gmail.com",
+      "first_name": "C1NO7R1SBQHKKGO",
+      "last_name": "2OAQXDXX7K52DOT",
+      "institution_employer_name": "4TJ59809OMVQMTC",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:41.395Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 49,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$Cst21UKOXD879RxBnvcdMV$71nz5bMMllnHAzBKfbjYV2v/V8vJEO9MQdr2F56/hA0=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "DXYJX9HH86AOC9L@gmail.com",
+      "first_name": "10IJP9XLUJK6V8Y",
+      "last_name": "2KJCO55DCSMEHS5",
+      "institution_employer_name": "PG9A29F6J98HHIH",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:50.454Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 50,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$ihmOzYqJCLDfuEeDVSIixn$kRca/uICOn2Evs+G2frQvRPjfdSZlymq+hGDMR8JvwE=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "L5B4PKSBQT41QVW@gmail.com",
+      "first_name": "D4SPN0AY5UPX5X3",
+      "last_name": "YRRH18LYV4MXW02",
+      "institution_employer_name": "9IK9IL5O2P0E55N",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:42:59.416Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 51,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$GBU7FbCMYp5NAedd3tisnr$zlJVJX0FZFt8caoIIiayNAP0qZJkNsdvegMb5EQUgxI=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "IUEO0KNH10TL64Q@gmail.com",
+      "first_name": "D4AXGX42QITBMWG",
+      "last_name": "8X1IETZ2HS837JJ",
+      "institution_employer_name": "594HPEAEL4CPQP6",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:43:08.552Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 52,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$9EDdmqZGRBNdIC49svz827$XOvXNEeecXJx/O26qHc/Z1hfn3cs3nkYroeUteLcslk=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "566FO9G9A80LJ32@gmail.com",
+      "first_name": "TZLL7XH31VXVPD2",
+      "last_name": "291W67MG2OLDFYH",
+      "institution_employer_name": "7RV0EZIRI99QY5U",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:43:17.643Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 53,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$Bx0tHNTJBaNHENa0mfg8JT$kNfHQjRuz6nFfkieo4J5hkQEGZj4REQe/dsIbKQrRSc=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "MK5Q53X48W8I78P@gmail.com",
+      "first_name": "ML3CEWSOBZVWO1W",
+      "last_name": "YB6C9J7Q2Q3P0MA",
+      "institution_employer_name": "D9G48EY7Q9OBIIZ",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:43:26.723Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 54,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$1glNxxYBPZlTbTkQ93UGpa$dzYjwSr7/MfrcnLiNz5diMCg/Rs6v6cXpATBkaBg7cc=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "PDYTRXRH9BJ9C0Q@gmail.com",
+      "first_name": "1RS187G4QZ95XQ4",
+      "last_name": "22S8Z3QQGBU9U65",
+      "institution_employer_name": "3NS15CYXJ0A6HOL",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:43:35.734Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.user",
+    "pk": 55,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$OigSlkprK77Wu5CTZ4raym$QWb+DDqIUjm7J8hQmwBD8X9p7OnEwOW+76AI+G9lIQY=",
+      "last_login": null,
+      "is_superuser": false,
+      "email": "8U79JZ97LTFECO0@gmail.com",
+      "first_name": "LA0HWQDL1VZ62RX",
+      "last_name": "J3R40IKUND8KAN6",
+      "institution_employer_name": "QOFGD7PVHLRJ60F",
+      "institution_personal_website": null,
+      "occupation_category": "",
+      "occupation_title": "",
+      "field_of_research": "",
+      "research_areas": "",
+      "general_research_statement": "",
+      "how_did_you_learn": "",
+      "is_active": true,
+      "is_staff": false,
+      "date_joined": "2023-09-28T20:43:44.806Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 1,
+    "fields": {
+      "dataset_name": "National Household Food Acquisition and Purchase Survey (FoodAPS)",
+      "about_info": "USDA's National Household Food Acquisition and Purchase Survey (FoodAPS) is the first nationally representative survey of U.S. households to collect unique and comprehensive data about household food purchases and acquisitions. Detailed information was collected about foods purchased or otherwise acquired for consumption at home and away from home, including foods acquired through food and nutrition assistance programs. The survey includes nationally representative data from 4,826 households, including Supplemental Nutrition Assistance Program (SNAP) households, low-income households not participating in SNAP, and higher income households. See the Background webpage for a more detailed description of the survey.",
+      "last_updated": "April 28, 2021",
+      "dataset_file_format": "['sas', 'stata', 'csv']",
+      "dataset_status": "Active",
+      "sponsor_name": "United States Department of Agriculture's Economic Research Service",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/",
+      "dataset_website_link": "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/",
+      "dataset_citation": "United States Department of Agriculture's Economic Research Service (year of release). National Household Food Acquisition and Purchase Survey (FoodAPS) [Data set]. Retrieved from [URL]\n        For example, the citation would look like: United States Department of Agriculture's Economic Research Service (2020). National Household Food Acquisition and Purchase Survey (FoodAPS) 2019 [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/50980/SAS%20data%20files.zip?v=9778.8",
+      "dataset_collection_method": "The survey collects information about                                        Quantities and expenditures for all at-home and away-from-home foods and beverages purchased and acquired from all sources by all household members over a seven-day period;                                        Eating occasions by all household members; Household characteristics, including income, program participation, non-food expenditures, food security, health status,                                        and diet and nutrition knowledge; and Household access to food, including location of purchase and distance to food stores and restaurants.                                         Nutrient information about purchased food as well as local retail environmental information were merged into the data set based on scanned barcodes,                                         product descriptions, and household locations.",
+      "last_scraped": "2023-09-27T23:47:49.488139+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 2,
+    "fields": {
+      "dataset_name": "Farm Accountancy Data Network (FADN)",
+      "about_info": "The Farm Accountancy Data Network (FADN) is an instrument for evaluating the income of agricultural holdings and the impacts of the Common Agricultural Policy. The concept of the FADN was launched in 1965, when Council Regulation 79/65 established the legal basis for the organisation of the network. It consists of an annual survey carried out by the Member States of the European Union. The services responsible in the Union for the operation of the FADN collect every year accountancy data from a sample of the agricultural holdings in the European Union. Derived from national surveys, the FADN is the only source of microeconomic data that is harmonised, i.e. the bookkeeping principles are the same in all countries. Holdings are selected to take part in the survey on the basis of sampling plans established at the level of each region in the Union. The survey does not cover all the agricultural holdings in the Union but only those which due to their size could be considered commercial.",
+      "last_updated": "N/A",
+      "dataset_file_format": "['HTML', 'CSV', 'PDF', 'DOCX', 'JSON', 'ODT', 'RTF', 'XLS', 'XLSX', 'XML']",
+      "dataset_status": "N/A",
+      "sponsor_name": "European Union",
+      "access_type": "Open Access",
+      "dataset_link": "https://data.europa.eu/data/datasets/farm-accountancy-data-network-public-database?locale=en; https://agridata.ec.europa.eu/extensions/FADNPublicDatabase/FADNPublicDatabase.html",
+      "dataset_website_link": "https://agriculture.ec.europa.eu/data-and-analysis/farm-structures-and-economics/fadn_en",
+      "dataset_citation": "European Union (year of release). Farm Accountancy Data Network (FADN) [Data set]. Retrieved from [URL]\n                            For example, the citation would look like:\n European Union (2019) Farm Accountancy Data Network Public Database [Data set].                            Retrieved from https://data.europa.eu/data/datasets/farm-accountancy-data-network-public-database?locale=en\n",
+      "dataset_collection_method": "The information collected annually in the Member States for each of the 80,000 FADN sample farms includes approximately 1000 variables and refers to: Physical and structural data (location, crop areas, livestock numbers, etc.). Economic and financial data (production value of the different crops, stocks, sales, purchases, production costs, assets, liabilities, production quotas and subsidies, etc.). Data is collected through a Liaison Agency in each Member State or nominated bodies. The sample in each Member State is stratified according to region, economic size and type of farming to ensure its representativeness. The FADN sample does, however, not cover all agricultural holdings, but only those which due to their size are considered to be commercial. The quality of data in FADN in terms of completeness and time consistency is one if its main strengths, since a sophisticated quality check is done regularly.",
+      "last_scraped": "2023-09-25T19:36:08.329624+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 3,
+    "fields": {
+      "dataset_name": "Demographic Health Survey (DHS)",
+      "about_info": "Demographic and Health Surveys (DHS) are nationally-representative household surveys that provide data for a wide range of monitoring and impact evaluation indicators in the areas of population, health, and nutrition. The Demographic and Health Surveys (DHS) Program has collected, analyzed, and disseminated accurate and representative data on population, health, HIV, and nutrition through more than 400 surveys in over 90 countries.",
+      "last_updated": "September 25, 2023",
+      "dataset_file_format": "['ASCII', 'STATA (.dta,.do,.dct)', 'SPSS (.sav,.sps)', 'SAS (.sas,.sas7bdat)', '.DBF', '.MDB']",
+      "dataset_status": "Active",
+      "sponsor_name": "United States Agency for International Development (USAID)",
+      "access_type": "Restricted Access",
+      "dataset_link": "https://dhsprogram.com/data/available-datasets.cfm",
+      "dataset_website_link": "https://dhsprogram.com/",
+      "dataset_citation": "United States Agency for International Development (USAID) (year of release). Demographic Health Survey (DHS) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n United States Agency for International Development (USAID) (2020). Demographic Health Survey (DHS) 2019 [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/50980/SAS%20data%20files.zip?v=9778.8",
+      "dataset_collection_method": "The basic approach of The DHS Program is to collect data that are comparable across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. These model questionnairesΓÇöwhich have been reviewed and modified in each of the seven phases of The DHS ProgramΓÇöform the basis for the questionnaires that are applied in each country. Typically, a country is asked to adopt the model questionnaire in its entirety, but can add questions of particular interest. However, questions in the model can be deleted if they are irrelevant in a particular country. There are two types of DHS surveys:                                Standard DHS Surveys have large sample sizes (usually between 5,000 and 30,000 households) and typically are conducted about every 5 years, to allow comparisons over time.                                Interim DHS Surveys focus on the collection of information on key performance monitoring indicators but may not include data for all impact evaluation measures (such as mortality rates). These surveys are conducted between rounds of DHS surveys and have shorter questionnaires than DHS surveys. Although nationally representative, these surveys generally have smaller samples than DHS surveys.                                 DHS surveys collect primary data using four types of Model Questionnaires. A Household Questionnaire is used to collect information on characteristics of the household's dwelling unit and characteristics of usual residents and visitors. It is also used to identify members of the household who are eligible for an individual interview. Eligible respondents are then interviewed using an Individual Woman's or Man's Questionnaire. The Biomarker Questionnaire is used to collect biomarker data on children, women, and men. For special information on topics that are not contained in the Model Questionnaires, optional Questionnaire Modules are available. Interviews are conducted only if the respondent provides voluntary informed consent. ",
+      "last_scraped": "2023-09-25T19:36:08.986395+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 4,
+    "fields": {
+      "dataset_name": "Survey of Consumer Finances (SCF)",
+      "about_info": "The Survey of Consumer Finances (SCF) is normally a triennial cross-sectional survey of U.S. families. The survey data include information on familiesΓÇÖ balance sheets, pensions, income, and demographic characteristics. Information is also included from related surveys of pension providers and the earlier such surveys conducted by the Federal Reserve Board. No other study for the country collects comparable information. Data from the SCF are widely used, from analysis at the Federal Reserve and other branches of government to scholarly work at the major economic research centers.",
+      "last_updated": "March 10, 2022",
+      "dataset_file_format": "['sas', 'stata', 'ascii']",
+      "dataset_status": "Active",
+      "sponsor_name": "Federal Reserve Board's Division of Research and Statistics",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.federalreserve.gov/econres/scfindex.htm",
+      "dataset_website_link": "https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey/",
+      "dataset_citation": "Federal Reserve Board's Division of Research and Statistics (year of release). Survey of Consumer Finances (SCF) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n Federal Reserve Board's Division of Research and Statistics (2020). Survey of Consumer Finances (SCF) 2019 [Data set]. Retrieved from https://www.federalreserve.gov/econres/scfindex.htm\n",
+      "dataset_collection_method": "The survey has contained a panel element over two periods. Respondents to the 1983 survey were re-interviewed in 1986 and 1989. Respondents to the 2007 survey were re-interviewed in 2009.                                The study is sponsored by the Federal Reserve Board in cooperation with the Department of the Treasury. Since 1992, data have been collected by the NORC at the University of Chicago.                                 Participation in the study is strictly voluntary. However, because only about 6,500 families were interviewed in the most recent study, every family selected is very important to the results. To maintain the scientific validity of the study, interviewers are not allowed to substitute respondents for families that do not participate. Thus, if a family declines to participate, it means that families like theirs may not be represented clearly in national discussions.",
+      "last_scraped": "2023-09-25T19:36:09.705559+00:00",
+      "other_info": "https://www.federalreserve.gov/econres/scf_faqs.htm"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 5,
+    "fields": {
+      "dataset_name": "SafeGraph",
+      "about_info": "SafeGraph is a data company that collects and provides datasets related to location-based analytics. The SafeGraph dataset contains anonymized data on foot traffic patterns at various locations, such as businesses, points of interest, and residential areas. The dataset includes information on the number of visitors to these locations, the duration of their visits, and other relevant data points. SafeGraph is narrowly focused on building the most accurate global places dataset available, empowering modern builders to create world-class location-based applications and analytics tools. SafeGraph curates the most accurate and precise database of global points of interest each month to power applications, platforms, and services with a location component. As a source of truth for the physical world, SafeGraph data provides an up-to-date record of where places are located and detailed attribution about each of those places, such as when it opened or closed, what type of place it is, what other places it is affiliated with, and how people interact with that location. SafeGraph delivers high quality data in a unified schema to reduce time spent cleaning and munging data, and serves as a partner in data curation and sourcing for organizations building location-based products and services. Keep reading our technical docs to see our schema, monthly metrics, and helpful information about data delivery and evaluations.",
+      "last_updated": "Monthly",
+      "dataset_file_format": "['CSV', 'JSON', 'Parquet']",
+      "dataset_status": "Active",
+      "sponsor_name": "SafeGraph",
+      "access_type": "Paid Access",
+      "dataset_link": "https://docs.safegraph.com/docs/bulk-data-delivery",
+      "dataset_website_link": "https://www.safegraph.com/",
+      "dataset_citation": "SafeGraph (year of release). SafeGraph [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n SafeGraph (2020). SafeGraph  [Data set]. Retrieved from https://docs.safegraph.com/docs/bulk-data-delivery\n",
+      "dataset_collection_method": "Safegraph dataset is collected through mobile devices such as smartphones. The company collects location data from apps installed on mobile devices that opt-in to location tracking. The data is collected and aggregated into anonymized patterns and then made available to researchers and businesses for analysis. The Safegraph dataset includes various types of location data, including visitation patterns to specific places, foot traffic, and demographic information. The dataset is updated regularly to provide up-to-date information on location trends and changes.",
+      "last_scraped": "2023-07-30T23:03:13.009773+00:00",
+      "other_info": "https://docs.safegraph.com/docs/faqs"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 6,
+    "fields": {
+      "dataset_name": "American Time Use Survey (ATUS) - Eating and Health Module (EHM)",
+      "about_info": "USDAΓÇÖs Economic Research Service, along with its funding and technical assistance cosponsorsΓÇöthe Food and Nutrition Service (FNS) and the National Cancer Institute (NCI)ΓÇöworked with the Bureau of Labor Statistics (BLS) and the Census Bureau to collect data for the 2014-16 Eating & Health Module (EH Module), a supplement to the American Time Use Survey (ATUS). The 2014-16 EH Module asks ATUS respondents about secondary eatingΓÇöthat is, eating while doing another activity; soft drink consumption; grocery shopping preferences and fast food purchases; meal preparation and food safety practices; food assistance participation; general health, height and weight, and exercise; and income.┬á",
+      "last_updated": "December 07, 2017",
+      "dataset_file_format": "{'xlsx', 'csv'}",
+      "dataset_status": "Inactive",
+      "sponsor_name": "United States Department of Agriculture's Economic Research Service",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.ers.usda.gov/data-products/eating-and-health-module-atus/",
+      "dataset_website_link": "https://www.bls.gov/tus/modules/ehdatafiles.htm",
+      "dataset_citation": "United States Department of Agriculture's Economic Research Service (year of release). American Time Use Survey (ATUS) - Eating and Health Module (EHM) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n United States Department of Agriculture's Economic Research Service (2020). American Time Use Survey (ATUS) - Eating and Health Module (EHM) [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/50980/SAS%20data%20files.zip?v=9778.8\n ",
+      "dataset_collection_method": "USDAΓÇÖs Economic Research Service, along with its funding and technical assistance cosponsorsΓÇöthe Food and Nutrition Service (FNS) and the National Cancer Institute (NCI)ΓÇöworked with the Bureau of Labor Statistics (BLS) and the Census Bureau to collect data for the 2014-16 Eating & Health Module (EH Module), a supplement to the American Time Use Survey (ATUS). The 2014-16 EH Module asks ATUS respondents about secondary eatingΓÇöthat is, eating while doing another activity; soft drink consumption; grocery shopping preferences and fast food purchases; meal preparation and food safety practices; food assistance participation; general health, height and weight, and exercise; and income.",
+      "last_scraped": "2023-07-30T23:03:13.451878+00:00",
+      "other_info": "https://www.ers.usda.gov/data-products/eating-and-health-module-atus/module-questions/"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 8,
+    "fields": {
+      "dataset_name": "American Community Survey (ACS)",
+      "about_info": "The American Community Survey (ACS) helps local officials, community leaders, and businesses understand the changes taking place in their communities. It is the premier source for detailed population and housing information about our nation.\n\n The American Community Survey (ACS) is an ongoing survey that provides vital information on a yearly basis about our nation and its people. Information from the survey generates data that help determine how more than $675 billion in federal and state funds are distributed each year.\n\n Through the ACS, we know more about jobs and occupations, educational attainment, veterans, whether people own or rent their homes, and other topics. Public officials, planners, and entrepreneurs use this information to assess the past and plan the future. When you respond to the ACS, you are doing your part to help your community plan for hospitals and schools, support school lunch programs, improve emergency services, build bridges, and inform businesses looking to add jobs and expand to new markets, and more.",
+      "last_updated": "May 02, 2023",
+      "dataset_file_format": "['csv', 'excel']",
+      "dataset_status": "Active",
+      "sponsor_name": "US Census Bureau",
+      "access_type": "Open Access",
+      "dataset_link": "https://data.census.gov/",
+      "dataset_website_link": "https://www.census.gov/programs-surveys/acs",
+      "dataset_citation": "US Census Bureau (year of release). American Community Survey (ACS) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n US Census Bureau (2020). American Community Survey (ACS)  [Data set]. Retrieved from https://data.census.gov/\n",
+      "dataset_collection_method": "The American Community Survey (ACS) is an ongoing survey conducted by the US Census Bureau. The survey collects data on a range of social, economic, and housing characteristics of the US population on a continuous basis throughout the year. The ACS is conducted using both mail and in-person interviews, and respondents are selected through a random sampling process. The survey is designed to be representative of the entire US population, including people living in households and group quarters (such as college dormitories, correctional facilities, and nursing homes). The data collected through the ACS is used by a wide range of organizations, including government agencies, academic researchers, and non-profit organizations, to better understand the needs of US communities and make informed decisions.",
+      "last_scraped": "2023-08-01T02:23:31.362230+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 9,
+    "fields": {
+      "dataset_name": "Irish National Farm Survey (NFS)",
+      "about_info": "The National Farm Survey (NFS) has been conducted by Teagasc on an annual basis since 1972. The survey is operated as part of the Farm Accountancy Data Network of the EU and fulfils IrelandΓÇÖs statutory obligation to provide data on farm output, costs and income to the European Commission. A random, nationally representative sample, of between 1,000 and 1,200 farms depending on the year, is selected annually in conjunction with the Central Statistics Office (CSO). Each farm is assigned a weighting factor so that the results of the survey are representative of the national population of farms. Pigs and poultry systems are not represented because of the small number of farms in these systems. Co-operation in the survey is voluntary but the survey is supported by the main farming organisations. The success of the NFS is largely dependent on the voluntary co-operation of farmers in providing reliable and accurate data on their farm businesses.",
+      "last_updated": "June 12, 2023",
+      "dataset_file_format": "['pdf']",
+      "dataset_status": "Active",
+      "sponsor_name": "Teagasc, the Irish Agriculture and Food Development Authority.",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.ucd.ie/issda/data/",
+      "dataset_website_link": "https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/",
+      "dataset_citation": "Teagasc, the Irish Agriculture and Food Development Authority. (year of release). Irish National Farm Survey (NFS) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n Teagasc, the Irish Agriculture and Food Development Authority. (2020). Irish National Farm Survey (NFS)  [Data set]. Retrieved from https://www.ucd.ie/issda/data/\n",
+      "dataset_collection_method": "The data collected cover all the key financial and physical indicators at farm level viz inventories, sales, purchases, costs, subsidies, liabilities, assets, cropping programme, yields etc.\n\nIn recent years the NFS has extended the range of data covered to the farm household, as the increased emphasis on rural development and viability of rural communities has placed greater emphasis on farm household data e.g. off-farm employment and income, farm inheritance, household composition, age structure etc. Additional data are also being collected regarding environmental issues.\n\nData is collected using laptop computers on a regular basis throughout the year by a team of trained Teagasc Research Technicians located throughout the country. The NFS has always been conducted to ensure total confidentiality of individual farmerΓÇÖs data. A unique code is used to identify each farm thus ensuring that data cannot be linked to a particular farm.",
+      "last_scraped": "2023-07-30T23:03:25.148394+00:00",
+      "other_info": "[{'dataset_usage': ['Financial', 'Research', 'Policy', 'Farm advice/benchmark performance', 'EU Farm Accountancy Data Network (FADN)', 'National Data on Agriculture']}, {'dataset_access_info': 'To access the data, please complete a ISSDA Data Request Form for Research Purposes\\n\\nLink to download form:https://www.ucd.ie/issda/t4media/ISSDA_Application_Research_V5.docx\\n\\nsign it, and send it to ISSDA by email <issda@ucd.ie>.\\n\\nData will be disseminated on receipt of a fully completed, signed form. Incomplete or unsigned forms will be returned to the data requester for completion.'}, {'dataset_reports': 'https://www.teagasc.ie/rural-economy/rural-economy/national-farm-survey/national-farm-survey-reports/'}]"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 10,
+    "fields": {
+      "dataset_name": "Current Population Survey (CPS)",
+      "about_info": "The Current Population Survey (CPS) is one of the oldest, largest, and most well-recognized surveys in the United States.  It is immensely important, providing information on many of the things that define us as individuals and as a society ΓÇô our work, our earnings, and our education. In addition to being the primary source of monthly labor force statistics, the CPS is used to collect data for a variety of other studies that keep the nation informed of the economic and social well-being of its people.  This is done by adding a set of supplemental questions to the monthly basic CPS questions.  Supplemental inquiries vary month to month and cover a wide variety of topics such as child support, volunteerism, health insurance coverage, and school enrollment.  Supplements are usually conducted annually or biannually, but the frequency and recurrence of a supplement depend completely on what best meets the needs of the supplementΓÇÖs sponsor. The CPS data collection has been approved by the Office of Management and Budget (OMB Number 0607-0049).  Without this number, we could not conduct this survey.",
+      "last_updated": "January 17, 2023",
+      "dataset_file_format": "['csv', 'pdf', 'sas', 'txt']",
+      "dataset_status": "Active",
+      "sponsor_name": "US Census Bureau",
+      "access_type": "Open Access",
+      "dataset_link": "https://data.census.gov/mdat/#/",
+      "dataset_website_link": "https://www.census.gov/programs-surveys/cps.html",
+      "dataset_citation": "US Census Bureau (year of release). Current Population Survey (CPS) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n US Census Bureau (2020). Current Population Survey (CPS)  [Data set]. Retrieved from https://data.census.gov/mdat/#/\n",
+      "dataset_collection_method": "The CPS is administered by the Census Bureau using a probability selected sample of about 60,000 occupied households. The fieldwork is conducted during the calendar week that includes the 19th of the month. The questions refer to activities during the prior week; that is, the week that includes the 12th of the month. Households from all 50 states and the District of Columbia are in the survey for 4 consecutive months, out for 8, and then return for another 4 months before leaving the sample permanently. This design ensures a high degree of continuity from one month to the next (as well as over the year). The 4-8-4 sampling scheme has the added benefit of allowing the constant replenishment of the sample without excessive burden to respondents.\n\nThe CPS questionnaire is a completely computerized document that is administered by Census Bureau field representatives across the country through both personal and telephone interviews. Additional telephone interviewing is conducted from the Census BureauΓÇÖs two centralized collection facilities in Jeffersonville, Indiana and Tucson, Arizona.\n\nMore information can be found at: https://www.census.gov/programs-surveys/cps/technical-documentation/methodology.html",
+      "last_scraped": "2023-09-25T19:36:03.667277+00:00",
+      "other_info": "[{'Annual Social and Economic Supplements': 'https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html'}, {'Basic Monthly CPS': 'https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic.html'}, {'CPS Basic Extraction Files': 'https://www.census.gov/data/datasets/time-series/demo/cps/cps-basic-extractions.html'}, {'CPS Certification Items Extract Files': 'https://www.census.gov/data/datasets/time-series/demo/cps/cps-cert.html'}, {'CPS Supplement and Replicate Weights': 'https://www.census.gov/data/datasets/time-series/demo/cps/cps-supp_cps-repwgt.html'}]"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 11,
+    "fields": {
+      "dataset_name": "Irish Census of Agriculture (ICA)",
+      "about_info": "An Agricultural Census is a statistical operation to compile census data on crops, livestock, farm labour and miscellaneous agricultural items for collecting, processing and disseminating data on all farms and farmers in a country.The Census of Agriculture survey is a statutory survey conducted every 10 years under the provisions of the Statistics (Census of Agriculture) Order, 2020 (S.I. No 281 of 2020). Under Sections 26 and 27 of the 1993 Statistics Act you are obliged by law to complete and return this form. Any person who fails or refuses to provide this information or who knowingly provides false information may be subject to prosecution under Part VI of the Act.",
+      "last_updated": "November 23, 2020",
+      "dataset_file_format": "['pdf']",
+      "dataset_status": "Active",
+      "sponsor_name": "Central Statistics Office",
+      "access_type": "Open Access",
+      "dataset_link": "https://ec.europa.eu/eurostat/web/agriculture/data/main-tables",
+      "dataset_website_link": "https://www.cso.ie/en/methods/agricultureandfishing/censusofagriculture/",
+      "dataset_citation": "N/A (year of release). Irish Census of Agriculture (ICA) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n N/A (2020). Irish Census of Agriculture (ICA)  [Data set]. Retrieved from https://www.cso.ie/en/statistics/agriculture/censusofagriculture2010/\n",
+      "dataset_collection_method": "Within the European Union (EU), each of the Member States will be tasked with collecting set data for the farmers and the farms above certain physical thresholds in their country. This will mean collecting data on as many as 10.5 million farms (2016 data) in the EU.\n\nMember States will establish teams of supervisors and enumerators to conduct the Agricultural Census, typically overseen by a combination of civil servants from the Statistical Office and the Ministry of Agriculture. They will use all types of collection methods to complete the Agricultural Census, inter alia farm registers, administrative sources and surveys. For the surveys, enumerators will contact farmers over the internet, by telephone, by letter or through face-to-face questioning. By allowing a more extensive use of administrative sources in 2020, the overall cost of the census will be reduced. At the same time, the burden on farmers will be alleviated, as they will receive questionnaires that are already partially pre-filled.\n\nIn the EUΓÇÖs Agricultural Census 2020 approximately 300 variables will be collected, covering the following aspects on farming:\n\nGeneral characteristics of the farm and the farmer\nLand\nLivestock\nLabour force\nAnimal housing and manure management\nRural development support measures.",
+      "last_scraped": "2023-09-25T19:36:04.417314+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 12,
+    "fields": {
+      "dataset_name": "Residential Energy Consumption Survey (RECS)",
+      "about_info": "EIA administers the Residential Energy Consumption Survey (RECS) to a nationally representative sample of housing units. Traditionally, specially trained interviewers collect energy characteristics on the housing unit, usage patterns, and household demographics. For the 2020 survey cycle, EIA used Web and mail forms to collect detailed information on household energy characteristics. This information is combined with data from energy suppliers to these homes to estimate energy costs and usage for heating, cooling, appliances and other end uses ΓÇö information critical to meeting future energy demand and improving efficiency and building design.\n\nFirst conducted in 1978, the fifteenth RECS collected data from nearly 18,500 households in housing units statistically selected to represent the 123.5 million housing units that are occupied as a primary residence. Data from the 2020 RECS are tabulated by geography and for particularly characteristics, such as housing unit type and income, that are of particular interest to energy analysis.\n\nThe results of each RECS include data tables, a microdata file, and a series of reports. Data tables are generally organized across two headings; 'Household Characteristics' and 'Consumption & Expenditures.'",
+      "last_updated": "September 2023",
+      "dataset_file_format": "['pdf', 'xls', 'zip']",
+      "dataset_status": "Active",
+      "sponsor_name": "U.S. Energy Information Administration (EIA), a statistical agency of the U.S. Department of Energy.",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.eia.gov//consumption/residential/data/2020",
+      "dataset_website_link": "https://www.eia.gov/consumption/residential/",
+      "dataset_citation": "U.S. Energy Information Administration (EIA), a statistical agency of the U.S. Department of Energy. (year of release). Residential Energy Consumption Survey (RECS) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n U.S. Energy Information Administration (EIA), a statistical agency of the U.S. Department of Energy. (2020). Residential Energy Consumption Survey (RECS)  [Data set]. Retrieved from https://www.eia.gov/consumption/residential/data/2020\n",
+      "dataset_collection_method": "The Household Survey, a voluntary survey, collects data on energy-related characteristics and usage patterns of a national and sub-national (e.g., states) representative sample of housing units. The Energy Supplier Survey (ESS), a mandatory data collection, collects data on how much electricity, natural gas, propane/LPG, and fuel oil/kerosene were consumed in the sampled housing units during the reference year. The ESS also collects data on actual dollar amounts spent on these energy sources. EIA uses models (energy engineering-based models in the 2015 and 2020 survey) to produce consumption and expenditures estimates for heating, cooling, refrigeration, and other end uses in all housing units occupied as a primary residence in the United States using the data collected from the Household Survey and ESS. Wood-use estimates are also included as part of RECS. The target population for the RECS is all occupied housing units in the 50 states and the District of Columbia (DC) that are used as primary residences. The 2020 RECS introduced a completely self-administered design via web and paper questionnaire.",
+      "last_scraped": "2023-09-25T19:36:05.982938+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 13,
+    "fields": {
+      "dataset_name": "PRISM",
+      "about_info": "The PRISM Climate Group gathers climate observations from a wide range of monitoring networks, applies sophisticated quality control measures, and develops spatial climate datasets to reveal short- and long-term climate patterns. The resulting datasets incorporate a variety of modeling techniques and are available at multiple spatial/temporal resolutions, covering the period from 1895 to the present. PRISM datasets provide estimates of seven primary climate elements: precipitation (ppt), minimum temperature (tmin), maximum temperature (tmax), mean dew point (tdmean), minimum vapor pressure deficit (vpdmin), maximum vapor pressure deficit (vpdmax), and total global shortwave solar radiation on a horizontal surface (soltotal; available only as normals at this time). Mean temperature (tmean) is derived as the average of tmax and tmin. Three ancillary solar radiation variables are provided in the normals dataset: total global solar radiation on a horizontal surface under clear sky conditions (solclear), effective cloud transmittance (soltrans), and total global solar radiation on a sloped surface (solslope).",
+      "last_updated": "September 25, 2023",
+      "dataset_file_format": "['png', 'zip', 'bil', 'xml', 'hdr', 'txt', 'csv', 'prj', 'stx']",
+      "dataset_status": "Active",
+      "sponsor_name": "The PRISM Climate Group, Oregon State University.",
+      "access_type": "Open Access",
+      "dataset_link": "[{'30-Year Normals': 'https://prism.oregonstate.edu/normals', 'Comparisons': 'https://prism.oregonstate.edu/comparisons', 'This Month': 'https://prism.oregonstate.edu/mtd', 'Prior 6 Months': 'https://prism.oregonstate.edu/6month/', 'Recent Years': 'https://prism.oregonstate.edu/recent', 'Historical Past': 'https://prism.oregonstate.edu/historical', 'Projects': 'https://prism.oregonstate.edu/projects', 'Data Explorer': 'https://prism.oregonstate.edu/explorer'}]",
+      "dataset_website_link": "https://prism.oregonstate.edu/",
+      "dataset_citation": "The PRISM Climate Group, Oregon State University. (year of release). PRISM [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n The PRISM Climate Group, Oregon State University. (2020). PRISM  [Data set]. Retrieved from https://prism.oregonstate.edu/normals\n",
+      "dataset_collection_method": "The PRISM dataset is collected through a process called parameter-elevation regressions on independent slopes model (PRISM). PRISM is a statistically-based, spatially-distributed climate model that uses a variety of input data sources to produce high-resolution climate data estimates for specific locations and time periods.\n\nThe input data for PRISM includes weather station data, remote sensing data, and digital elevation models. These data are combined using statistical models to create climate data estimates for various climate variables, such as temperature and precipitation, at high spatial resolutions.\n\nPRISM is designed to account for topographic and climatic differences across different regions, and is continuously updated as new data becomes available. The resulting PRISM dataset is widely used by researchers, government agencies, and other stakeholders for a variety of applications, including climate monitoring, water resource management, agriculture, and ecological modeling.",
+      "last_scraped": "2023-09-25T19:36:06.170550+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 14,
+    "fields": {
+      "dataset_name": "Purchase to Plate National Average Prices (PP-NAP)",
+      "about_info": "The Purchase to Plate Suite (PP-Suite) is a set of data products developed by linking household and retail grocery scanner data with the USDA Food and Nutrient Database for Dietary Studies (FNDDS), one of USDAΓÇÖs nutrition databases. The National Average Prices allow users to import price estimates for foods found in USDA dietary survey data. Restricted access elements of the Purchase to Plate Suite include the Crosswalk, Price Tool, and Ingredient Tool. The Purchase to Plate National Average Prices (PP-NAP) for WWEIA/NHANES provides unit price estimates for the foods participants reported eating in What We Eat in America (WWEIA), the dietary component of the National Health and Nutrition Examination Survey (NHANES). The estimates are derived using the Purchase to Plate Crosswalk, the Purchase to Plate Price Tool, and retail grocery scanner data. The primary purpose of the PP-NAP is to support the updates of the market baskets for the USDA Food Plans, including the Thrifty Food Plan. Each price series covers 2 years of data (e.g., 2015/16).",
+      "last_updated": "March 08, 2023",
+      "dataset_file_format": "['csv', 'xlsx']",
+      "dataset_status": "Active",
+      "sponsor_name": "United States Department of Agriculture (USDA), Agricultural Research Service (ARS).",
+      "access_type": "Open Access",
+      "dataset_link": "['https://www.ers.usda.gov//webdocs/DataFiles/105537/pp_national_average_prices_csv.zip?v=4285.6', 'https://www.ers.usda.gov//webdocs/DataFiles/105537/pp_national_average_prices.xlsx?v=4285.6']",
+      "dataset_website_link": "https://www.ers.usda.gov/data-products/purchase-to-plate/",
+      "dataset_citation": "United States Department of Agriculture (USDA), Agricultural Research Service (ARS). (year of release). Purchase to Plate National Average Prices (PP-NAP) [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n United States Department of Agriculture (USDA), Agricultural Research Service (ARS). (2020). Purchase to Plate National Average Prices (PP-NAP)  [Data set]. Retrieved from https://www.ers.usda.gov/webdocs/DataFiles/105537/pp_national_average_prices_csv.zip?v=5938.6\n",
+      "dataset_collection_method": "The datasets (described below) used to build PP-NAP are USDAΓÇÖs What We Eat in America (WWEIA), the dietary component of the National Health and Nutrition Examination Survey (NHANES), the USDA Food and Nutrient Database for Dietary Studies (FNDDS), the Information Resources, Inc. (IRI) retail grocery scanner data, and the Purchase to Plate Crosswalk (PPC). The generalized process for construction of the national average prices is as follows:\n\n    \n1. Select USDA food codes representing foods or beverages that were reported 10 or more times in the WWEIA cycle, or are needed for the Thrifty Food Plan (TFP) market basket update.\n    \n2. Review recipes in the FNDDS of the selected foods to determine whether recipe modifications are needed to accommodate convenience foods and include standard substitutions in the recipe.\n    \n3. Calculate the total purchase weight sold and expenditure for each item in the IRI data.\n    \n4. Link scanner data Universal Product Codes (UPCs) (barcodes) to food codes in the USDA nutrition databases using the PPC.\n    \n5. Convert purchase weight to edible weight for each UPC using the PPC conversion factors.\n    \n6. Sum the total expenditure and edible weight across UPCs for each USDA food code.\n    \n7. Calculate the average price per 100 grams of the USDA food codes by dividing expenditure by edible weight.\n    \n8. Apply average unit prices for the USDA food codes to the recipes identified in step two and calculate the unit price of the FNDDS foods selected in step one.\n    \n\nThe resulting prices are nationally representative of foods reported eaten by WWEIA/NHANES participants. The resulting price for any particular food may be derived from multiple brands and private labels, package sizes, flavors, and types. The IRI grocery scanner data represent individual products as purchased in a grocery store. The WWEIA/NHANES codes and supporting recipes in the FNDDS are more general (e.g., BBQ sauce versus a brand-specific BBQ sauce).",
+      "last_scraped": "2023-09-25T19:36:07.062671+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 15,
+    "fields": {
+      "dataset_name": "What We Eat In America (WWEIA)",
+      "about_info": "What We Eat in America (WWEIA), NHANES is a national food survey conducted as a partnership between the U.S. Department of Health and Human Services (HHS) and the U.S. Department of Agriculture (USDA). WWEIA represents the integration of two nationwide surveys - USDA's Continuing Survey of Food Intakes by Individuals (CSFII) and HHS' NHANES. Under the integrated framework, HHS is responsible for the sample design and data collection. USDA is responsible for the survey's dietary data collection methodology, development and maintenance of the food and nutrient databases used to code and process the data. The two surveys were integrated in 2002.",
+      "last_updated": "August 09, 2022",
+      "dataset_file_format": "['pdf']",
+      "dataset_status": "Active",
+      "sponsor_name": "U.S. Department of Agriculture (USDA) and the U.S. Department of Health and Human Services (DHHS)",
+      "access_type": "Open Access",
+      "dataset_link": "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/food-surveys-research-group/docs/wweianhanes-overview/",
+      "dataset_website_link": "https://data.nal.usda.gov/dataset/what-we-eat-america-wweia-database",
+      "dataset_citation": "U.S. Department of Agriculture, Agricultural Research Service, Beltsville Human Nutrition Research Center, Food Surveys Research Group (Beltsville, MD) and U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Health Statistics (Hyattsville, MD). What We Eat in America, NHANES YYYY-YYYY Type of File: Descriptive Name of File (FILENAME). (YYYY, Month). Available from: http://www.cdc.gov/remainder_of_url.xxx [accessed MM/DD/YY].",
+      "dataset_collection_method": "Two days of 24-hour dietary recall data are collected in WWEIA, NHANES. The Day 1 interview is conducted in person in the Mobile Examination Center (MEC). The Day 2 interview is collected by telephone 3 to 10 days later, but not on the same day of the week as the Day 1 interview. \n                                \n\nTrained interviewers using the 5-step USDA Automated Multiple-Pass Method (AMPM) collect dietary intakes. The AMPM includes an extensive compilation of standardized food-specific questions and possible response options. Routing of questions is based on previous response. The AMPM is revised for each 2-year collection of WWEIA to reflect the changing food supply. Read more about the AMPM. \n                                \n\nDuring the 24-hour recall, respondents estimate the amount of food and beverages consumed using 3-dimentional models on Day 1 and the USDAs Food Model Booklet on Day 2.",
+      "last_scraped": "2023-09-25T19:36:07.688346+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 16,
+    "fields": {
+      "dataset_name": "NIQ Homescan",
+      "about_info": "Nielsen Homescan dataset tracks, diagnose, and analyze consumer behavior from more than 250,000 households across 25 countries. NielsenIQ homescan helps in understanding consumer behavior across all outlets in order to guide in making decisions for attracting new shoppers and encouraging existing shoppers to buy more.",
+      "last_updated": "N/A",
+      "dataset_file_format": "N/A",
+      "dataset_status": "N/A",
+      "sponsor_name": "NielsenIQ",
+      "access_type": "Restriced and Paid Access",
+      "dataset_link": "https://nielseniq.com/global/en/solutions/homescan/#",
+      "dataset_website_link": "https://nielseniq.com/global/en/solutions/homescan/",
+      "dataset_citation": "NielsenIQ (year of release). NIQ Homescan [Data set]. Retrieved from [URL]\n For example, the citation would look like:\n NielsenIQ (2020). NIQ Homescan  [Data set]. Retrieved from https://nielseniq.com/global/en/\n",
+      "dataset_collection_method": "The Nielsen Homescan dataset is collected using a panel of households who are given a handheld scanner or use a mobile app to scan the barcodes of the products they purchase. The panel is representative of the general population and households are chosen to participate based on their demographics. Panel members are typically given incentives such as cash, gift cards, or free products to encourage participation. The data collected includes information on the products purchased, prices paid, where the products were purchased, and other demographic information about the household. This data is then aggregated and analyzed to provide insights into consumer behavior and market trends.",
+      "last_scraped": "2023-05-30T04:18:57.995130+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 17,
+    "fields": {
+      "dataset_name": "NIQ TDLinx",
+      "about_info": "Nielsen TDLinx dataset is a dynamic catalog of retail and on-premise location information that delivers a consistent view of store-level performance and startegic needs. NIQ TDLinx provides location-based and store-level insights to make data-driven distribution decisions with ease. Using this dataset one can monitor the retail footprint and pinpoint opportunities to expand brandΓÇÖs reach in key retail and on-premise channels.",
+      "last_updated": "N/A",
+      "dataset_file_format": "N/A",
+      "dataset_status": "N/A",
+      "sponsor_name": "NielsenIQ",
+      "access_type": "Restriced and Paid Access",
+      "dataset_link": "https://nielseniq.com/global/en/solutions/tdlinx/#",
+      "dataset_website_link": "https://nielseniq.com/global/en/solutions/tdlinx/",
+      "dataset_citation": "To cite the Nielsen TDLinx dataset in APA format in your research paper, you can use the following citation format:\n\nNielsen (Year). TDLinx [Dataset]. NielsenIQ. Retrieved from [URL]. \n\nFor example, in your reference list, the citation would look like this::\n\nNielsen. (2021). Nielsen TDLinx [Dataset]. Retrieved from https://www.nielsen.com/us/en/solutions/capabilities/retail-measurement/tdlinx/\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well.",
+      "dataset_collection_method": "The Nielsen TDLinx dataset is collected through field visits and data collection processes that involve scanning and recording information about retail stores. The data includes information about store locations, attributes such as size and type of store, and the products sold in those stores. The information is collected by trained field staff who visit the stores and gather data using specialized equipment and software. The data is then processed and compiled into the TDLinx dataset for use by researchers, businesses, and other interested parties.",
+      "last_scraped": "2023-05-30T04:19:12.223015+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.dataset",
+    "pk": 18,
+    "fields": {
+      "dataset_name": "NIQ TDLinx",
+      "about_info": "Nielsen TDLinx dataset is a dynamic catalog of retail and on-premise location information that delivers a consistent view of store-level performance and startegic needs. NIQ TDLinx provides location-based and store-level insights to make data-driven distribution decisions with ease. Using this dataset one can monitor the retail footprint and pinpoint opportunities to expand brandΓÇÖs reach in key retail and on-premise channels.",
+      "last_updated": "N/A",
+      "dataset_file_format": "N/A",
+      "dataset_status": "N/A",
+      "sponsor_name": "NielsenIQ",
+      "access_type": "Restriced and Paid Access",
+      "dataset_link": "https://nielseniq.com/global/en/solutions/tdlinx/#",
+      "dataset_website_link": "https://nielseniq.com/global/en/solutions/tdlinx/",
+      "dataset_citation": "To cite the Nielsen TDLinx dataset in APA format in your research paper, you can use the following citation format:\n\nNielsen (Year). TDLinx [Dataset]. NielsenIQ. Retrieved from [URL]. \n\nFor example, in your reference list, the citation would look like this::\n\nNielsen. (2021). Nielsen TDLinx [Dataset]. Retrieved from https://www.nielsen.com/us/en/solutions/capabilities/retail-measurement/tdlinx/\n\nMake sure to replace the URL with the specific URL of the dataset you used and the date of access with the date you accessed the dataset. Additionally, if there are specific tables or variables you used, you should include those in your citation as well.",
+      "dataset_collection_method": "The Nielsen TDLinx dataset is collected through field visits and data collection processes that involve scanning and recording information about retail stores. The data includes information about store locations, attributes such as size and type of store, and the products sold in those stores. The information is collected by trained field staff who visit the stores and gather data using specialized equipment and software. The data is then processed and compiled into the TDLinx dataset for use by researchers, businesses, and other interested parties.",
+      "last_scraped": "2023-05-08T16:46:48.833348+00:00",
+      "other_info": "N/A"
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 1,
+    "fields": {
+      "name": "Julia Lane",
+      "image": "persons/images/julia_lane.jpg",
+      "description": "Dr. Julia Lane is a Professor at the NYU Wagner Graduate School of Public Service, at the NYU Center for Urban Science and Progress, and a NYU Provostial Fellow for Innovation Analytics, having received her PhD in Economics from the University of Missouri. . She co-founded the Coleridge Initiative, whose goal is to use data to transform the way governments access and use data for the social good through training programs, research projects and a secure data facility. Prior to this, Julia was a Senior Managing Economist and Institute Fellow at American Institutes for Research. In this role, Julia co-founded the Institute for Research on Innovation and Science (IRIS) at the University of Michigan. Julia has held various positions at the National Science Foundation, The Urban Institute, The World Bank, American University and NORC at the University at Chicago. She also initiated and led the creation and permanent establishment of the Longitudinal Employer-Household Dynamics Program at the U.S. Census Bureau. This program began as a small two-year ASA Census Bureau fellowship and evolved into the first large-scale linked employer-employee dataset in the United States.\r\n\r\nJulia has published over 80 articles in leading economics journals and authored/edited ten books. She is an elected fellow of the American Association for the Advancement of Science, the International Statistical Institute, and a fellow of the American Statistical Association. She has been the recipient of over $70 million in grants; from foundations such as the National Science Foundation, the Alfred P. Sloan Foundation, the Ewing Marion Kauffman Foundation, the MacArthur Foundation, the Russell Sage Foundation, the Spencer Foundation, the National Institutes of Health, the Overdeck Family Foundation, the Schmidt Futures Foundation and the Bill and Melinda Gates Foundation; from government agencies such as the Departments of Commerce, Labor, and Health and Human Services in the U.S., the ESRC in the U.K., and the Department of Labour and Statistics New Zealand in New Zealand, as well as from international organizations such as the World Bank. Julia is the recipient of the 2014 Julius Shiskin award and the 2014 Roger Herriot award. She is also the recipient of the 2017 Warren E. Miller Award.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=5jJfv0RzP44",
+      "presentation_slides": "persons/presentation_slides/Lane_DIFA21.pdf",
+      "more_information": "https://wagner.nyu.edu/community/faculty/julia-lane",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 2,
+    "fields": {
+      "name": "Timothy Beatty",
+      "image": "persons/images/timothy_beatty.jpg",
+      "description": "Dr. Timothy Beatty is an associate professor in the Department of Agricultural and Resource Economics at The University of California, Davis. Born and raised in Toronto, Ontario, Canada, Tim received his Ph.D. from the Department of Agricultural and Resource Economics at UC Berkeley. His research looks at consumption behavior, in particular as it relates to poverty and health, with a particular focus on food consumption and the demand for nutrition and health at both the household and aggregate levels.\r\n\r\nTim started his career as a Canada Research Chair in the Food and Resource Economics Group at the University of British Columbia (Vancouver, Canada), followed by tenured faculty positions at the University of York (U.K.), and the University of Minnesota. Over the years, he has held visiting positions at the Statistics Norway, BI Norwegian Business School, and the University of Bologna. Tim has a long involvement with the Agricultural and Applied Economics Association, serving in leadership roles in the Food Safety and Nutrition section and the Econometrics section. He was recently appointed as one of the four co-editors of the American Journal of Agricultural Economics.\r\n\r\nTim and his wife Josephine have three children: Max, Finn, and Hazel.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=NDuzX3wuIQw",
+      "presentation_slides": "persons/presentation_slides/Beatty_DIFA21.pdf",
+      "more_information": "https://are.ucdavis.edu/people/faculty/tim-beatty/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 3,
+    "fields": {
+      "name": "Jason Owen-Smith",
+      "image": "persons/images/jason_owen_smith.jpg",
+      "description": "Dr. Jason Owen-Smith is a Professor of Sociology and Research Professor in the Institute for Social Research (ISR) at the University of Michigan, having received his Ph.D. in Sociology at the University of Arizona. JasonΓÇÖs work examines how complex networks among people and organizations shape knowledge-work and innovation. He is particularly interested in research universities and in the dynamics of scientific collaboration networks. Together with collaborators, Jason works on projects that examine the dynamics of high-technology industries, the public value of the research university, and the network organization of surgical care. JasonΓÇÖs work makes use of large-scale administrative data to study fundamental process of network change and their effects in policy relevant domains.\r\n\r\nFindings from this research have been published in outlets including Administrative Science Quarterly, the American Journal of Sociology, the American Sociological Review, Cell, Cell Stem Cell, Higher Education, JAMA Surgery, Management Science, Medical Care, Nature Biotechnology, Nature Methods, Organization Science, Research Policy, Science, and Social Studies of Science. Professor Owen-Smith is a co-founder and Executive Director of the Institute for Research on Innovation and Science (IRIS). He manages the activities of IRIS and is the liaison with future and current Member Institutions. In 2006, he received a National Science Foundation Faculty Early Career Development (CAREER) Award and an Alfred P. Sloan Foundation Industries Studies Fellowship in Biotechnology. In 2008 he was awarded the University of MichiganΓÇÖs Henry Russel Award, which recognizes mid-career faculty for exceptional scholarship and conspicuous teaching ability. In 2014 he was awarded the LSA Excellence in Teaching Award and the John Dewey Award by the college of Literature, Science and the Arts.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=p0lTVB4gQkE",
+      "presentation_slides": "persons/presentation_slides/Owensmith_DIFA21.pdf",
+      "more_information": "https://lsa.umich.edu/soc/people/faculty/jdos.html",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 4,
+    "fields": {
+      "name": "Ayaz Hyder",
+      "image": "persons/images/ayaz_hyder.jpg",
+      "description": "Dr. Ayaz Hyder is an Assistant Professor of Translational Data Analytics in the Environmental Health Sciences at The Ohio State University. Hyder received his PhD in Biology from McGill University in 2012. He then did his Postdoctoral training in Environmental Epidemiology at Yale University from 2011-2013. HyderΓÇÖs research specializes in systems science, agent-based modeling, birth outcomes/infant mortality, environmental epidemiology, air pollution, citizen science, the opioid epidemic, food insecurity, smart cities, and health economics.\r\n\r\nSome of his publications include COVID-19 Surveillance for Local Decision Making: An Academic, School District, and Public Health Collaboration, Opioid Treatment Deserts: Concept development and application in a US Midwestern urban county, Teaching systems science to public health professionals, and Translational data analytics in exposure science and environmental health: a citizen science approach with high school students. He placed 2nd in Poster Session #2 at the 2019 Society for Epidemiological Research Conference.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=bPcZ-QW78Pw",
+      "presentation_slides": "persons/presentation_slides/Hyder_DIFA21.pdf",
+      "more_information": "https://cph.osu.edu/people/ahyder",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 5,
+    "fields": {
+      "name": "Charlotte Ambrozek",
+      "image": "persons/images/charlotte_ambrozek.jpg",
+      "description": "Charlotte Ambrozek is Ph.D student at the University of California, Davis. As a Graduate Student Researcher, Ambrozek has been involved with projects related to food assistance policy and health in agricultural and rural communities. She studies participant and food retailer responses to WIC and SNAP program structure and policy changes. Prior to grad school she worked in Alaska Native communities on nutrition education. In Alaska, at Ilisagvik College, she was the Program Director for the Healthy Futures project from 2014 to 2016. She has also been involved in the Cornell Outdoor Education Alumni & Supporter and the Public-Private Alliance Foundation.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=8Jw-jFjcFkE",
+      "presentation_slides": "persons/presentation_slides/Ambrozek_DIFA21.pdf",
+      "more_information": "https://are.ucdavis.edu/people/grad-students/phd/charlotte-ambrozek/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 6,
+    "fields": {
+      "name": "Wen You",
+      "image": "persons/images/wen_you.jpg",
+      "description": "Dr. Wen You is an Associate Professor in the Department of Public Health Sciences at the University of Virginia, having received her Ph.D. in Agricultural Economics from Texas A&M University. Dr. YouΓÇÖs research focuses on applied health economics and health policy design and evaluation work. Her research program goal is to address health disparity through improving the economic welfare and health of disadvantaged populations (both domestically and internationally). Her research, teaching and mentoring are positioned at the intersections of health economics, econometrics, public health science, behavioral science and policy. Dr. You has utilized the strength of economic modeling and quantitative analytical skills to fill the theoretical and analytical gaps on non-laboratory behavioral intervention research and policy evaluations. Furthermore, she links interdisciplinary methodologies and frameworks back into traditional economic policy analytical frameworks to bring more realism and contextual relevance into economic models. Her current research program revolves around three connected themes that are crucial for improving human health and welfare: a) understanding individualΓÇÖs health behaviors; b) identifying incentives for promoting healthy behaviors; c) evaluating health policies and programs.\r\n\r\nDr. You has served as PI and co-I roles for several NIH and USDA funded interdisciplinary research grants and has published over 60 peer reviewed journal papers in economic and interdisciplinary journals including Health Economics, American Journal of Agricultural Economics, Journal of Nutrition, Social Science & Medicine, Preventive Medicine and Food Policy etc. Some of her publications include Food Policy, Review of Economics of the Household, Applied Economic Perspectives and Policy, and Contemporary Clinical Trials.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=XWrJ4ewASqE",
+      "presentation_slides": "persons/presentation_slides/You_DIFA21.pdf",
+      "more_information": "https://med.virginia.edu/phs/2019/08/01/you-wen/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 7,
+    "fields": {
+      "name": "Nichole Szembrot",
+      "image": "persons/images/Nichole_Headshot-2195.jpg",
+      "description": "Dr. Nichole Szembrot received her Ph.D. in Economics from Cornell University in August 2014. She is currently the Administrator for the Cornell Research Data Center. Her research interests include labor economics, public economics, behavioral economics, and economics of politics.\r\n\r\nA few of NicholeΓÇÖs publications include Experimental Study of Cursed Equilibrium in a Signaling Game, Are Voters Cursed When Politicians Conceal Policy Preferences?, Beyond Happiness and Satisfaction: Toward Well-Being Indices Based on Stated Preference, and Aggregating Local Preferences to Guide Marginal Policy Adjustments. Awards earned include the Center for Teaching and Learning Fellow from Trinity College, the Sage Fellowship from Cornell University, and the Trustee Scholarship from Boston University.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=XWrJ4ewASqE",
+      "presentation_slides": "persons/presentation_slides/Szembrot_DIFA21.pdf",
+      "more_information": "https://sites.google.com/site/nicholeszembrot/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 8,
+    "fields": {
+      "name": "Mark Prell",
+      "image": "persons/images/mark_prell.jpg",
+      "description": "Dr. Mark Prell is a Senior Economist in the Food Assistance Branch of ERSΓÇÖs Food Economics Division, having received his Ph.D. in Economics from MIT. The work of the branch covers four themes: (1) USDA food assistance programs, including the Supplemental Nutrition Assistance Program (SNAP, formerly known as the Food Stamp Program), the Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) and the school meals programs (the National School Lunch and School Breakfast Programs); (2) food security, including its measurement, and the determinants and consequences of its counterpart, food insecurity; (3) the statistical use of administrative records and linked data to promote research; and (4) food access. PrellΓÇÖs work has focused on the food assistance programs and promoting the statistical use of administrative and linked data.\r\n\r\nMark serves as a member of the Federal Committee of Statistical Methodology (FCSM), which the U.S. Office of Management and Budget (OMB) created to inform and advise OMB and heads of statistical agencies on methodological and statistical issues that affect the quality of Federal data. Mark has previously served in various roles at ERS between 1999 and the present, including as an Assistant Deputy Director from 1999 to 2003, and as Food Assistance Branch Chief from 2003 to 2010. Prior to joining ERS, he taught economics at both the undergraduate and graduate levels for a dozen years.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=XWrJ4ewASqE",
+      "presentation_slides": "persons/presentation_slides/Prell_DIFA21.pdf",
+      "more_information": "https://www.ers.usda.gov/authors/ers-staff-directory/mark-prell/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 9,
+    "fields": {
+      "name": "Bruce Weinberg",
+      "image": "persons/images/bruce_weinberg.jpg",
+      "description": "Dr. Bruce A. Weinberg received his Ph.D. from the University of Chicago in 1996 before joining the faculty at the Ohio State University, where he is now Professor of Economics and Public Affairs. His research spans three areas. The first is the economics of innovation and creativity. This work studies the production, diffusion, and value of innovations, including how creativity varies over the life cycle, how an individualΓÇÖs own creativity is affected by the presence of other important innovators, and disparities among researchers. The second area is family and neighborhood determinants of youth outcomes and behavior. This work studies how youth behaviors, including employment, delinquency, cognitive development, and risky behaviors, are affected by their families and peer groups. The third research area concerns technological change, industrial shifts, and the wage structure. This work studies how computerization and the shift from manufacturing to services have affected the gender wage gap, the racial wage gap, and the returns to experience.\r\n\r\nDr. WeinbergΓÇÖs research has been published in journals including The American Economic Review, The Journal of Political Economy, The Proceedings of the National Academy of the Sciences, and Science, and has been supported by the National Institutes of Health (NIA, NIGMS, NCATS, OBSSR), the National Science Foundation (EHR, Economics, SciSIP), and the Kauffman, Sloan, and Templeton Foundations. He has advised policy makers at a variety of levels and served on two Working Groups of the Advisory Committee to the NIH Director (the Next Generation and Biomedical Research Workforce, where he co-chaired the modeling subcommittee). His work has been covered publicly in/on the Economic Report of the President, ABC Radio, BBC Radio, CNN, NPR, all leading U.S. newspapers, and in outlets across the world.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=XWrJ4ewASqE",
+      "presentation_slides": "persons/presentation_slides/Weinberg_DIFA21.pdf",
+      "more_information": "https://economics.osu.edu/people/weinberg.27",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 10,
+    "fields": {
+      "name": "Matt Bombyk",
+      "image": "persons/images/matt_bombyk.jpg",
+      "description": "Matt Bombyk is currently a Ph.D student in Applied Economics at the University of Minnesota. He is also a member of the data user support team at IPUMS. MattΓÇÖs research interests include economic development and structural change, labor market institutions, air pollution control policies, and the effects of food labeling and certification. Prior to joining the Ph.D program, he worked as a research analyst for the State of Minnesota Labor Market Information Office, and as a research coordinator on several randomized program evaluations with Innovations for Poverty Action (IPA) in Mongolia.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=GRfKbc8fs40",
+      "presentation_slides": "persons/presentation_slides/Bombyk_DIFA21.pdf",
+      "more_information": "https://pop.umn.edu/people/matthew-bombyk",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 11,
+    "fields": {
+      "name": "Joe Cummins",
+      "image": "persons/images/joe_cummins.jpg",
+      "description": "Dr. Joe Cummins is an assistant professor in the Department of Economics at the University of California, Riverside. Cummins earned his Ph.D. in Economics from the University of California, Davis in 2014. Most of his research focuses on the economics of early life health in developing countries and on econometric methods related to that field. His major research and teaching fields are Development Economics, Health Economics, and Microeconometric Methods.\r\n\r\nJoeΓÇÖs publications include An Age Profile Perspective on Two Puzzles in Global Child Health: the Indian Enigma & Economic Growth, Maternal and Child Supplementation with Lipid-Based Nutrient Supplements, but Not Child Supplementation Alone, Decreases Self-Reported Household Food Insecurity in Some Settings, and Heterogeneous Treatment Effects in the Low Track: Revisiting the Kenyna Primary School Experiment. Some of his grants and awards include the National Society for Leadership and SuccessΓÇÖ Excellence in Teaching Award, the Rang-Din Nutrition Study grant through USAID/FANTA-3, and UC Davis Provost Dissertation Year Fellowship.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=Gh2Gv24yp44",
+      "presentation_slides": "persons/presentation_slides/Cummins_DIFA21.pdf",
+      "more_information": "https://www.josephrcummins.com/",
+      "team": "guest",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 12,
+    "fields": {
+      "name": "Lauren Chenarides",
+      "image": "persons/images/chen.png",
+      "description": "Dr. Lauren Chenarides is an Assistant Professor in the Morrison School of Agribusiness in the W. P. Carey Business School at Arizona State University. Dr. Chenarides has extensive experience in working with secondary, high-dimensional data sets to examine market structure, food access, and policy-oriented research questions. Her recent work has been published in Food Policy and Applied Economic Perspectives and Policy.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=_yIWVTy-72k",
+      "presentation_slides": "persons/presentation_slides/Chenarides_DIFA21.pdf",
+      "more_information": "https://wpcarey.asu.edu/people/profile/3153292",
+      "team": "leadership",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 13,
+    "fields": {
+      "name": "Khyati Malik",
+      "image": "persons/images/khyati.jpg",
+      "description": "Khyati Malik is pursuing a PhD degree in Applied Economics in the Department of Agricultural, Environmental, and Development Economics at The Ohio State University. Her research interests involve urban, regional, environmental and energy economics.",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "https://aede.osu.edu/our-people/khyati-malik",
+      "team": "research",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 14,
+    "fields": {
+      "name": "Mohammad Mashiur Rahman",
+      "image": "persons/images/rahman.jfif",
+      "description": "Mohammad Mashiur Rahman is a Ph.D. candidate in economics departement at The University of New Mexico, Albuquerque. He is an applied microeconomist with a focus on environmental and natural resource economics and applied econo- metrics. He is specifically interested in the valuation of environmental services, management of natural resources, agricultural economics, and the policy implications for local administration by analyzing the economic data from rigorous statistical models. Theretofore, he has papers published at Water Resources and Economics, Journal of Environmental Economics and Policy, and Journal of Health Management.",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "https://sites.google.com/view/mohammad-mashiur-rahman",
+      "team": "research",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 15,
+    "fields": {
+      "name": "Muhammad Tahir Ali",
+      "image": "persons/images/tahir.jfif",
+      "description": "Muhammad Tahir Ali is a Ph.D. Fulbright Scholar, Agricultural Economics Program, at the University of Nebraska Lincoln (UNL). His areas of interest are production economics, environmental economics, natural resource economics, and experimental economics. His dissertation research is focused on linking women empowerment in agriculture to household level crop efficiency; and investment in irrigation R & D and water efficiency of Pakistan. Before starting his Ph.D., he worked in the development sector for seven years in various positions with international organizations (USAID, DFID, JICA, and AUSAID).",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "https://www.linkedin.com/in/muhammad-tahir-ali-0249a93a/",
+      "team": "research",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 16,
+    "fields": {
+      "name": "Olabisi Ekong",
+      "image": "persons/images/Olabisi.jpg",
+      "description": "Olabisi Ekong is an Experienced Agricultural Economist with a demonstrated history of working in the higher education industry. Skilled in quantitative, qualitative, and mixed research methods with research interest in Agricultural policy, international trade and impacts of Climate Change on Agriculture. HI!",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "https://linkedin.com/in/olabisi-ekong",
+      "team": "research",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 17,
+    "fields": {
+      "name": "Richard Acquah-Sarpong",
+      "image": "persons/images/richard.jpeg",
+      "description": "Richard Acquah-Sarpong is a first year PhD student in the Applied Economics Department at Oregon State University, with MasterΓÇÖs degrees in Economics and Data Science from South Dakota State University and a BachelorΓÇÖs degree in Economics from the University of Cape Coast, Ghana. He is interested in the application of modern data science methods and economic theory to produce empirical research in understanding how agricultural and resource policy choices impact poverty and health outcomes in developing areas.",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "",
+      "team": "research",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 18,
+    "fields": {
+      "name": "Amelia Finaret",
+      "image": "persons/images/darrouzet-1200x1200.jpg",
+      "description": "Dr. Amelia Finaret is an Assistant Professor of Global Health Studies at Allegheny College, where she teaches food economics and nutrition. Dr. Finaret has experience working with international food and nutrition data for her research on child malnutrition, the linkages between agriculture and nutrition, statistical artifacts of data collection in international nutrition surveys, and missing data. Her recent work has been published in the American Journal of Clinical Nutrition, Annual Review of Resource Economics, The Journal of Nutrition, and Economics & Human Biology.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=poUAfpXeefA",
+      "presentation_slides": "persons/presentation_slides/Finaret_DIFA21.pdf",
+      "more_information": "https://sites.allegheny.edu/globalhealth/faculty/amelia-finaret/",
+      "team": "leadership",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 19,
+    "fields": {
+      "name": "Drew Hanks",
+      "image": "persons/images/hanks.46.jpg",
+      "description": "Dr. Andrew (Drew) Hanks is an Assistant Professor in the Department of Human Sciences at The Ohio State University (OSU). Dr. Hanks focuses on consumer and household choices related to food, education, and finances. His methodological approaches range from field experimentation to analysis of large data sets. Given the interdisciplinary nature of his research, Dr. Hanks publishes in a variety of journals such as Food Policy, the American Journal of Agricultural Economics, the American Psychologist, and Pediatrics.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=kN0pyEv3t3E",
+      "presentation_slides": "persons/presentation_slides/Hanks_DIFA21.pdf",
+      "more_information": "https://ehe.osu.edu/human-sciences/directory?id=hanks.46",
+      "team": "leadership",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 20,
+    "fields": {
+      "name": "Andrea (Andi) Carlson",
+      "image": "persons/images/andrea-carlson-web.jpg",
+      "description": "Dr. Andrea (Andi) Carlson, an economist in the Food Markets Branch of the Food Economics Division in USDAΓÇÖs Economic Research Service, researches food prices, with an emphasis on their impact on healthy diets and organic food purchases. She is the project lead for the Linkages project which allows users to import nutrient and food composition data into USDAΓÇÖs purchased scanner data and estimate individual food prices for dietary intake data. Her research interests include the affordability of healthy diets, tracking consumption over time, and examining organic food purchases and price premiums. Dr. Carlson joined ERS after 9 years with USDAΓÇÖs Center for Nutrition Policy and Promotion (CNPP) where she was the project leader for the USDA Food Plans, CNPP Food Prices Database, and a major contributor to the Cost of Raising a Child.",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=-_zdr6SRAQU",
+      "presentation_slides": "persons/presentation_slides/Carlson_DIFA21.pdf",
+      "more_information": "https://www.ers.usda.gov/authors/ers-staff-directory/andrea-carlson/",
+      "team": "leadership",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 21,
+    "fields": {
+      "name": "Geroge Davis",
+      "image": "persons/images/image.jpg",
+      "description": "Dr. George C. Davis is a Professor at Virginia Tech in the Departments of Agricultural and Applied Economics and Human Nutrition, Foods, and Exercise. His research generally covers food demand, health outcomes, econometrics, and methodology. His main focus is on understanding how time allocation decisions affect nutrition policies. He has published in a wide variety of journals, such as the American Journal of Agricultural Economics, Food Policy, Appetite, The American Journal of Clinical Nutrition, Economics and Philosophy and The Review of Economics and Statistics, to name a few. He is currently an editor for The Review of Economics of the Household and author of the award-winning book Food and Nutrition Economics: Fundamentals for Health Sciences (Oxford University Press 2016).",
+      "difa_workshop_presentation": "https://www.youtube.com/watch?v=Vc4q-rcEOS4",
+      "presentation_slides": "persons/presentation_slides/Davis_DIFA21.pdf",
+      "more_information": "https://aaec.vt.edu/people/faculty/davis-george.html",
+      "team": "leadership",
+      "show": false
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 22,
+    "fields": {
+      "name": "Shubh Khandelwal",
+      "image": "persons/images/unnamed_1.jpg",
+      "description": "Shubh Khandelwal is a versatile and dynamic software engineer with a breadth of experience in diverse technical roles, including Software Engineer Intern at Smartsheet, Machine Learning Research Assistant at W.P. Carey Morrison School of Agribusiness, and Software Developer Intern at the School of Earth and Space Exploration, ASU. His expertise spans a wide array of technical skills and programming languages such as Python, Java, C/C++, HTML, CSS, JavaScript, SQL, Dart, MATLAB, and various tools and frameworks including Django, Node.js, React, Flask, AWS, Linux, Git, Flutter, MVC, Docker, and ML/AI. He has a strong academic background, pursuing a Bachelor of Science degree in Computer Science at Arizona State University. Shubh's diverse range of experiences has seen him apply Machine Learning, Deep Learning, Natural Language Processing, and Data Mining techniques in research, develop REST services using a variety of technologies, and automate and enhance various processes and applications. Beyond his technical abilities, Shubh is a proven leader and collaborator, having managed a team of 10 in creating a social networking app, leading technical presentations, and participating in high-pressure Hackathons. His commitment to growth, innovation, and excellence in the field of computer science is evident in his work.\r\n\r\nThe DIFA website has been built using Django by him as well.",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "",
+      "team": "research",
+      "show": true
+    }
+  },
+  {
+    "model": "datasets.person",
+    "pk": 23,
+    "fields": {
+      "name": "Aryan Mehta",
+      "image": "persons/images/Aryan_Squared_Image.jpg",
+      "description": "Aryan Mehta is a highly accomplished software engineering and data science professional currently pursuing a Master of Science degree in Software Engineering at Arizona State University (ASU). With a perfect GPA of 4.00/4.00 in his master's program and a Bachelor's degree in Electronics and Communication Engineering from Vellore Institute of Technology (VIT) in India, Aryan demonstrates exceptional academic prowess. His professional experience includes serving as a Research Assistant and NLP/Data Science Intern at ASU's W.P. Carey Morrison School of Agribusiness, where he contributes to building a comprehensive data catalog and develops dataset extraction scripts using machine learning and natural language processing techniques. Aryan has also gained valuable industry experience through internships at renowned companies. As a Systems/Software Engineer Intern at Hewlett Packard Enterprise, he developed innovative software tools and received a patent for his work. With a passion for data science, Aryan has completed Data Science Internship at Wrench and Computer Vision Internship at Dura Technologies. He has excelled in developing machine learning models, deploying them on cloud platforms, and achieving high accuracy in various applications. He possesses a strong skill set in languages and databases such as Python, Java, JavaScript, React, HTML, CSS, MongoDB, and Neo4j Graph DB. Aryan is also proficient in technologies like Git, Jira, Jenkins, Flask, Rest APIs, and has expertise in machine learning, NLP, TensorFlow, Keras, NumPy, OpenCV, Pandas, and Scikit-learn. \r\n\r\nAryan's dedication, academic excellence, and diverse experience position him as a highly capable and versatile professional in the field of software engineering and data science.",
+      "difa_workshop_presentation": null,
+      "presentation_slides": "",
+      "more_information": "",
+      "team": "research",
+      "show": true
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2023-04-13T01:20:22.831Z",
+      "user": 2,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "ModificationManagers",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2023-04-13T01:20:49.951Z",
+      "user": 2,
+      "content_type": 1,
+      "object_id": "2",
+      "object_repr": "shubh",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Groups"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2023-04-26T15:54:01.404Z",
+      "user": 2,
+      "content_type": 2,
+      "object_id": "7",
+      "object_repr": "",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2023-04-28T06:56:12.435Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "Julia Lane",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2023-04-28T07:10:21.143Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "2",
+      "object_repr": "Timothy Beatty",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2023-04-28T07:11:13.505Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "3",
+      "object_repr": "Jason Owen-Smith",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2023-04-28T07:12:07.115Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "4",
+      "object_repr": "Ayaz Hyder",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2023-04-28T07:13:50.344Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "5",
+      "object_repr": "Charlotte Ambrozek",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2023-04-28T07:14:34.122Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "6",
+      "object_repr": "Wen You",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2023-04-28T07:16:25.217Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "7",
+      "object_repr": "Nichole Szembrot",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2023-04-28T07:17:14.647Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "8",
+      "object_repr": "Mark Prell",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2023-04-28T07:17:19.226Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "Julia Lane",
+      "action_flag": 2,
+      "change_message": []
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2023-04-28T07:17:30.951Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "Julia Lane",
+      "action_flag": 2,
+      "change_message": []
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2023-04-28T07:18:03.901Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "9",
+      "object_repr": "Bruce Weinberg",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2023-04-28T07:19:43.192Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "10",
+      "object_repr": "Matt Bombyk",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2023-04-28T07:20:20.230Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "11",
+      "object_repr": "Joe Cummins",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2023-04-28T08:01:59.720Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "12",
+      "object_repr": "Lauren Chenarides",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2023-04-28T18:00:39.235Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "12",
+      "object_repr": "Lauren Chenarides",
+      "action_flag": 2,
+      "change_message": []
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2023-04-28T18:08:11.023Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "13",
+      "object_repr": "Khyati Malik",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2023-04-28T18:10:52.552Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "14",
+      "object_repr": "Mohammad Mashiur Rahman",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2023-04-28T18:11:35.556Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "15",
+      "object_repr": "Muhammad Tahir Ali",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2023-04-28T18:12:16.409Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "16",
+      "object_repr": "Olabisi Ekong",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2023-04-28T18:12:20.477Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "15",
+      "object_repr": "Muhammad Tahir Ali",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Show"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2023-04-28T18:12:33.853Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "14",
+      "object_repr": "Mohammad Mashiur Rahman",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Show"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2023-04-28T18:13:27.098Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "17",
+      "object_repr": "Richard Acquah-Sarpong",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2023-04-28T18:25:11.570Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "18",
+      "object_repr": "Dr. Amelia Finaret",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2023-04-28T18:26:37.840Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "19",
+      "object_repr": "Drew Hanks",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2023-04-28T18:30:53.232Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "20",
+      "object_repr": "Dr. Andrea (Andi) Carlson",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2023-04-28T18:32:17.320Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "21",
+      "object_repr": "Geroge Davis",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2023-04-28T18:39:54.043Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "19",
+      "object_repr": "Drew Hanks",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2023-04-28T18:40:00.924Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "21",
+      "object_repr": "Geroge Davis",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+      "action_time": "2023-04-28T18:40:06.432Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "20",
+      "object_repr": "Dr. Andrea (Andi) Carlson",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+      "action_time": "2023-04-28T18:40:15.120Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "18",
+      "object_repr": "Dr. Amelia Finaret",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+      "action_time": "2023-04-28T18:40:22.374Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "12",
+      "object_repr": "Lauren Chenarides",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+      "action_time": "2023-04-28T18:43:26.052Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "15",
+      "object_repr": "Muhammad Tahir Ali",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+      "action_time": "2023-04-28T18:43:41.382Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "14",
+      "object_repr": "Mohammad Mashiur Rahman",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+      "action_time": "2023-04-28T18:43:58.284Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "16",
+      "object_repr": "Olabisi Ekong",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+      "action_time": "2023-04-28T18:44:35.889Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "17",
+      "object_repr": "Richard Acquah-Sarpong",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+      "action_time": "2023-04-28T18:44:47.355Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "13",
+      "object_repr": "Khyati Malik",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Team"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+      "action_time": "2023-04-28T19:18:39.236Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "18",
+      "object_repr": "Amelia Finaret",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Name"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+      "action_time": "2023-04-28T19:18:47.559Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "20",
+      "object_repr": "Andrea (Andi) Carlson",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Name"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+      "action_time": "2023-05-08T16:30:25.211Z",
+      "user": 2,
+      "content_type": 2,
+      "object_id": "15",
+      "object_repr": "",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+      "action_time": "2023-05-30T04:57:53.545Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+      "action_time": "2023-05-30T15:31:05.895Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Description"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+      "action_time": "2023-05-30T15:33:56.252Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 1,
+      "change_message": [
+        {
+          "added": {}
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+      "action_time": "2023-06-16T03:14:02.602Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Description"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+      "action_time": "2023-06-19T22:24:59.710Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image",
+              "Description"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+      "action_time": "2023-06-19T22:29:53.188Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+      "action_time": "2023-06-19T22:31:34.235Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+      "action_time": "2023-06-19T22:41:45.065Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+      "action_time": "2023-06-19T22:42:24.439Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+      "action_time": "2023-06-19T22:45:05.623Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+      "action_time": "2023-06-19T22:45:17.715Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "23",
+      "object_repr": "Aryan Mehta",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+      "action_time": "2023-06-19T22:47:36.575Z",
+      "user": 3,
+      "content_type": 10,
+      "object_id": "22",
+      "object_repr": "Shubh Khandelwal",
+      "action_flag": 2,
+      "change_message": [
+        {
+          "changed": {
+            "fields": [
+              "Image"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 1,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 1,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 1,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 1,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add dataset",
+      "content_type": 2,
+      "codename": "add_dataset"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change dataset",
+      "content_type": 2,
+      "codename": "change_dataset"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete dataset",
+      "content_type": 2,
+      "codename": "delete_dataset"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view dataset",
+      "content_type": 2,
+      "codename": "view_dataset"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add modification request",
+      "content_type": 3,
+      "codename": "add_modificationrequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change modification request",
+      "content_type": 3,
+      "codename": "change_modificationrequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete modification request",
+      "content_type": 3,
+      "codename": "delete_modificationrequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view modification request",
+      "content_type": 3,
+      "codename": "view_modificationrequest"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add collection",
+      "content_type": 4,
+      "codename": "add_collection"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change collection",
+      "content_type": 4,
+      "codename": "change_collection"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete collection",
+      "content_type": 4,
+      "codename": "delete_collection"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view collection",
+      "content_type": 4,
+      "codename": "view_collection"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 5,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 5,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 5,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 5,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 6,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 6,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 6,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 6,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 7,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 7,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 7,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 7,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 8,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 8,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 8,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 8,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 9,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 9,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 9,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 9,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add person",
+      "content_type": 10,
+      "codename": "add_person"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change person",
+      "content_type": 10,
+      "codename": "change_person"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete person",
+      "content_type": 10,
+      "codename": "delete_person"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view person",
+      "content_type": 10,
+      "codename": "view_person"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "ModificationManagers",
+      "permissions": [
+        20,
+        28,
+        29,
+        30,
+        31,
+        32,
+        13,
+        14,
+        15,
+        16,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        33,
+        34,
+        35,
+        36
+      ]
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "datasets",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "datasets",
+      "model": "dataset"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "datasets",
+      "model": "modificationrequest"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "datasets",
+      "model": "collection"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "datasets",
+      "model": "person"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "1b6jpozo0v0ng9nanemvqhq04el9hwuu",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxHNxrDpsfd-g-yupqYtBmJyCv33KuTQMqeZ95hDedq35PcSVz8HdVWgLr8bk7xibiA8KT8WLUve1pl1U_RJi74vIb5vp_t3kKikdksonR1qJEwAjGRFGA1YcFQhDIgmCDH2EtnSVPvoXEfoDJh-VJ8v3fQ3YQ:1qgyak:Jw6T3BlN68dIuSHAvuUHx-SvTbpY-l9D8MV9jFY2qHE",
+      "expire_date": "2023-09-29T02:29:58.665Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "1d8iciepyfh2zink352q7nhg7vwsbncm",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQAP_C2RAEslCP3n0D2WVXqRpISntq_Lsh6UGvM5PZVcJtLWnrsqSZ1UWBOv0ywvySOgQ_sT6azq2uy0x6JPqwXd8ay_t6tH-Dgr2MrdwDcxQ7GSsRECZvvOdILgIRofHkPTGhc-JCcGAt5DNZCMIuGlafL-t7N9Q:1qHIDm:1opelGhegyWb4-FY14nhlnPWjyDDcXHjuDt-5Rw8HnE",
+      "expire_date": "2023-07-20T06:12:06.465Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "1ow4guiy5pwrtjtkzxvxs8v0o3z7a5i9",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlle_FtT0ucM1tre4ABypDipEHeHSCmgfTPzXiLStta4dV7iVMRFBHH63RLlB7cdlDu12yzz3NZlSnJX5EG7HObCz-vh_h1U6vVbG0VZnwtAYHRggvLKjx4RjAtWZ4dWc0iEiKQc6wSKQI82EIFziUm8P7DdNu0:1qgz5u:Aw14iUvIAp_D7swnHxlDru-59t_VK5VzEBPcUd5eNV4",
+      "expire_date": "2023-09-29T03:02:10.228Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "2o7cc8v1vzm2ju5781kfff6nb5fdcw35",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSEM5enSvd9AYAakaiAp7cr479qkC93ec859sRC3tYZt5CXMxM4M2Ol3SxEfue2A7rHdOsfe1mVOfFf4QQe_dsrPy-H-HdQ46rdWlLXw1iRR0JOOqgA5N1mQzggS0UnUYEqxTgHIAt5Tdij0pMyEaDV7fwDRjDci:1pmiao:4qKsblC8tzjAfGc9IcUojb-r-MPlaqgDu5fBftRlaL4",
+      "expire_date": "2023-04-26T22:05:30.670Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "37lku71a8bb42kjbbp5b80c40l3ydkrx",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1pwsHr:2aVu9kSYlE4gsSMy92FgyD8MfLIm0KaGQcpODLo9xTE",
+      "expire_date": "2023-05-24T22:27:55.160Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "3k2z5539ryn9mgw20t0n19xbkcyd3fvc",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxHNxrDpsfd-g-yupqYtBmJyCv33KuTQMqeZ95hDedq35PcSVz8HdVWgLr8bk7xibiA8KT8WLUve1pl1U_RJi74vIb5vp_t3kKikdksonR1qJEwAjGRFGA1YcFQhDIgmCDH2EtnSVPvoXEfoDJh-VJ8v3fQ3YQ:1q4QqQ:rBC6Hd7eTi_GbAsJ5Lpu8IgZYQ770Dp_g2_kjyqu0GE",
+      "expire_date": "2023-06-14T18:46:50.100Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "88gamzyl54fsn8y2ihzurta8g7ihz4fc",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxHNxrDpsfd-g-yupqYtBmJyCv33KuTQMqeZ95hDedq35PcSVz8HdVWgLr8bk7xibiA8KT8WLUve1pl1U_RJi74vIb5vp_t3kKikdksonR1qJEwAjGRFGA1YcFQhDIgmCDH2EtnSVPvoXEfoDJh-VJ8v3fQ3YQ:1qBNDs:LqO36fPh-pcyScP-P5RPM3yNMARwCJ0QK27cnI8Ervc",
+      "expire_date": "2023-07-03T22:19:44.808Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "a1gxhuspl0m2i5riojpgefx8a9iqj96p",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1pyy1Y:IqgZD64GUs3l7NnGTDdeA4dn5wtJbaJheGnPBJBX7nQ",
+      "expire_date": "2023-05-30T16:59:44.205Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "br8jlq6j28obayop7s3ubuk3x9rcl979",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1qa1NR:zJszz1O1fKiCyMnydRh0q7prDaDR9OVO2sczoc_UnZ0",
+      "expire_date": "2023-09-09T22:03:29.680Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "cga78ke3bxp58gt8aaogwihjo8cvkffq",
+    "fields": {
+      "session_data": ".eJxVjMEOwiAQRP-FsyG01AU8eu83kF0WpGogKe3J-O9K0oPOcd6beQmP-5b93uLqFxYXMShx-i0JwyOWTviO5VZlqGVbF5JdkQdtcq4cn9fD_TvI2PJ3DXGYWKGmNE3aEJ2jAk5G8RgtuIQEFoxj16OVTjYlcDBqFaxxjlC8PwgwN9U:1qhQUw:9nffSducyOyVDmVnp6aDQZ4KWc2HHCZ5pr-qFn1--FU",
+      "expire_date": "2023-09-30T08:17:50.840Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dosfpsnfifx5g81kbsub4lntpu0kwhts",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxHNxrDpsfd-g-yupqYtBmJyCv33KuTQMqeZ95hDedq35PcSVz8HdVWgLr8bk7xibiA8KT8WLUve1pl1U_RJi74vIb5vp_t3kKikdksonR1qJEwAjGRFGA1YcFQhDIgmCDH2EtnSVPvoXEfoDJh-VJ8v3fQ3YQ:1qa0Kb:DZy24pTj4bWXvczpxG8mMmTswdrDASMb9b-4b_4DP74",
+      "expire_date": "2023-09-09T20:56:29.959Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dwkteekytptm3lr0icgt02gj8y4g3syo",
+    "fields": {
+      "session_data": ".eJxVjMsOgyAUBf-FdUN4ycNl934DuVxAbRsxoKum_15NXLTbM3PmTTzs2-T3lqqfI-mJILffLQA-03KC-IBlLBTLstU50FOhF210KDG97pf7F5igTcfbIo9aqU4btMxJLrkCrYCZyFx2PAfBTSetBG1R5Swtug5BCCkCd9bkI9qwwpr8WstYU2tekJ59vr_rPnw:1qa1n6:nQ-4DEalb6UTckfDmE3wrig0LtgTo0zLDxq9DwDKCvY",
+      "expire_date": "2023-09-09T22:30:00.938Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "fuopm1zeoonol8o0pvojlhwd1969hqey",
+    "fields": {
+      "session_data": ".eJxVjMEKwyAQRP_FcxHNxrDpsfd-g-yupqYtBmJyCv33KuTQMqeZ95hDedq35PcSVz8HdVWgLr8bk7xibiA8KT8WLUve1pl1U_RJi74vIb5vp_t3kKikdksonR1qJEwAjGRFGA1YcFQhDIgmCDH2EtnSVPvoXEfoDJh-VJ8v3fQ3YQ:1qa0CT:2TdfJWHCTLf3rlunl6LMP_T41z48yEWIN6LzI66OWMg",
+      "expire_date": "2023-09-09T20:48:05.217Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "i7q4oqyea8pal9x9cpnnouf4dkh2cz6b",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1pw4j8:XWYUTHPG4Y7Xfy-nwr9zLOxLqu7Fo22dYXCYFMPegmw",
+      "expire_date": "2023-05-22T17:32:46.115Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "kvtxlsfroas55j4cy877n7jtbavbhb0a",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1q3f6e:nGEuczjk99woZh2A-9ivUxOXzT71g1xjeZo8gtIZXsQ",
+      "expire_date": "2023-06-12T15:48:24.462Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "lgtwiy6xpx1k8eiavi0tnmggo6wl9kn6",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlnxxl9Kes5gbbxrHEC2FCcV4u4QKQW0b2beS0Tc1hK3zkucSZwFiNPvNmF6cN0B3bHemkytrss8yV2RB-3y2oifl8P9OyjYy7fGabTOECXOxrIGTIRq8Caw00QeIHjniR14NioMgXRmp_KoQAEbq8X7A_hXN7s:1qqdwv:MjXqu516efPOzaNy75l-ga2y6D-nov3NAVuq2wAY_is",
+      "expire_date": "2023-10-25T18:28:49.743Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "mjrfmdp4lnm57fs7zs28uln8wqiflp5y",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1qb7au:T5Q3vnCq3pXPaQ58iA_pELVTvLbke5mfN7Rpz7w8QUU",
+      "expire_date": "2023-09-12T22:53:56.036Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "mza8m70y7bg88w9qr0h04s44skfonsci",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1qQrwc:OUpTvqoGmgptJ-lLA9NZY5QMGbUuU0ZqGm3xNTHfZU8",
+      "expire_date": "2023-08-15T16:09:58.835Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "nw0q1a7ztvosq0ikk7ee3fdi5doxg2z1",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1q1TFO:6KxrXDhMpPHG939_xGV_ry8exlvePsVjLlJ0IH_uctc",
+      "expire_date": "2023-06-06T14:44:22.921Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ok1c3raz1r60abk0kja26jxbbc5wlsw4",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1q3NSO:nzJnEu32ZxyYrBFz0u4lsygmGHaPQYP21OMIbfONIm8",
+      "expire_date": "2023-06-11T20:57:40.968Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ovy9lcfiwd0geheu4w02q0kbsh27n03s",
+    "fields": {
+      "session_data": ".eJxVjEsOAiEQBe_C2hDE5ufSvWcgNN3IqIFkmFkZ766TzEK3r6reS8S0LjWug-c4kTgLLw6_G6b84LYBuqd26zL3tswTyk2ROx3y2omfl939O6hp1G_tTqCsz6CBbfDWGQMGMLHDYhRmW0CRRtYugUKmHEphT-7IhoIOmcX7A9OCOE8:1qbcOe:dtiXXvILFcmdlG6nUEcuYiygIY5hp91YVybHcUA2MEE",
+      "expire_date": "2023-09-14T07:47:20.052Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "pguhv37zgnybsmfsd99ijpxw5hvv4v3x",
+    "fields": {
+      "session_data": ".eJxVjDsOwyAQRO9CHSHwGmvtMn3OgJYFf5LIWGBXVu4ekFwkmmrmjd4pLB37bI8ckl28GASI2-_miF9hrcA_aZ2i5LjuaXGyXuRFs3xEH9736_snmCnPVUvIje5K2I8ADkkzO1SgwVCB0CEqz-Sw5eA0jaX3xjSERoFq-yLNnGgLdktxSiFnC2JQny_5kz8f:1qa1kH:wvJf1Y-RTYMbyXlfoEvHjxYpueD18J1bkY-q_VZfPCM",
+      "expire_date": "2023-09-09T22:27:05.652Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "u3d8mya0ptj4jt880u03fkbf3rsu80kt",
+    "fields": {
+      "session_data": "e30:1pwTo3:7MbfCXKKY3sa5gzBGEk7uGHWaS6see4PFryGCiTJsBI",
+      "expire_date": "2023-05-23T20:19:31.306Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "vn01tgxncv6po2v7qs8i8jt7oxuggqd1",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSHA8HTp3m8gwwBSNTQp7cr479qkC93ec859sYjb2uI2yhKnzM5MsdPvlpAepe8g37HfZk5zX5cp8V3hBx38OufyvBzu30HD0b61J5mt1sY68iKABKnRahQui1CDrElJZ8ADWk-6VvAUDKFSoJIM3lX2_gCyPTa_:1qa00e:dGzAAW6PX2k01vYlwerKfF1PMBSiLy3fIgC9JXfAO8c",
+      "expire_date": "2023-09-09T20:35:52.163Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "zyqli2ilojlk2gvw4i8puaddy2sxq7of",
+    "fields": {
+      "session_data": ".eJxVjMsOgyAUBf-FdUN4ycNl934DuVxAbRsxoKum_15NXLTbM3PmTTzs2-T3lqqfI-mJILffLQA-03KC-IBlLBTLstU50FOhF210KDG97pf7F5igTcfbIo9aqU4btMxJLrkCrYCZyFx2PAfBTSetBG1R5Swtug5BCCkCd9bkI9qwwpr8WstYU2tekJ59vr_rPnw:1qbSpg:QVcDz-Znb3vot1FB4enGA3GNdOGIbBEcRw7vTnwPvtA",
+      "expire_date": "2023-09-13T21:34:36.874Z"
+    }
+  }
+]

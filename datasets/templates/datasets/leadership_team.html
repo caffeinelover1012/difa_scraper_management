@@ -1,43 +1,101 @@
-{% extends 'datasets/base.html' %}
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Research Team{% endblock title %}
+
+{% block styles %}
+<style>
+    /* Custom Styling for Team Page */
+    .team-card-link {
+        text-decoration: none; /* Remove underline from links */
+        color: inherit; /* Inherit text color to avoid blue link color */
+    }
+
+    .team-card {
+        border: 1px solid rgba(0, 0, 0, 0.1); /* Light rounded border */
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px; /* Added padding inside the card */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+        cursor: pointer; /* Cursor change for clickable card */
+        background-color: #ffffff; /* Card background color */
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px); /* Slight lift on hover */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+    }
+
+    .team-card img {
+        width: 50%;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    .team-card h5 {
+        margin-top: 15px;
+    }
+
+    .team-card p {
+        font-size: 14px;
+    }
+
+    .more-info-btn {
+        background-color: #007bff; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 15px; /* Rounded button */
+        padding: 5px 15px; /* Smaller button */
+        text-transform: uppercase; /* Capitalized text */
+        letter-spacing: 0.5px; /* Spacing for elegance */
+        font-size: 0.85rem; /* Smaller font size */
+        transition: background-color 0.3s ease; /* Smooth color transition */
+        display: inline-block; /* Inline display for alignment */
+        margin-top: 10px; /* Margin for spacing */
+    }
+
+    .more-info-btn:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+        color: white;
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+    /* Adjustments for larger screens */
+    @media (min-width: 992px) {
+        .first-two {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+        .others {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+</style>
+{% endblock styles %}
 
 {% block content %}
-<style>
-.team-member-img {
-    height: 400px;
-    width: 100%;
-    object-fit: contain;
-}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    margin-bottom: 20px;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.card-body {
-    padding: 20px;
-}
-
-</style>
-    <h1>Leadership Team</h1>
-    <div class="row">
+<div class="container my-5">
+    <h1 class="text-center">Meet our Leadership Team</h1>
+    <div class="row justify-content-center mt-4">
         {% for member in team_members %}
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card">
-                    {% if member.image %}
-                        <img src="{{ member.image.url }}" class="card-img-top team-member-img" alt="{{ member.name }}" />
+        <a href="{% url 'person_detail' person_id=member.id %}" class="col-md-6 col-lg-4 {% if forloop.counter < 3 %}first-two{% else %}others{% endif %} team-card-link">
+            <div class="team-card">
+                <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ member.name }}</h5>
+                    {% if forloop.counter < 2 %}
+                    <p class="card-text">{{ member.description }}</p>
+                    {% else %}
+                    <p class="card-text">{{member.description|truncatewords:25}}</p>
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ member.name }}</h5>
-                        <p class="card-text">{{ member.description|truncatewords:25 }}</p>
-                        <a href="{% url 'person_detail' person_id=member.id %}" class="btn btn-primary">More Info</a>
-                    </div>
+                    <div class="more-info-btn">More Info</div>
                 </div>
             </div>
+        </a>
         {% endfor %}
     </div>
-{% endblock %}
+</div>
+{% endblock content %}

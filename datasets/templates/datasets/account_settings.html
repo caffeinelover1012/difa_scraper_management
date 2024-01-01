@@ -1,0 +1,132 @@
+{% extends 'datasets/base.html' %}
+{% load static %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+<style>
+    .account-settings-header h2 {
+        font-size: 2.5rem; /* Adjust size as needed */
+        color: #26176F; /* Adjust color as needed */
+        padding-bottom: 15px; /* Adjust padding as needed */
+        border-bottom: 2px solid #eaeaea; /* Gives a line under the text */
+        margin-bottom: 30px; /* Space between header and card */
+    }
+    
+    .account-settings-header i {
+        margin-right: 10px;
+    }
+    
+    .table th, .table td {
+        text-align: left; /* Aligns text to the left for table headers and data */
+    }
+    .equal-height-cards .card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .equal-height-cards .card-body {
+        flex-grow: 1;
+    }
+    .row.equal-height {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .row.equal-height > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+    .card-full-height {
+        flex: 1;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="account-settings-header">
+        <h2><i class="fas fa-cog"></i> Account Settings</h2>
+    </div>
+    <div class="row equal-height">
+        <!-- Card for Displaying First Name, Last Name, and User Level -->
+        <div class="col-lg-6 col-md-12 mb-3">
+            <div class="card  card-full-height">
+                <div class="card-body">
+                    <h3 class="card-title">User Details</h3>
+                    <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
+                    <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+                    <p><strong>User Level:</strong> {{ request.user.get_level }}</p>
+                    <a href="{% url 'change_name' %}" class="btn btn-primary"><i class="fas fa-edit"></i> Change Name</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12 mb-3">
+            <!-- Account Email Card -->
+            <div class="card card-full-height">
+                <div class="card-body">
+                    <h3 class="card-title">Account Details</h3>
+                    <p><strong>Email:</strong> {{ request.user.email }}</p>
+                    <p><strong>Account Created:</strong> {{ request.user.date_joined }}</p>
+                    {% if request.user.is_active %}
+                        <p style="color: green"><strong style="color: black">Account Status:</strong> Active</p>
+                    {% else %}
+                        <p style="color: red"><strong style="color: black">Account Status:</strong> Active</p>
+                    {% endif %}
+                    <div class="button-group">
+                        <a href="{% url 'account_email' %}" class="btn btn-secondary"><i class="fas fa-envelope"></i> Change Email</a>
+                        <a href="{% url 'account_change_password' %}" class="btn btn-secondary"><i class="fas fa-key"></i> Change Password</a>
+                        <a href="/accounts/2fa" class="btn btn-secondary"><i class="fas fa-shield-alt"></i> Multi-factor Authentication</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Profile Information Card -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h3 class="card-title">Profile Information</h3>
+            <table class="table table-striped">
+                <tbody>
+                <!-- Display user profile details here in a tabular format -->
+                <tr>
+                    <th>Institution/Employer Name</th>
+                    <td>{{ user_profile.institution_employer_name }}</td>
+                </tr>
+                <tr>
+                    <th>Personal Website</th>
+                    <td>{{ user_profile.institution_personal_website }}</td>
+                </tr>
+                <tr>
+                    <th>Occupation Category</th>
+                    <td>{{ user_profile.occupation_category }}</td>
+                </tr>
+                <tr>
+                    <th>Occupation Title</th>
+                    <td>{{ user_profile.occupation_title }}</td>
+                </tr>
+                <tr>
+                    <th>Field of Research</th>
+                    <td>{{ user_profile.field_of_research }}</td>
+                </tr>
+                <tr>
+                    <th>Research Areas</th>
+                    <td>{{ user_profile.research_areas }}</td>
+                </tr>
+                <tr>
+                    <th>General Research Statement</th>
+                    <td>{{ user_profile.general_research_statement }}</td>
+                </tr>
+                <tr>
+                    <th>How Did You Learn About DIFA?</th>
+                    <td>{{ user_profile.how_did_you_learn }}</td>
+                </tr>
+            </tbody>
+            </table>
+            <a style="padding-left: 20px;" href="{% url 'update_profile' %}" class="btn btn-primary"><i class="fas fa-edit"></i> Change Profile Data</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

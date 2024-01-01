@@ -1,0 +1,72 @@
+{% extends "base.html" %}  
+{% load widget_tweaks %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Update Your Profile" %}{% endblock head_title %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<style>
+    .custom-border {
+        border-color: #26176F;
+    }
+    .required-asterisk {
+        font-weight: 800;
+        color: red;
+    }
+    .required-note {
+        font-size: 1em;
+        color: red;
+        text-align: center;
+    }
+</style>
+{% endblock styles %}
+
+{% block scripts %}
+<!-- Include any specific scripts here, if necessary -->
+{% endblock scripts %}
+
+{% block content %}
+<section style="padding-top: 1em;">
+    <div class="container py-4">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-lg-6 col-md-7 col-sm-9">
+                <div class="my-5 p-5 bg-light rounded-3" style="border-radius: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{% trans "There were some errors with your form submission:" %}</strong>
+                            <ul>
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field|capfirst }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="mt-1 pb-1 text-center" style="font-family: 'Poppins', sans-serif;">{% trans "Update Your Profile" %}</h1>
+                    
+                    <form method="post" action="{% url 'update_profile' %}" class="profile-completion mt-5" id="profile_form">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-outline mb-4">
+                                {% if field.field.required %}
+                                <label class="form-label required-asterisk" for="{{ field.id_for_label }}">* </label>
+                                 {% endif %}
+                                <label class="form-label" for="{{ field.id_for_label }}" style="font-size: 16px; font-family: 'Poppins', sans-serif;">{{ field.label }}</label>
+                                {{ field|add_class:"form-control form-control-md custom-border" }}
+                            </div>
+                        {% endfor %}
+                        <p class="required-note">* Required fields</p>
+                        <button type="submit" class="btn btn-lg btn-block" style="color: white; background-color: #26176F; font-family: 'Poppins', sans-serif; display: block; margin: 0 auto;">{% trans "Submit" %}</button>
+                        <a href="{% url 'index' %}" class="btn btn-lg btn-block" style="color: white; background-color: #888; font-family: 'Poppins', sans-serif; display: block; margin: 0 auto; margin-top: 10px;">{% trans "Continue without saving" %}</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

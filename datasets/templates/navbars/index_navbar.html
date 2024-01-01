@@ -1,0 +1,144 @@
+{% load static %}
+
+<style>
+  /* Add styles for the custom navbar */
+  .custom-navbar {
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px; /* Rounded border */
+    background: #F8F9FA
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  }
+  
+  .custom-navbar.scrolled {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 0.95rem;
+    border-radius: 20px; /* More pronounced rounded border on scroll */
+  }
+  
+  .logo-full,
+  .logo-small {
+    transition: opacity 0.3s;
+    max-height: 45px;
+    max-width: 100%;
+  }
+  
+  .logo-small.d-none {
+    display: none;
+    opacity: 0;
+  }
+
+  /* Navbar links */
+  .navbar-nav .nav-link {
+    font-weight: 500; /* Slightly bolder font */
+    color: rgba(0, 0, 0, 0.8); /* Darker color for better contrast */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: rgba(0, 0, 0, 1); /* Darker color on hover */
+  }
+  
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed custom-navbar" style="padding:2px">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'search' %}">
+        <img src="{% static 'finallogo.png' %}" alt="DIFA Scraper Management Utility" height="45" class="d-inline-block align-text-top logo-full">
+        <img src="{% static 'smallogo.png' %}" alt="DIFA Scraper Management Utility" height="30" class="d-inline-block align-text-top logo-small d-none">
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'datasets' %}active{% endif %}" aria-current="page" href="{% url 'datasets' %}">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'collections' %}active{% endif %}" href="{% url 'collections' %}">Collections</a>
+          </li>
+          {% if request.user.is_superuser or request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'modification_requests' %}active{% endif %}" href="{% url 'modification_requests' %}">Modifications Portal</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}">Search</a>
+          </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAbout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                About
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAbout">
+                <li><a class="dropdown-item" href="{% url 'about' %}">About Us</a></li>
+                <li><a class="dropdown-item" href="{% url 'leadership_team' %}">Leadership Team</a></li>
+                <li><a class="dropdown-item" href="{% url 'research_team' %}">Research Team</a></li>
+                <li><a class="dropdown-item" href="{% url 'partners' %}">Partners</a></li>
+            </ul>
+        </li>
+        
+        <!-- Events dropdown -->
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Events
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownEvents">
+                <li><a class="dropdown-item" href="{% url 'workshop' %}">Workshop Description</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><h6 class="dropdown-header">Guest Speakers</h6></li>
+                {% for person in guest_persons  %}
+                <li><a class="dropdown-item" href="{% url 'person_detail' person_id=person.id %}">{{ person.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg"></i>
+              <span class="ms-2">{{ request.user.name }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
+              <li><a class="dropdown-item" href="{% url 'configure_account' %}">Account Settings</a></li>
+              <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+        </li>
+        {% endif %}        
+      </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <script>
+    function handleNavbarScroll() {
+      const navbar = document.querySelector('.custom-navbar');
+      const logoFull = document.querySelector('.logo-full');
+      const logoSmall = document.querySelector('.logo-small');
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+        logoFull.classList.add('d-none');
+        logoSmall.classList.remove('d-none');
+      } else {
+        navbar.classList.remove('scrolled');
+        logoFull.classList.remove('d-none');
+        logoSmall.classList.add('d-none');
+      }
+    }
+    
+    window.addEventListener('scroll', handleNavbarScroll);
+    </script>

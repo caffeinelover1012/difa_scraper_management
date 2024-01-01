@@ -12,61 +12,86 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+    PROD=(bool, True)
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5_1(sw_!di_yybrc_w2p#zrg#ep&m3gv6srem8y%9d*si%q1vm'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('DEBUG')
+PROD = env('PROD')
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['localhost','dataifa.org','www.dataifa.org','wpc-dataifa.wpc.aws.asu.edu']
+if PROD:
+    CSRF_TRUSTED_ORIGINS = ['https://www.dataifa.org']
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_DOMAIN = "dataifa.org"
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    # X_FRAME_OPTIONS = 'SAME-ORIGIN'
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_SSL_REDIRECT = True
+    USE_X_FORWARDED_HOST = True
+    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    ALLOWED_HOSTS.extend(
+        filter(
+            None,
+            env('ALLOWED_HOSTS',default='').split(','),
+        )
+    )
+else:
+    ALLOWED_HOSTS.append("*")
 
 # Application definition
-
 INSTALLED_APPS = [
     'rest_framework',
-    'datasets',
     'django.contrib.admin',
+    'datasets.apps.DatasetsConfig',
+    'allauth',
+    'allauth.mfa',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'hcaptcha_field',
+    'django_apscheduler',
 ]
-AUTH_USER_MODEL = 'datasets.User'
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+MIDDLEWARE = (
+    "django.middleware.common.CommonMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    'django.middleware.security.SecurityMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
+)
 
-# Prod safety configs
-CSRF_TRUSTED_ORIGINS = ['https://www.dataifa.org']
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = ".dataifa.org"
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-# X_FRAME_OPTIONS = 'SAME-ORIGIN'
-SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_SSL_REDIRECT = True
-USE_X_FORWARDED_HOST = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ROOT_URLCONF = env('ROOT_URLCONF')
 
-ROOT_URLCONF = 'difa_scraper_management.urls'
-LOGIN_URL = 'login'
-TEMPLATES = [
+TEMPLATES = [ 
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'datasets' / 'templates'],
@@ -85,19 +110,85 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'difa_scraper_management.wsgi.application'
 
+AUTH_USER_MODEL = 'datasets.DataifaUser'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if PROD is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': env("DB_NAME"),
+            'USER': env("DB_USER"),
+            'PASSWORD': env("DB_PASSWORD"),
+            'HOST': env("DB_HOST"),
+            'PORT': env("DB_PORT"),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'mydb.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL='/complete-profile/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Can be 'username', 'email', or 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USER_DISPLAY = lambda user: user.name
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'DataIFA'
+ACCOUNT_FORMS = {
+    'signup': 'datasets.forms.DifaSignupForm',
+    'login': 'datasets.forms.DifaSignInForm',
+    'reset_password': 'datasets.forms.DifaResetPasswordForm',
+}
+
+ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_MAX_EMAIL_ADDRESSES=2
+SOCIALACCOUNT_QUERY_EMAIL=ACCOUNT_EMAIL_REQUIRED
+SOCIALACCOUNT_EMAIL_REQUIRED=ACCOUNT_EMAIL_REQUIRED
+SOCIALACCOUNT_STORE_TOKENS=False
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        "APP": {
+            "client_id": env('GOOGLE_CLIENT_ID'),
+            "secret": env('GOOGLE_SECRET_KEY'),
+            "key": ""
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -152,53 +243,74 @@ REST_FRAMEWORK = {
     ]
 }
 
-	
-LOGGING = {	
-    "version": 1,	
-    "disable_existing_loggers": False,	
-    "formatters": {	
-        "verbose": {	
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",	
-            "style": "{",	
-        },	
-    },	
-    "filters": {	
-        "require_debug_true": {	
-            "()": "django.utils.log.RequireDebugTrue",	
-        },	
-    },	
-    "handlers": {	
-        "file": {	
-            "level": "INFO",	
-            "class": "logging.FileHandler",	
-            "filename": "ds.log",  # Path to the log file	
-            "formatter": "verbose",	
-        },	
-        "console": {	
-            "level": "INFO",	
-            "filters": ["require_debug_true"],	
-            "class": "logging.StreamHandler",	
-            "formatter": "verbose",	
-        },	
-        "mail_admins": {	
-            "level": "ERROR",	
-            "class": "django.utils.log.AdminEmailHandler",	
-            "formatter": "verbose",	
-        },	
-    },	
-    "loggers": {	
-        "django": {	
-            "handlers": ["console", "file"],	
-            "propagate": True,	
-        },	
-        "django.request": {	
-            "handlers": ["mail_admins"],	
-            "level": "ERROR",	
-            "propagate": False,	
-        },	
-        "datasets": {	
-            "handlers": ["console", "mail_admins", "file"],	
-            "level": "INFO",	
-        },	
-    },	
+
+SCHEDULER_CONFIG = {
+    "apscheduler.jobstores.default": {
+        "class": "django_apscheduler.jobstores:DjangoJobStore"
+    },
+    'apscheduler.executors.processpool': {
+        "type": "threadpool"
+    },
 }
+SCHEDULER_AUTOSTART = True
+
+
+if 1==1:
+    LOGGING = {	
+        "version": 1,	
+        "disable_existing_loggers": False,	
+        "formatters": {	
+            "verbose": {	
+                "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",	
+                "style": "{",	
+            },	
+        },	
+        "filters": {	
+            "require_debug_true": {	
+                "()": "django.utils.log.RequireDebugTrue",	
+            },	
+        },	
+        "handlers": {	
+            "file": {	
+                "level": "INFO",	
+                "class": "logging.FileHandler",	
+                "filename": "ds.log",  
+                "formatter": "verbose",	
+            },	
+            "console": {	
+                "level": "INFO",	
+                "filters": ["require_debug_true"],	
+                "class": "logging.StreamHandler",	
+                "formatter": "verbose",	
+            },	
+            "mail_admins": {	
+                "level": "ERROR",	
+                "class": "django.utils.log.AdminEmailHandler",	
+                "formatter": "verbose",	
+            },	
+        },	
+        "loggers": {	
+            "django": {	
+                "handlers": ["console", "file"],	
+                "propagate": True,	
+            },	
+            "django.request": {	
+                "handlers": ["mail_admins"],	
+                "level": "ERROR",	
+                "propagate": False,	
+            },	
+            "datasets": {	
+                "handlers": ["console", "mail_admins", "file"],	
+                "level": "INFO",	
+            },	
+        },	
+    }
+
+#  EMAIL BACKENDS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = 'DataIFA <dataifaproject@gmail.com>'

@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.urls import reverse
 from django.utils import timezone
-from .forms import LoginForm, RegistrationForm, DatasetModificationRequestForm
-from .models import Dataset, ModificationRequest, Collection, Person
+from .forms import DatasetModificationRequestForm
 from .utils import run_scraper
 from django.core.exceptions import ObjectDoesNotExist
 from json import JSONDecodeError
@@ -17,53 +16,115 @@ from rest_framework import viewsets
 from .serializers import DatasetSerializer, CleanedDatasetSerializer
 import json
 import logging
+from .models import Dataset, ModificationRequest, Collection, Person
+from .scraper.constants import scraper_constants
 
 logger = logging.getLogger(__name__)
 
-# ------------------------------------------------------------------------------------------
-# User authentication views
-# ------------------------------------------------------------------------------------------
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=email, password=password)
-            if user:
-                login(request, user)
-                next_url = request.GET.get('next', 'search')  # Redirect to next URL or default to 'search'
-                return redirect(next_url)
-            else:
-                messages.error(request, "Invalid Email or password.")
-        else:
-            logger.warning("Invalid login form submission by %s", request.META.get('REMOTE_ADDR'))
-    else:
-        form = LoginForm()
-    return render(request, 'datasets/login.html', {'form': form})
+# -------
+def modification_manager_check(user):
+    return user.is_authenticated and (user.is_superuser or user.is_staff or user.groups.filter(name='Modification Manager').exists())
 
-def register(request):
-    if request.user.is_authenticated:
-        return redirect('login')
+def difa_admin(view_func):
+    decorator = user_passes_test(
+        modification_manager_check,
+        login_url='datasets',
+    )
+
+    def _wrapped_view_func(request, *args, **kwargs):
+        if not modification_manager_check(request.user):
+            messages.error(request, "You are unauthorized to view that page!")
+        return decorator(view_func)(request, *args, **kwargs)
+
+    return _wrapped_view_func
+
+# # ------------------------------------------------------------------------------------------
+# # User authentication views
+# # ------------------------------------------------------------------------------------------
+
+from django.views.generic import TemplateView
+from datasets.forms import UserProfileForm
+from datasets.models import UserProfile
+from django.utils.decorators import method_decorator
+from django.views.generic import FormView
+from .forms import AccountSettingsForm
+
+@method_decorator(login_required, name='dispatch')
+class AccountSettingsView(FormView):
+    template_name = 'datasets/account_settings.html'
+    form_class = AccountSettingsForm
+    success_url = '/configure_account/'
+
+    def form_valid(self, form):
+        # Process the form data here
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_profile'], _ = UserProfile.objects.get_or_create(user=self.request.user)
+        return context
+
+@login_required
+def complete_profile(request):
+    user = request.user
+    profile = None
+    try:
+        profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        profile = None
+
+    if profile is not None:
+        return redirect('index') 
 
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        if not profile:
+            # Create a new profile only if it does not exist and the form is being submitted
+            profile = UserProfile(user=user)
+        form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            messages.success(request, "Account created successfully.")
-            return redirect('login')
-        else:
-            logger.warning("Invalid registration form submission by %s", request.META.get('REMOTE_ADDR'))
+            return redirect('index') 
     else:
-        form = RegistrationForm()
-    return render(request, 'datasets/register.html', {'form': form, 'errors': form.errors, 'messages': messages.get_messages(request)})
+        form = UserProfileForm(instance=profile) if profile else UserProfileForm()
+
+    return render(request, 'datasets/complete_profile.html', {'form': form})
 
 
 @login_required
-def user_logout(request):
-    logout(request)
-    return redirect('index')
+def update_profile(request):
+    user = request.user
+    profile = None
+    try:
+        profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        profile = None
+    print(profile)
+    if request.method == 'POST':
+        if not profile:
+            profile = UserProfile(user=user)
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('configure_account') 
+    else:
+        form = UserProfileForm(instance=profile) if profile else UserProfileForm()
 
+    return render(request, 'datasets/update_profile.html', {'form': form})
+
+@login_required
+def change_name(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = AccountSettingsForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Name updated successfully.")
+            return redirect('configure_account')  # Redirect to the account settings page or another appropriate page
+    else:
+        form = AccountSettingsForm(instance=user)
+
+    return render(request, 'datasets/change_name.html', {'form': form})
 # ------------------------------------------------------------------------------------------
 # Dataset-related views
 # ------------------------------------------------------------------------------------------
@@ -71,10 +132,9 @@ def datasets(request):
     datasets = Dataset.objects.all()
     return render(request, 'datasets/datasets.html', {'datasets': datasets})
 
-
 def dataset(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
-    return render(request, 'datasets/dataset.html', {'dataset': dataset})
+    return render(request, 'datasets/dataset.html', {'dataset': dataset, 'scraper_constants': scraper_constants})
 
 class DatasetViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Dataset.objects.all()
@@ -84,57 +144,44 @@ class CleanedDatasetViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Dataset.objects.all()
     serializer_class = CleanedDatasetSerializer
     
-@login_required
+@difa_admin
 def scrape_dataset(request, dataset_id):
     try:
         dataset = Dataset.objects.get(pk=dataset_id)
     except ObjectDoesNotExist:
-        if SCRAPER_MAPPING.get(dataset_id) is None:
-            messages.error(request, "Invalid ID or Dataset does not exist!")
-            return redirect('datasets')
-        dataset = Dataset.objects.create(pk=dataset_id)
+        messages.error(request, "Dataset does not exist!")
+        return redirect('datasets')
 
     try:
         scraped_data = run_scraper(dataset_id)
-        scraped_data['last_scraped'] = timezone.now().isoformat()  # Update the 'last_scraped' attribute
+        if scraped_data is None:
+            messages.error(request, "An error occurred while scraping the dataset!")
+            return redirect('datasets')
 
-        # Update the database with the scraped data
+        # Update dataset with scraped data
         for key, value in scraped_data.items():
             setattr(dataset, key, value)
+        dataset.last_scraped = timezone.now()
+        dataset.is_errored = False
         dataset.save()
-        messages.success(request, "Scraped and updated successfully!")
-        return redirect('dataset', dataset_id=dataset.id)
+        messages.success(request, "Dataset scraped and updated successfully!")
     except Exception as e:
         logger.error("Error scraping dataset ID %s: %s", dataset_id, str(e), exc_info=True)
-        messages.error(request, "An error occurred while scraping the dataset!")
-        return redirect('datasets')
-    
+        messages.error(request, "An unexpected error occurred while scraping the dataset!")
+
+    return redirect('dataset', dataset_id=dataset_id)
+
 # ------------------------------------------------------------------------------------------
 # Modifications Portal Views
 # ------------------------------------------------------------------------------------------
-def modification_manager_check(user):
-    return user.is_authenticated and (user.is_superuser or user.is_staff or user.groups.filter(name='Modification Manager').exists())
-
-def modification_manager(view_func):
-    decorator = user_passes_test(
-        modification_manager_check,
-        login_url='datasets',
-    )
-    def _wrapped_view_func(request, *args, **kwargs):
-        if not modification_manager_check(request.user):
-            messages.error(request, "You are unauthorized to view that page!")
-        return decorator(view_func)(request, *args, **kwargs)
-
-    return _wrapped_view_func
 
 @login_required
-@modification_manager
+@difa_admin
 def modification_requests(request):
     mod_requests = ModificationRequest.objects.all().order_by('-id')
     return render(request, 'datasets/modification_requests.html', {'mod_requests': mod_requests})
 
 @login_required
-@modification_manager
 def create_modification_request(request, dataset_id):
     dataset = get_object_or_404(Dataset, id=dataset_id)
 
@@ -177,7 +224,7 @@ def create_modification_request(request, dataset_id):
     return render(request, 'datasets/create_modification_request.html', {'form': form, 'dataset': dataset})
 
 @login_required
-@modification_manager
+@difa_admin
 def view_changes(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     dataset = mod_request.dataset
@@ -197,7 +244,7 @@ def view_changes(request, mod_request_id):
     return render(request, 'datasets/view_changes.html', {'mod_request': mod_request, 'changes': changes})
 
 @login_required
-@modification_manager
+@difa_admin
 def approve_request(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     if mod_request.status != 'pending':
@@ -212,7 +259,7 @@ def approve_request(request, mod_request_id):
     return redirect('modification_requests')
 
 @login_required
-@modification_manager
+@difa_admin
 def reject_request(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
     if mod_request.status != 'pending':
@@ -226,7 +273,7 @@ def reject_request(request, mod_request_id):
     return redirect('modification_requests')
 
 @login_required
-@modification_manager
+@difa_admin
 def modify_modification_request(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, id=mod_request_id)
 
@@ -243,31 +290,35 @@ def modify_modification_request(request, mod_request_id):
     return redirect('view_changes', mod_request_id=mod_request.id)
 
 @login_required
-@modification_manager
+@difa_admin
 def delete_modification_request(request, mod_request_id):
     mod_request = get_object_or_404(ModificationRequest, pk=mod_request_id)
     mod_request.delete()
     messages.success(request, 'Modification request deleted successfully.')
     return redirect('modification_requests')
 
+class TncView(TemplateView):
+    template_name = 'datasets/tnc.html'
+
 # ------------------------------------------------------------------------------------------
 # Collection Related Views
 # ------------------------------------------------------------------------------------------
 def collections(request):
-    # Query global collections
-    global_collections = Collection.objects.all()
-    user_collections = None
-    
-    # If the user is authenticated, fetch user's collections
-    if request.user.is_authenticated:
-        user_collections = Collection.objects.filter(user=request.user)
+    user_collections = Collection.objects.filter(user=request.user) if request.user.is_authenticated else None
 
-    form = CollectionForm()  # Create an instance of the form
+    # Exclude user's collections from global_collections if user is authenticated
+    if user_collections:
+        global_collections = Collection.objects.exclude(user=request.user)
+    else:
+        global_collections = Collection.objects.all()
+
+    form = CollectionForm()
     return render(request, 'datasets/collections.html', {
         'global_collections': global_collections,
         'user_collections': user_collections,
         'form': form
     })
+
 
 @login_required
 def create_collection(request):
@@ -313,11 +364,14 @@ def search_results(request):
 scraping_progress = 0
 current = ""
 
+@difa_admin
+@login_required
 def scrape_all_view(request):
-    if not request.user.is_superuser or not request.user.is_staff:
+    # print(request.user.is_staff)
+    if not (request.user.is_staff or request.user.is_superuser):
         messages.error(request, "You are unauthorized to scrape all datasets!")
         logger.warning("Unauthorized scrape attempt by user %s", request.user)
-        return HttpResponse('Please Log In as an authorized user!', status=401)
+        return redirect('datasets')
     
     user_id = request.user.id
     # Initialize progress for this specific user
@@ -337,7 +391,7 @@ def scrape_all_view(request):
             # Log the actual exception details
             logger.error("Error scraping dataset_id %s: %s", dataset_id, e)
             messages.error(request, f"Internal Server Error occurred after updating {(scraping_progress)} datasets! Please try again later.")
-            return JsonResponse({'redirect_url': reverse('datasets')})
+            return redirect('datasets')
 
         # Add timestamp to scraped data
         scraped_data['last_scraped'] = timezone.now().isoformat()
@@ -350,8 +404,9 @@ def scrape_all_view(request):
         scraping_progress += 1
 
     messages.success(request, f"Scraped {(scraping_progress)} datasets successfully!")
-    return JsonResponse({'redirect_url': reverse('datasets')})
+    return redirect()
 
+@difa_admin
 def scraping_progress_view(request):
     user_id = request.user.id
 
@@ -361,6 +416,13 @@ def scraping_progress_view(request):
 
     # Return the progress, current dataset, and total count in JSON format
     return JsonResponse({'progress': progress, 'current': current_dataset, 'total': len(SCRAPER_MAPPING)})
+
+@difa_admin
+@login_required
+def admin_page(request):
+    return render(request, 'datasets/admin_page.html')
+
+
 # ------------------------------------------------------------------------------------------
 # Static Site Pages views
 # ------------------------------------------------------------------------------------------

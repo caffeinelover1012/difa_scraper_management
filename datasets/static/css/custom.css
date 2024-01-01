@@ -1,0 +1,264 @@
+h1, h2, h3, p, table {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* table, th, td {
+    border: none;
+  } */
+  
+  .table {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table thead th {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .table tbody tr td {
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  .table tbody tr:last-child th {
+    border-bottom: none;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table td, .table th {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .btn-view {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-view:hover, .btn-view:focus {
+    background-color: #0056b3;
+    outline: none;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .table-responsive {
+      border: 0;
+    }
+  }
+  
+  
+  .dna-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  .dataset-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #26176F;
+    text-align: left;
+  }
+  
+  .sponsor-title {
+    font-weight: 600;
+  }
+  
+  .dataset-description {
+    margin-bottom: 20px;
+  }
+  
+  .button-group a.btn {
+    font-size: 1rem;
+    padding: 10px 15px;
+    margin-right: 10px;
+    color: white;
+    background-color: #26176F;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .button-group a.btn i {
+    margin-right: 5px;
+  }
+  
+  .access-type {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #28a745; /* Green for open access */
+    margin-right: 10px;
+  }
+  
+  .access-type.closed {
+    background-color: #dc3545; /* Red for restricted access */
+  }
+  
+  .metadata-card, .data-attributes-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .metadata-card h3, .data-attributes-card h3 {
+    font-size: 1.5rem;
+    color: #26176F;
+    margin-bottom: 15px;
+  }
+  
+  .metadata-card table, .data-attributes-card table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .metadata-card th, .data-attributes-card th {
+    text-align: left;
+    padding-right: 10px;
+  }
+  
+  .metadata-card td, .data-attributes-card td {
+    padding: 10px 0;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  .metadata-card .table tbody tr:last-child th {
+    border-bottom: none;
+  }
+  
+    .data-attributes-card .table tbody tr:last-child th {
+    border-bottom: none;
+  }
+  
+  .status.active {
+    color: #28a745;
+  }
+  
+  .status.inactive {
+    color: #dc3545;
+  }
+  
+  .citation-link {
+    margin-top: 15px;
+  }
+  
+  .citation-link a {
+    color: #0062cc;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .citation-link a i {
+    margin-left: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .dna-card, .metadata-card, .data-attributes-card {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .button-group a.btn {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .btn-view {
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-view:hover {
+    background-color: #0056b3;
+  }
+  
+  .table tbody tr:last-child {
+    border-bottom: none;
+  }
+  
+  .access-type-paid {
+    background-color: #ffa500; /* Orange for paid access */
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  
+  .access-type-restricted {
+    background-color: #dc3545; /* Red for restricted access */
+    color: white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: inline-block;
+  }
+  .access-type, .access-type-paid, .access-type-restricted {
+    padding: 10px 15px; /* Increased padding */
+    font-size: 1rem; /* Optional: Adjust font size as needed */
+    /* Rest of the styles remain the same */
+  }
+  
+  .status-active {
+    background-color: #28a745; /* Green for active */
+    color: white;
+    border-radius: 20px;
+    padding: 3px 7px;
+    display: inline-block;
+  }
+  
+  .status-inactive {
+    background-color: #dc3545; /* Red for inactive */
+    color: white;
+    border-radius: 20px;
+    padding: 3px 7px;
+    display: inline-block;
+  }
+  
+  /* Add this to your custom.css file */
+.table td, .table th {
+  padding: 0.5rem 1rem; /* Adjust padding if necessary */
+  text-align: left; /* Align text to the left */
+  vertical-align: middle;
+  word-wrap: break-word; /* Break and wrap long words */
+  max-width: 250px; /* Adjust maximum width as needed */
+}
+
+@media (max-width: 768px) {
+.table-responsive {
+  border: 0;
+}
+.table td, .table th {
+  padding: 0.25rem 0.5rem; /* Reduce padding on smaller screens */
+}
+}
+
+  

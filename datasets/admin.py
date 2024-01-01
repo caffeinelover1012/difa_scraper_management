@@ -1,17 +1,30 @@
-from .models import Dataset, Collection, ModificationRequest, Person, User
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth import get_user_model
+from .models import DataifaUser, UserProfile, Dataset, Collection, ModificationRequest, Person, VerificationQuestion
 
-class UserAdmin(BaseUserAdmin):
+# Inline admin for Verification Questions
+class VerificationQuestionInline(admin.TabularInline):
+    model = VerificationQuestion
+    fields = ('question', 'answer')  # Specify the fields to display
+    extra = 0  # Removes extra empty fields
+
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'profile'
+    fk_name = 'user'
+
+class UserAdmin(admin.ModelAdmin):
+    inlines = (UserProfileInline, VerificationQuestionInline)
+    list_display = ('email', 'first_name', 'last_name', 'is_staff')
+    list_select_related = ('profile', )
     ordering = ('email',)
-    list_display = ('email', 'first_name', 'last_name')  # add other fields if you want
 
-if admin.site.is_registered(User):
-    admin.site.unregister(User)
-admin.site.register(get_user_model(), UserAdmin)
+# Unregister the old user admin and register the new one with the UserProfile
+if admin.site.is_registered(DataifaUser):
+    admin.site.unregister(DataifaUser)
+admin.site.register(DataifaUser, UserAdmin)
 
-
+# Register other models
 admin.site.register(Dataset)
 admin.site.register(Collection)
 admin.site.register(ModificationRequest)

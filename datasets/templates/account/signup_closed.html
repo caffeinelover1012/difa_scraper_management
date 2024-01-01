@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Up Closed" %}{% endblock head_title %}
+
+{% block content %}
+
+<section class="vh-100">
+    <div class="container pb-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-lg-7 my-5 p-5" style="background-color: #e4f2ff; border-radius: 20px">
+                <h1 class="mt-1 pb-1 text-center" style="font-family: 'Poppins', sans-serif;">{% trans "Sign Up Closed" %}</h1>
+                <p class="mb-3 pb-1" style="font-size: 16px; font-family: 'Poppins', sans-serif; text-align: center;">{% trans "We are sorry, but the sign up is currently closed." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

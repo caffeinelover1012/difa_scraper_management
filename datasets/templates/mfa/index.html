@@ -1,0 +1,61 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}
+    {% trans "Two-Factor Authentication" %}
+{% endblock head_title %}
+{% block content %}
+   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <section style="padding-top: 1em;">
+        <div class="container py-4">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-7 col-sm-9">
+                    <div class="my-5 p-5 bg-light rounded-3" style="border-radius: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                        <h1 class="mt-1 pb-1 text-center" style="font-family: 'Poppins', sans-serif;">{% trans "Two-Factor Authentication" %}</h1>
+                        <section class="totp">       
+                             <h2>{% translate "Authenticator App" %}</h2>
+        {% if authenticators.totp %}
+            <p>{% translate "Authentication using an authenticator app is active." %}</p>
+            <ul class="actions">
+                <li>
+                    <a href="{% url 'mfa_deactivate_totp' %}">{% translate "Deactivate" %}</a>
+                </li>
+            </ul>
+        {% else %}
+            <p>{% translate "An authenticator app is not active." %}</p>
+            <ul class="actions">
+                <li>
+                    <a href="{% url 'mfa_activate_totp' %}">{% translate "Activate" %}</a>
+                </li>
+            </ul>
+        {% endif %}
+    </section>
+    <section class="recovery_codes">
+        <h2>{% translate "Recovery Codes" %}</h2>
+        {% if authenticators.recovery_codes %}
+            <p>
+                {% blocktranslate with total_count=authenticators.recovery_codes.generate_codes|length count unused_count=authenticators.recovery_codes.get_unused_codes|length %}There is {{ unused_count }} out of {{ total_count }} recovery codes available.{% plural %}There are {{ unused_count }} out of {{ total_count }} recovery codes available.{% endblocktranslate %}
+            </p>
+            <ul class="actions">
+                <li>
+                    <a href="{% url 'mfa_view_recovery_codes' %}">{% translate "View codes" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'mfa_download_recovery_codes' %}">{% translate "Download codes" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'mfa_generate_recovery_codes' %}">{% translate "Generate new codes" %}</a>
+                </li>
+            </ul>
+        {% else %}
+            <p>{% translate "No recovery codes set up." %}</p>
+        {% endif %}
+    </section>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}

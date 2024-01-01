@@ -7,10 +7,10 @@
     {% if user.is_authenticated %}
       <p class="lead">Logged in as {{ user.email }}</p>
       <a class="btn btn-info" href="{% url 'datasets' %}" role="button">View Datasets</a>
-      <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Logout</a>
+      <a class="btn btn-danger" href="{% url 'account_logout' %}" role="button">Logout</a>
     {% else %}
-      <a class="btn btn-primary mr-2" href="{% url 'login' %}" role="button">Log In</a>
-      <a class="btn btn-secondary" href="{% url 'register' %}" role="button">Register</a>
+      <a class="btn btn-primary mr-2" href="{% url 'account_login' %}" role="button">Log In</a>
+      <a class="btn btn-secondary" href="{% url 'account_signup' %}" role="button">Register</a>
     {% endif %}
   </div>
 </div>

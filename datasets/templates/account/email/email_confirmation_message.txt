@@ -1,0 +1,23 @@
+{% load account %}
+{% load i18n %}
+
+{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Dear {{ user_display }},
+Welcome to DataIFA, your hub for data and research insights!
+
+To begin your journey with us and access an abundance of datasets and resources, please verify your email:
+{{ activate_url }}
+
+This link is valid for 30 minutes.
+
+Dive into a world of data exploration, analysis, and sharing with DataIFA!
+
+If you did not sign up for DataIFA, you can disregard this message.
+
+For any questions or support, reach out to us at dataifaproject@gmail.com.
+
+Warm regards,
+
+The DataIFA Team
+
+{{ site_domain }}
+{% endblocktrans %}{% endautoescape %}

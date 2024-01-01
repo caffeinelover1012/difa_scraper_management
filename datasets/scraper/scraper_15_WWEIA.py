@@ -1,61 +1,110 @@
-from .common_imports import *
+from .BaseScraper import *
 
 DATE_FMT = "%m/%d/%Y"
 ORG_URL = "https://data.nal.usda.gov/dataset/what-we-eat-america-wweia-database"
 ORGANIZATION = "WWEIA"
-
-# Define a function to get the data attributes for an organization
-def get_data_attributes(url):
-
-    res = {i: "N/A" for i in ATTRS}
-    res['acronym'] = "WWEIA"
-    res["dataset_name"] = "What We Eat In America (WWEIA)"
-    res["dataset_website_link"] = ORG_URL
-
-    #Dataset Collection Method
-    DATASET_COLLECTION_METHOD = '''Two days of 24-hour dietary recall data are collected in WWEIA, NHANES. The Day 1 interview is conducted in person in the Mobile Examination Center (MEC). The Day 2 interview is collected by telephone 3 to 10 days later, but not on the same day of the week as the Day 1 interview. 
+DATASET_COLLECTION_METHOD = '''Two days of 24-hour dietary recall data are collected in WWEIA, NHANES. The Day 1 interview is conducted in person in the Mobile Examination Center (MEC). The Day 2 interview is collected by telephone 3 to 10 days later, but not on the same day of the week as the Day 1 interview. 
                                 \n\nTrained interviewers using the 5-step USDA Automated Multiple-Pass Method (AMPM) collect dietary intakes. The AMPM includes an extensive compilation of standardized food-specific questions and possible response options. Routing of questions is based on previous response. The AMPM is revised for each 2-year collection of WWEIA to reflect the changing food supply. Read more about the AMPM. 
                                 \n\nDuring the 24-hour recall, respondents estimate the amount of food and beverages consumed using 3-dimentional models on Day 1 and the USDAs Food Model Booklet on Day 2.'''
-    res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
+SPONSOR_NAME = "U.S. Department of Agriculture (USDA) and the U.S. Department of Health and Human Services (DHHS)"
+DATASET_CITATION = "U.S. Department of Agriculture, Agricultural Research Service, Beltsville Human Nutrition Research Center, Food Surveys Research Group (Beltsville, MD) and U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Health Statistics (Hyattsville, MD). What We Eat in America, NHANES YYYY-YYYY Type of File: Descriptive Name of File (FILENAME). (YYYY, Month). Available from: http://www.cdc.gov/remainder_of_url.xxx [accessed MM/DD/YY]."
+DATASET_NAME = "What We Eat In America (WWEIA)"
+ABOUT = "What We Eat in America (WWEIA), NHANES is a national food survey conducted as a partnership between the U.S. Department of Health and Human Services (HHS) and the U.S. Department of Agriculture (USDA). WWEIA represents the integration of two nationwide surveys - USDA's Continuing Survey of Food Intakes by Individuals (CSFII) and HHS' NHANES. Under the integrated framework, HHS is responsible for the sample design and data collection. USDA is responsible for the survey's dietary data collection methodology, development and maintenance of the food and nutrient databases used to code and process the data. The two surveys were integrated in 2002."
+DATASET_LINK = "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/food-surveys-research-group/docs/wweianhanes-overview/"
 
-    #Citation Method
-    DATASET_CITATION = "U.S. Department of Agriculture, Agricultural Research Service, Beltsville Human Nutrition Research Center, Food Surveys Research Group (Beltsville, MD) and U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Health Statistics (Hyattsville, MD). What We Eat in America, NHANES YYYY-YYYY Type of File: Descriptive Name of File (FILENAME). (YYYY, Month). Available from: http://www.cdc.gov/remainder_of_url.xxx [accessed MM/DD/YY]."
-    res["dataset_citation"] = DATASET_CITATION
+class WWEIA(BaseScraper):
+    def __init__(self, dataset_id=None):
+        super().__init__(dataset_id=dataset_id)
+        self.set_date_format(DATE_FMT)
+        self.setup_static_attrs({
+            'acronym': "WWEIA",
+            'access_type': self.constants['OPEN_ACCESS'],
+            'dataset_website_link': ORG_URL,
+            'sponsor_name': SPONSOR_NAME,
+            'dataset_name': DATASET_NAME,
+            'dataset_collection_method': DATASET_COLLECTION_METHOD,
+            'about_info': ABOUT,
+            'dataset_citation':DATASET_CITATION,
+            'dataset_link':DATASET_LINK,            
+        })
 
-    #Sponsor Name
-    SPONSOR_NAME = "U.S. Department of Agriculture (USDA) and the U.S. Department of Health and Human Services (DHHS)"
-    res["sponsor_name"] = SPONSOR_NAME
+        self.dataset_page_soup = self.fetch_data_with_requests(DATASET_LINK)
+        self.extract_data_attributes(dataset_page_soup=self.dataset_page_soup)
+        self.finalize_additional_attributes()
 
-    #Type of access to the dataset
-    res["access_type"] = "Open Access"
+    def extract_data_attributes(self, **kwargs):
+        super().extract_data_attributes(**kwargs)
+        soup = kwargs.get('dataset_page_soup')
+        try:
+            last_updated = soup.find('div', class_='page-last-modified').get_text().strip().replace('\n', "")
+            last_updated = last_updated[15:]
+            last_updated_date = standardize(DATE_FMT, last_updated)
+            self.res["last_updated"] = last_updated_date
+            # Determine the dataset status
+            self.res['dataset_status'] = 'Inactive' if is_older_than_5yrs(self.res['last_updated']) else 'Active'
+            self.res["dataset_file_format"] = ["pdf"]
+        except Exception as e:
+            self.error_out(str(e), self.dataset_id)
 
-    about_info = "What We Eat in America (WWEIA), NHANES is a national food survey conducted as a partnership between the U.S. Department of Health and Human Services (HHS) and the U.S. Department of Agriculture (USDA). WWEIA represents the integration of two nationwide surveys - USDA's Continuing Survey of Food Intakes by Individuals (CSFII) and HHS' NHANES. Under the integrated framework, HHS is responsible for the sample design and data collection. USDA is responsible for the survey's dietary data collection methodology, development and maintenance of the food and nutrient databases used to code and process the data. The two surveys were integrated in 2002."
-    res["about_info"] = about_info
+    def finalize_additional_attributes(self):
+        return None
 
-    #Get the dataset link
-    dataset_link = "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/food-surveys-research-group/docs/wweianhanes-overview/"
-    res["dataset_link"] = dataset_link
+# # ---------------------------------------------------
+#     # Old code for reference
+# # ---------------------------------------------------
+# #
+# # Define a function to get the data attributes for an organization
+# def get_data_attributes(url):
+
+#     res = {i: "N/A" for i in ATTRS}
+#     res['acronym'] = "WWEIA"
+#     res["dataset_name"] = "What We Eat In America (WWEIA)"
+#     res["dataset_website_link"] = ORG_URL
+
+#     #Dataset Collection Method
+#     DATASET_COLLECTION_METHOD = '''Two days of 24-hour dietary recall data are collected in WWEIA, NHANES. The Day 1 interview is conducted in person in the Mobile Examination Center (MEC). The Day 2 interview is collected by telephone 3 to 10 days later, but not on the same day of the week as the Day 1 interview. 
+#                                 \n\nTrained interviewers using the 5-step USDA Automated Multiple-Pass Method (AMPM) collect dietary intakes. The AMPM includes an extensive compilation of standardized food-specific questions and possible response options. Routing of questions is based on previous response. The AMPM is revised for each 2-year collection of WWEIA to reflect the changing food supply. Read more about the AMPM. 
+#                                 \n\nDuring the 24-hour recall, respondents estimate the amount of food and beverages consumed using 3-dimentional models on Day 1 and the USDAs Food Model Booklet on Day 2.'''
+#     res["dataset_collection_method"] = DATASET_COLLECTION_METHOD
+
+#     #Citation Method
+#     DATASET_CITATION = "U.S. Department of Agriculture, Agricultural Research Service, Beltsville Human Nutrition Research Center, Food Surveys Research Group (Beltsville, MD) and U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Health Statistics (Hyattsville, MD). What We Eat in America, NHANES YYYY-YYYY Type of File: Descriptive Name of File (FILENAME). (YYYY, Month). Available from: http://www.cdc.gov/remainder_of_url.xxx [accessed MM/DD/YY]."
+#     res["dataset_citation"] = DATASET_CITATION
+
+#     #Sponsor Name
+#     SPONSOR_NAME = "U.S. Department of Agriculture (USDA) and the U.S. Department of Health and Human Services (DHHS)"
+#     res["sponsor_name"] = SPONSOR_NAME
+
+#     #Type of access to the dataset
+#     res["access_type"] = "Open Access"
+
+#     about_info = "What We Eat in America (WWEIA), NHANES is a national food survey conducted as a partnership between the U.S. Department of Health and Human Services (HHS) and the U.S. Department of Agriculture (USDA). WWEIA represents the integration of two nationwide surveys - USDA's Continuing Survey of Food Intakes by Individuals (CSFII) and HHS' NHANES. Under the integrated framework, HHS is responsible for the sample design and data collection. USDA is responsible for the survey's dietary data collection methodology, development and maintenance of the food and nutrient databases used to code and process the data. The two surveys were integrated in 2002."
+#     res["about_info"] = about_info
+
+#     #Get the dataset link
+#     dataset_link = "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/food-surveys-research-group/docs/wweianhanes-overview/"
+#     res["dataset_link"] = dataset_link
     
-    response = requests.get(dataset_link)
-    soup = BeautifulSoup(response.content,'html.parser')
+#     response = requests.get(dataset_link)
+#     soup = BeautifulSoup(response.content,'html.parser')
 
-    #Find when the dataset was last updated
-    last_updated = soup.find('div',class_="page-last-modified").get_text().strip().replace('\n',"")
-    last_updated = last_updated[15:]
-    last_updated_date = standardize(DATE_FMT,last_updated)
+#     #Find when the dataset was last updated
+#     last_updated = soup.find('div',class_="page-last-modified").get_text().strip().replace('\n',"")
+#     last_updated = last_updated[15:]
+#     last_updated_date = standardize(DATE_FMT,last_updated)
 
-    res["last_updated"] = last_updated_date
+#     res["last_updated"] = last_updated_date
 
-    #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
-    latest_year_available=last_updated_date[-4:]
-    current_date=date.today()
-    current_year=current_date.year
-    year_difference=int(current_year)-int(latest_year_available)
-    status="Active"
-    if year_difference>=5:
-        status="Inactive"
-    res["dataset_status"] = status
+#     #Find the lastest available year data and compute if the last collected is not more than 5 years of duration.
+#     latest_year_available=last_updated_date[-4:]
+#     current_date=date.today()
+#     current_year=current_date.year
+#     year_difference=int(current_year)-int(latest_year_available)
+#     status="Active"
+#     if year_difference>=5:
+#         status="Inactive"
+#     res["dataset_status"] = status
 
-    res["dataset_file_format"] = ["pdf"]
+#     res["dataset_file_format"] = ["pdf"]
 
-    return res
+#     return res

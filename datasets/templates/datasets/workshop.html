@@ -33,7 +33,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" onclick="closeDay1Modal()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" onclick="closeDay1Modal()" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="day1ModalLabel">Workshop Day 1</h4>
         </div>
         <div class="modal-body">
@@ -76,11 +76,11 @@
     </div>
   </div>
   
-  <div class="modal fade" id="day2Modal" tabindex="-1" role="dialog" aria-labelledby="day2ModalLabel" style="z-index: 11100; margin-top: 40px;">
+  <div class="modal fade" id="day2Modal" tabindex="-1" role="dialog" aria-labelledby="day2ModalLabel" style="z-index: 11000; margin-top: 40px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" onclick="closeDay2Modal()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" onclick="closeDay2Modal()" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="day2ModalLabel">Workshop Day 2</h4>
         </div>
         <div class="modal-body">
@@ -131,11 +131,10 @@
       <h3><i class="fas fa-calendar-day"></i> Workshop Dates</h3>
     </div>
     <div class="card-body">
-        <h5><a href="#day1Modal" onclick="openDay1Modal()" data-toggle="modal"><i class="fas fa-arrow-right"></i>Day 1 (Part One): Friday, October 1, 2021, 12-5pm ET</a></h5>
-        <h5><a href="#day2Modal" onclick="openDay2Modal()" data-toggle="modal"><i class="fas fa-arrow-right"></i>Day 2 (Part One): Friday, October 8, 2021, 12-5pm ET</a></h5>
+        <h5><a href="#day1Modal" onclick="openDay1Modal()" data-bs-toggle="modal"><i class="fas fa-arrow-right"></i>Day 1 (Part One): Friday, October 1, 2021, 12-5pm ET</a></h5>
+        <h5><a href="#day2Modal" onclick="openDay2Modal()" data-bs-toggle="modal"><i class="fas fa-arrow-right"></i>Day 2 (Part One): Friday, October 8, 2021, 12-5pm ET</a></h5>
        </div>
   </div>
-
   <!-- Card for the workshop description -->
   <div class="card mt-4">
     <div class="card-header">

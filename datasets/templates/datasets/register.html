@@ -9,7 +9,7 @@
   <div class="" style="border: 1px solid #ccc; border-radius: 10px; padding: 40px; background-color: #f8f9fa; width:65%;">
     <h2 class="text-center">Welcome to DIFA</h2>
     <h5 class="text-center">Create your account</h5>
-    <form method="POST" action="{% url 'register' %}" id="registrationForm">
+    <form method="POST" action="{% url 'account_signup' %}" id="registrationForm">
       {% csrf_token %}
       {% for field in form %}
       <div class="form-group mb-3">
@@ -24,7 +24,7 @@
     </form>
     <br>
     <div style="text-align: center;">
-      <p style="margin:0px">Already have an account?  <a href="{% url 'login' %}">Login</a></p>
+      <p style="margin:0px">Already have an account?  <a href="{% url 'account_login' %}">Login</a></p>
       <p style="margin:0px">Continue as Guest?  <a href="{% url 'index' %}">Back to Home</a></p>
     </div>
     <div id="passwordRequirements" class="position-absolute bg-white border p-2" style="right: 20px; top: 50%; display: none;">

@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
+
+{% block content %}
+<section class="vh-100">
+    <div class="container pb-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-lg-7 my-5 p-5" style="background-color: #e4f2ff; border-radius: 20px">
+                <h1 class="mt-1 pb-1 text-center" style="font-family: 'Poppins', sans-serif;">{% trans "Sign Out" %}</h1>
+                <p class="mb-3 pb-1" style="font-size: 16px; font-family: 'Poppins', sans-serif; text-align: center;">{% trans 'Are you sure you want to sign out?' %}</p>
+                <form method="post" action="{% url 'account_logout' %}">
+                  {% csrf_token %}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                  {% endif %}
+                  <button type="submit" class="btn btn-md btn-block" style="color: white; background-color: #26176F; font-family: 'Poppins', sans-serif; display: block; margin: 0 auto;">{% trans 'Sign Out' %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock content %}

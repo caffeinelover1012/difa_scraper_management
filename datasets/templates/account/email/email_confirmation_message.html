@@ -1,0 +1,72 @@
+{% load account %}
+{% load static %}
+{% load i18n %}
+
+{% autoescape off %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #5750e9;
+    }
+    .email-container {
+        background-color: #ffffff;
+        color: #000000; 
+        padding: 20px;
+        border-radius: 8px;
+        margin: auto;
+        width: 80%;
+        max-width: 600px;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #b8bbf5;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="email-container">
+    <img src="https://www.dataifa.org/static/logo.png" alt="DataIFA Logo" width="150">
+    {% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+    <p>Dear {{ user_display }},</p>
+    <p>Welcome to DataIFA, your gateway to a world of data and research!</p>
+    <p>To access our comprehensive datasets and begin your data exploration journey, please verify your email by clicking the button below:</p>
+    <div style="text-align: center;"><a href="{{ activate_url }}" class="button">Verify Email</a></div>
+    <p>This link will remain active for 30 minutes.</p>
+    <p>Start discovering, analyzing, and sharing insights with DataIFA!</p>
+    <p>If you did not sign up for a DataIFA account, please disregard this email.</p>
+    <p>Should you have any inquiries or require support, feel free to reach out to us at dataifaproject@gmail.com.</p>
+    <p>Warm regards,</p>
+    <p>The DataIFA Team</p>
+    {% endblocktrans %}
+
+    <div class="footer">
+        <a href="https://www.dataifa.org">Explore DataIFA</a>
+    </div>
+</div>
+
+</body>
+</html>
+{% endautoescape %}
