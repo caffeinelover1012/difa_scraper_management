@@ -9,8 +9,8 @@
     align-items: center;
     width: auto;
     justify-content: center;
-    height: 80vh;
-    margin-top: -40px;
+    margin-top: 30px;
+    margin-bottom: 100px;
   }
 
   .search-input {
@@ -50,6 +50,11 @@
     margin-top: 1rem;
   }
 
+  .video-overview {
+    border: 1px solid black;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+  }
+
   @media (max-width: 576px) {
     .caption {
       font-size: 1rem;
@@ -71,6 +76,14 @@
     </button>
   </div>
   </form>
+  <br>
+  <p><h4 style="color:#004785;">DIFA: An AI-powered search-and-discovery tool indexing hundreds of datasets.</h4></p>
+  <br>
+  <div class="video-overview">
+    <video autoplay loop muted playsinline width="1000" height="600">
+      <source src="../../static/DataIFA_Overview.mp4" type="video/mp4"/>
+    </video> 
+  </div>
 </div>
 
 {% endblock %}
