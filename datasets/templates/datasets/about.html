@@ -178,7 +178,7 @@
       <div id="main-content-words">
         <img class="img-fluid" src="{% static 'difafinal.png' %}">
         <h1 id="project-title">Data Integration in Food and Agriculture</h1>
-        <p id="project-mission">Transforming data into actionable insights for agricultural policy and research.</p>
+        <p id="project-mission">Facilitating the construction of linked data at scale.</p>
         <div class="container mt-4">
           <div class="video-container">
             <iframe src="https://drive.google.com/file/d/1GIGFr0DyXrO9dl9FKukqelAG7IKAWFs1/preview" height="480px" width="700px" allow="autoplay"></iframe>
@@ -193,21 +193,21 @@
       <div class="col-md-4" data-aos="fade-up" onclick="openDetailModal('modalContent1')">
         <div class="card" title="Click for more details" aria-label="Click to learn more about Why DataIFA?">
           <h3 class="card-title">Why DIFA?</h3>
-          <p class="card-text">Integrating diverse data sets to enhance policy-based research in food and agriculture.</p>
+          <p class="card-text">DIFA serves as an AI-powered search-and-discovery tool indexing hundreds of datasets.</p>
         </div>
       </div>
 
     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100" onclick="openDetailModal('modalContent2')">
       <div class="card" title="Click for more details" aria-label="Click to learn more about Our Approach">
         <h3 class="card-title">Our Approach</h3>
-        <p class="card-text">Documenting data resources, improving user experience, and leading agricultural economics research.</p>
+        <p class="card-text">DIFA leverages AI to search across metadata to provide user-specific, explainable recommendations custom to your data needs.</p>
       </div>
     </div>
 
     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200" onclick="openDetailModal('modalContent3')">
       <div class="card" title="Click for more details" aria-label="Click to learn more about Our Objective">
         <h3 class="card-title">Our Objective</h3>
-        <p class="card-text">Providing essential information for utilizing datasets, fostering data linkage in the field.</p>
+        <p class="card-text">DIFA aims to streamline the research production lifecycle by offering an AI-powered solution that addresses the challenges of finding, accessing, and linking datasets.</p>
       </div>
     </div>
     </div>
@@ -233,11 +233,8 @@
 
 <div id="bottom-wrapper">
   <div id="bottom-content" class="container text-center">
-    <div id="why-difa">
-      <p>Empowering Research and Policy Development</p>
-    </div>
     <div id="at-difa-we">
-      <p>Driving innovation and informed decision-making in agricultural policy.</p>
+      <p>Driving Research Discovery Through the Power of Data Integration</p>
       <a href="{% url 'index' %}" class="btn btn-light">Get Started</a>
     </div>
   </div>
@@ -256,9 +253,9 @@
   function openDetailModal(contentId) {
     // Load content based on the ID
     const contentMap = {
-      'modalContent1': 'Policy-based research in food and agriculture requires a comprehensive analysis, using contextual, econometric, and disciplinary knowledge. Integrating disparate data allows researchers to have more complete information about the markets they study, the potential need for policy, and the intended and unintended impacts of suggested policies. However, the technical and logistical skills needed to build datasets that rely on the use of multiple disparate data sets may be a barrier for many applied economists.',
-      'modalContent2': 'To begin building this online tool, we will identify and document available data resources, both public and private, commonly used by agricultural and applied economists. The compilation of data sources will serve as the inputs for the online resource. We also continuously strive to improve our tool by gathering user feedback, refining our data sources, and enhancing the user experience to make it as seamless as possible. Our team is dedicated to staying up-to-date with the latest developments in the field and incorporating them into our platform for the benefit of our users.',
-      'modalContent3': 'The Data Integration in Food and Agriculture (DIFA) tool will provide dataset-specific information pertinent to accessing and utilizing the corresponding data, and linking it with other relevant datasets. In this tool, we will generate easily consumable information that describes key attributes of data resources. These attributes include outcome variables and how they are measured; whether the data is publicly available or licensed; a brief description of sampling methods; the structure of the data; and opportunities and previous work done to link one data source to others.'
+      'modalContent1': 'DIFA is committed to transforming the way data are searched, discovered, and analyzed. Our platform provides a more efficient and nuanced data discovery experience, including metadata indexing, personalized query recommendations, a unified data ontology, and visual data linkages. Learn more about DIFA\'s approach <a href="#" onclick="openDetailModal(\'modalContent2\')">here</a>.',
+      'modalContent2': 'Our approach is rooted in deep metadata indexing that enables users to explore data products by topic, linkability with other datasets, and custom parameters.<br><br>The cornerstone of our approach lies in the visualization of data linkages through dynamic knowledge graphs. The visualization of data networks serves as a tool for uncovering not only the extent of dataset interoperability but also the potential for research discovery.',
+      'modalContent3': 'DIFA\'s objective is to enhance the efficiency of the research production process by providing a platform that directly addresses the challenges researchers face in finding appropriate data. Users can see available data sets that meet their criteria and how those can link to other data sets. Utilizing advanced AI methods, our tool simplifies these tasks, facilitating a more straightforward approach to data discovery, access, and analysis.'
     };
     document.getElementById('modalContent').innerHTML = contentMap[contentId];
     $('#detailModal').modal('show');
